@@ -1,10 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
-const http = require('http');
-const routesApi = require('./src/routes/index.routes');
-
+const routesApi = require('./src/routes/routes');
 const app = express();
-const server = http.createServer(app);
 
 app.use(express.json());
 app.use(morgan('dev'));
@@ -25,4 +22,4 @@ app.use((req, res, next) => {
 
 routesApi(app);
 
-module.exports = server;
+module.exports = app;
