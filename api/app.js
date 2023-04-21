@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const http = require('http');
-const routesApi = require('./src/routes/routes');
+const routesApi = require('./src/routes/index.routes');
 
 const app = express();
 const server = http.createServer(app);
