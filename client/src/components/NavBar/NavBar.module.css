@@ -1,0 +1,35 @@
+.container {
+  position: fixed;
+  z-index: 9999;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+}
+.container p {
+  font-size: 30px;
+  color: white;
+  margin-left: 5rem;
+}
+
+.buttonsNav {
+  display: flex;
+  width: 350px;
+  justify-content: space-between;
+  margin-right: 5rem;
+}
+
+.linksNav {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  width: 110px;
+  padding: 7px;
+}
+
+.linksNav:hover {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
