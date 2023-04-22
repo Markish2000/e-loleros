@@ -28,13 +28,13 @@ class ProductsService {
     availability,
   }) {
     const newProduct = await productsModel.create({
-      title: title,
-      price: price,
-      detail: detail,
-      mainImage: mainImage,
-      images: images,
-      stock: stock,
-      availability: availability,
+      title,
+      price,
+      detail,
+      mainImage,
+      images,
+      stock,
+      availability,
     });
 
     return {
@@ -50,9 +50,22 @@ class ProductsService {
   }
 
   //* Borrar un producto.
-  async delete() {
-    const response = 'Hola esto funciona y estoy en el service';
-    return response;
+  async delete(id) {
+    const deleteProduct = await productsModel.destroy({
+      where: { id },
+      //!! PREGUNTAR
+      // force: true,
+      //!! PREGUNTAR
+    });
+
+    if (deleteProduct === 0) {
+      throw new Error('No existe el producto en nuestra base de datos.');
+    } else {
+      return {
+        message: 'Borrado',
+        data: id,
+      };
+    }
   }
 }
 

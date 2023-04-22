@@ -4,55 +4,58 @@ const router = Router();
 const service = new ProductsService();
 
 //* Obtener todos los productos.
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
   try {
     const response = await service.find();
-    res.json(response);
+    res.status(200).json(response);
   } catch (error) {
-    res.json(error);
+    next(error);
   }
 });
 
 //* Obtener producto por id.
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const response = await service.findOne();
-    res.json(response);
+    res.status(200).json(response);
   } catch (error) {
-    res.json(error);
+    next(error);
   }
 });
 
 //* Crear un producto.
-router.post('/', async (req, res) => {
+router.post('/', async (req, res, next) => {
   try {
     const body = req.body;
 
     const createNewProduct = await service.create(body);
 
-    res.json(createNewProduct);
+    res.status(200).json(createNewProduct);
   } catch (error) {
     next(error);
   }
 });
 
 //* Editar un producto.
-router.patch('/', async (req, res) => {
+router.patch('/', async (req, res, next) => {
   try {
     const response = await service.update();
-    res.json(response);
+    res.status(200).json(response);
   } catch (error) {
-    res.json(error);
+    next(error);
   }
 });
 
 //* Borrar un producto.
-router.delete('/', async (req, res) => {
+router.delete('/:id', async (req, res, next) => {
   try {
-    const response = await service.delete();
-    res.json(response);
+    const { id } = req.params;
+
+    const deleteProduct = await service.delete(id);
+
+    res.status(200).json(deleteProduct);
   } catch (error) {
-    res.json(error);
+    next(error);
   }
 });
 
