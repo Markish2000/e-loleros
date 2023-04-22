@@ -5,15 +5,15 @@ const categories = sequelize.define('categories', {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
-    defaultValue: 'Accounts',
+    defaultValue: 'Cuentas',
     validate: {
       isIn: [
         [
-          'Accounts',
+          'Cuentas',
           'Skins',
           'Elo Boost',
           'Duo Boost',
-          'Professional Technical Coaching',
+          'Coaching técnico profesional',
         ],
       ],
     },
