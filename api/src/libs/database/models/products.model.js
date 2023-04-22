@@ -9,12 +9,12 @@ const products = sequelize.define('products', {
   },
 
   title: {
-    type: DataTypes.STRING(100),
+    type: DataTypes.STRING(50),
     allowNull: false,
   },
 
   price: {
-    type: DataTypes.INTEGER(),
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
 
@@ -26,10 +26,16 @@ const products = sequelize.define('products', {
   mainImage: {
     type: DataTypes.TEXT,
     allowNull: false,
+    validate: {
+      isUrl: true,
+    },
   },
 
   images: {
     type: DataTypes.ARRAY(DataTypes.TEXT),
+    validate: {
+      isUrl: true,
+    },
   },
 
   stock: {
