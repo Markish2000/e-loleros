@@ -6,9 +6,16 @@ class ProductsService {
   constructor() {}
 
   //* Obtener todos los productos.
-  async find() {
-    const response = 'Hola esto funciona y estoy en el service';
-    return response;
+  async findAll() {
+    const findAllProducts = await productsModel.findAll();
+
+    if (findAllProducts.length === 0) {
+      throw new Error('La base de datos está vacía.');
+    } else {
+      return {
+        findAllProducts,
+      };
+    }
   }
 
   //* Obtener producto por id.
