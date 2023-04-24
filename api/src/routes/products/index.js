@@ -40,6 +40,39 @@ const controller = new ProductsController();
 router.get('/', controller.findAll);
 
 //* Obtener producto por id.
+/**
+ * @openapi
+ * /api/v1/products/:id:
+ *   get:
+ *     tags:
+ *       - products
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: "#/components/schemas/products"
+ *       500:
+ *         description: FAILED
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     error:
+ *                       type: string
+ *                       example: "El producto con el id 1 no se encuentra en nuestra base de datos."
+ *
+ */
 router.get('/:id', controller.findOne);
 
 //* Crear un producto.

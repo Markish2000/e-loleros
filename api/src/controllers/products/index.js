@@ -17,7 +17,8 @@ class ProductsController {
   //* Obtener producto por id.
   async findOne(req, res, next) {
     try {
-      const response = await service.findOne();
+      const { id } = req.params;
+      const response = await service.findOne(id);
       res.status(200).json(response);
     } catch (error) {
       next(error);
