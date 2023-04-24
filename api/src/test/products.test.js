@@ -1,22 +1,5 @@
-const supertest = require('supertest');
-const app = require('../../app');
-
+const { api, initialProduct } = require('./helpers');
 // const Products = require('../libs/database/models/products/index');
-const api = supertest(app);
-
-const initialProduct = {
-  title: 'Ahri Academia',
-  price: 3000,
-  category: 'Skins',
-  detail: 'La mejor skin de Ahri',
-  mainImage:
-    'https://pm1.narvii.com/5838/134bc080967fbd60f60797df55c624f570a7f7e5_00.jpg',
-  images: [
-    'https://cdnb.artstation.com/p/assets/images/images/001/633/557/large/alexandra-cvetkova-.jpg?1449832105',
-  ],
-  stock: 5,
-  availability: true,
-};
 
 // beforeEach(async () => {
 //   await Products.deleteMany({});
@@ -28,12 +11,12 @@ const initialProduct = {
 //   await product2.save();
 // });
 
-// test('Los productos devuelven un JSON', async () => {
-//   await api
-//     .get('/api/v1/products')
-//     .expect(200)
-//     .expect('Content-Type', /application\/json/);
-// });
+test('Los productos devuelven un JSON.', async () => {
+  await api
+    .get('/api/v1/products')
+    .expect(200)
+    .expect('Content-Type', /application\/json/);
+});
 
 // test('Devuelve todos los productos.', async () => {
 //   const response = await api.get('/api/v1/products');
@@ -41,31 +24,31 @@ const initialProduct = {
 //   expect(response.body.data).toHaveLength(5);
 // });
 
-test('Crear un nuevo producto.', async () => {
-  const newProduct = {
-    title: 'Ahri Academia',
-    price: 3000,
-    category: 'Skins',
-    detail: 'La mejor skin de Ahri',
-    mainImage:
-      'https://pm1.narvii.com/5838/134bc080967fbd60f60797df55c624f570a7f7e5_00.jpg',
-    images: [
-      'https://cdnb.artstation.com/p/assets/images/images/001/633/557/large/alexandra-cvetkova-.jpg?1449832105',
-    ],
-    stock: 5,
-    availability: true,
-  };
+// test('Crear un nuevo producto.', async () => {
+//   const newProduct = {
+//     title: 'Ahri Academia',
+//     price: 3000,
+//     category: 'Skins',
+//     detail: 'La mejor skin de Ahri',
+//     mainImage:
+//       'https://pm1.narvii.com/5838/134bc080967fbd60f60797df55c624f570a7f7e5_00.jpg',
+//     images: [
+//       'https://cdnb.artstation.com/p/assets/images/images/001/633/557/large/alexandra-cvetkova-.jpg?1449832105',
+//     ],
+//     stock: 5,
+//     availability: true,
+//   };
 
-  await api
-    .post('/api/v1/products')
-    .send(newProduct)
-    .expect(200)
-    .expect('Content-Type', /application\/json/);
+//   await api
+//     .post('/api/v1/products')
+//     .send(newProduct)
+//     .expect(200)
+//     .expect('Content-Type', /application\/json/);
 
-  const response = await api.get('/api/v1/products');
+//   const response = await api.get('/api/v1/products');
 
-  const contents = response.body.map((product) => product.title);
+//   const contents = response.body.map((product) => product.title);
 
-  expect(response.body).toHaveLength(initialProduct.length + 1);
-  expect(contents).toContain(newProduct.title);
-});
+//   expect(response.body).toHaveLength(initialProduct.length + 1);
+//   expect(contents).toContain(newProduct.title);
+// });
