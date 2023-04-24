@@ -46,7 +46,7 @@ class ProductsService {
 
     return {
       message: 'Creado',
-      data: { newProduct },
+      data: [newProduct],
     };
   }
 
