@@ -16,20 +16,7 @@
 
 .buttonsNav {
   display: flex;
-  width: 350px;
+  width: 500px;
   justify-content: space-between;
   margin-right: 5rem;
-}
-
-.linksNav {
-  text-decoration: none;
-  color: white;
-  font-size: 20px;
-  text-align: center;
-  width: 110px;
-  padding: 7px;
-}
-
-.linksNav:hover {
-  border: 1px solid rgba(255, 255, 255, 0.5);
 }

@@ -1,11 +1,15 @@
-import styles from "./Landing.module.css";
+import styles from './Landing.module.css';
+import { Link } from 'react-router-dom';
 
-const Landing = () => {
+const LandingPage = () => {
   return (
     <div className={styles.container}>
       <div className={styles.divTitle}>
         <h1 className={styles.titleH1}>E-Loleros</h1>
         <h2>League of Legends</h2>
+        {/* <Link to="/home" className={styles.linkHome}>
+          Home
+        </Link> */}
       </div>
       <div className={styles.presentation}>
         <h3>Bienvenidos</h3>
@@ -17,10 +21,10 @@ const Landing = () => {
         </p>
         <iframe
           className={styles.video}
-          src="https://www.youtube.com/embed/kmNui6kC1Lk"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          src='https://www.youtube.com/embed/kmNui6kC1Lk'
+          title='YouTube video player'
+          frameborder='0'
+          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
           allowfullscreen
         ></iframe>
       </div>
@@ -28,7 +32,7 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+export default LandingPage;
 
 // ??
 // !!

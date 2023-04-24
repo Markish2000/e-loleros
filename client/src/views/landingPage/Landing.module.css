@@ -36,6 +36,18 @@
   /* letter-spacing: 15px; */
 }
 
+/* .linkHome {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: white;
+  margin-top: 40px;
+  font-size: 30px;
+}
+
+.linkHome:hover {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+} */
+
 .presentation {
   /* background-color: aquamarine; */
   display: flex;
@@ -67,3 +79,5 @@
   margin-bottom: 60px;
   border: 1px solid rgba(255, 255, 255, 0.5);
 }
+
+

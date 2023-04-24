@@ -1,0 +1,13 @@
+.linksNav {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    width: 110px;
+    padding: 7px;
+    text-transform: uppercase;
+  }
+  
+  .linksNav:hover {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
