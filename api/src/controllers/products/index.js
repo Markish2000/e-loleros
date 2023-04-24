@@ -28,9 +28,7 @@ class ProductsController {
   async create(req, res, next) {
     try {
       const body = req.body;
-
       const createNewProduct = await service.create(body);
-
       res.status(200).json(createNewProduct);
     } catch (error) {
       next(error);
@@ -51,9 +49,7 @@ class ProductsController {
   async delete(req, res, next) {
     try {
       const { id } = req.params;
-
       const deleteProduct = await service.delete(id);
-
       res.status(200).json(deleteProduct);
     } catch (error) {
       next(error);

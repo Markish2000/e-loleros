@@ -13,7 +13,7 @@ class ProductsService {
       throw new Error('La base de datos está vacía.');
     } else {
       return {
-        findAllProducts,
+        data: findAllProducts,
       };
     }
   }
