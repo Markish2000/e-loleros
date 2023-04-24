@@ -1,17 +1,10 @@
 const { Router } = require('express');
-const ProductsService = require('../services/products.service');
+const ProductsService = require('../controllers/products');
 const router = Router();
-const service = new ProductsService();
+const controller = new ProductsService();
 
 //* Obtener todos los productos.
-router.get('/', async (req, res, next) => {
-  try {
-    const response = await service.findAll();
-    res.status(200).json(response);
-  } catch (error) {
-    next(error);
-  }
-});
+router.get('/', controller);
 
 //* Obtener producto por id.
 router.get('/:id', async (req, res, next) => {

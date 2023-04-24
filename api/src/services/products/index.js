@@ -1,6 +1,6 @@
 const { Op } = require('sequelize');
-const sequelize = require('../libs/database/index');
-const productsModel = require('../libs/database/models/products.model');
+const sequelize = require('../../libs/database/index');
+const productsModel = require('../../libs/database/models/products.model');
 
 class ProductsService {
   constructor() {}
@@ -60,9 +60,6 @@ class ProductsService {
   async delete(id) {
     const deleteProduct = await productsModel.destroy({
       where: { id },
-      //!! PREGUNTAR
-      // force: true,
-      //!! PREGUNTAR
     });
 
     if (deleteProduct === 0) {
