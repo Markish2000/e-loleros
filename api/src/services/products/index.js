@@ -19,9 +19,15 @@ class ProductsService {
   }
 
   //* Obtener producto por id.
-  async findOne() {
-    const response = 'Hola esto funciona y estoy en el service';
-    return response;
+  async findOne(id) {
+    const findOneProduct = await productsModel.findByPk(id);
+    if (findOneProduct === null) {
+      throw new Error(
+        `El producto con el id ${id} no se encuentra en nuestra base de datos.`
+      );
+    } else {
+      return findOneProduct;
+    }
   }
 
   //* Crear un producto.
