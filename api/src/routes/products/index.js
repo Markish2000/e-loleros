@@ -3,7 +3,29 @@ const ProductsController = require('../../controllers/products');
 const router = Router();
 const controller = new ProductsController();
 
-//* Obtener todos los productos.
+/**
+ * @openapi
+ * /api/v1/products:
+ *   get:
+ *     tags:
+ *       - products
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: OK
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: "#/components/schemas/products"
+ *
+ */
 router.get('/', controller.findAll);
 
 //* Obtener producto por id.
