@@ -39,7 +39,9 @@ class ProductsController {
   //* Editar un producto.
   async update(req, res, next) {
     try {
-      const response = await service.update();
+      const { id } = req.params;
+      const body = req.body;
+      const response = await service.update(id, body);
       res.status(200).json(response);
     } catch (error) {
       next(error);

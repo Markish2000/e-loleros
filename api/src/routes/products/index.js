@@ -115,7 +115,43 @@ router.get('/:id', controller.findOne);
 router.post('/', controller.create);
 
 //* Editar un producto.
-router.patch('/', controller.update);
+/**
+ * @openapi
+ * /api/v1/products/:id:
+ *   patch:
+ *     tags:
+ *       - products
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "El producto con el id 1 se ha actualizado con éxito."
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: "#/components/schemas/products"
+ *       500:
+ *         description: FAILED
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     error:
+ *                       type: string
+ *                       example: "El producto con el id 1 no existe en nuestra base de datos."
+ *
+ */
+router.patch('/:id', controller.update);
 
 //* Borrar un producto.
 /**
