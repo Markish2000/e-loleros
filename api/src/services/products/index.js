@@ -1,6 +1,6 @@
 const { Op } = require('sequelize');
-const sequelize = require('../../libs/database/index');
-const productsModel = require('../../libs/database/models/products.model');
+const sequelize = require('../../libs/database');
+const productsModel = require('../../libs/database/models/products');
 
 class ProductsService {
   constructor() {}
