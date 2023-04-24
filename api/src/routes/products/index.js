@@ -4,7 +4,6 @@ const router = Router();
 const controller = new ProductsController();
 
 //* Obtener todos los productos.
-
 /**
  * @openapi
  * /api/v1/products:
@@ -44,7 +43,6 @@ router.get('/', controller.findAll);
 router.get('/:id', controller.findOne);
 
 //* Crear un producto.
-
 /**
  * @openapi
  * /api/v1/products:
@@ -87,7 +85,6 @@ router.post('/', controller.create);
 router.patch('/', controller.update);
 
 //* Borrar un producto.
-
 /**
  * @openapi
  * /api/v1/products/:id:
