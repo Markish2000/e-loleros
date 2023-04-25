@@ -1,14 +1,21 @@
 import styles from './Home.module.css';
 import Cards from '../../components/Cards';
 import Paginated from '../../components/Paginated';
-import { Container } from '@mui/material';
+import { Box, Container } from '@mui/material';
 
-const HomePage = () => {
+const HomePage = ({ theme }) => {
+  console.log(theme);
   return (
-    <div className={styles.containerHome}>
+    <Box
+    // sx={
+    //   theme.palette.mode === 'light'
+    //     ? { backgroundColor: 'white' }
+    //     : { backgroundColor: 'black' }
+    // }
+    >
       <Cards />
       <Paginated />
-    </div>
+    </Box>
   );
 };
 
