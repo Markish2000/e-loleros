@@ -7,8 +7,21 @@ class ProductsController {
   //* Obtener todos los productos.
   async findAll(req, res, next) {
     try {
-      const response = await service.findAll();
-      res.status(200).json(response);
+      const page = req.query.page;
+      const query = req.query;
+
+      const response = await service.findAll(query);
+
+      let pages = '';
+      if (response.totalProducts <= response.productLimit) {
+        pages = 1;
+      } else {
+        pages = Math.ceil(response.totalProducts / response.productLimit);
+      }
+
+      const pageNumber = parseInt(page);
+      const hola = { response, pageNumber, pages };
+      res.status(200).json(hola);
     } catch (error) {
       next(error);
     }
