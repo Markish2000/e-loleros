@@ -20,8 +20,8 @@ class ProductsController {
       }
 
       const pageNumber = parseInt(page);
-      const hola = { response, pageNumber, pages };
-      res.status(200).json(hola);
+      const totalResponse = { response, pageNumber, pages };
+      res.status(200).json(totalResponse);
     } catch (error) {
       next(error);
     }

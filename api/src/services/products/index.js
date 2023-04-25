@@ -14,9 +14,9 @@ class ProductsService {
 
     options.where = {};
 
-    if (query.category) {
-      options.where.category = { [Op.like]: query.category };
-    }
+    // if (query.category) {
+    //   options.where.category = { [Op.like]: query.category };
+    // }
 
     if (query.limit) {
       options.limit = query.limit;
