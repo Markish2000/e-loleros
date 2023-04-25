@@ -1,7 +1,7 @@
 import './App.css';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import HomePage from './views/HomePage';
-import LandingPage from './views/LandingPage';
+import HomePage from './views/homePage';
+import LandingPage from './views/landingPage';
 import NavBar from './components/NavBar';
 import { ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
@@ -35,3 +35,5 @@ const App = () => {
 };
 
 export default App;
+
+//Holitas
