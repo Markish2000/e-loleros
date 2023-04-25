@@ -7,9 +7,11 @@ const LandingPage = () => {
       <div className={styles.divTitle}>
         <h1 className={styles.titleH1}>E-Loleros</h1>
         <h2>League of Legends</h2>
-        {/* <Link to="/home" className={styles.linkHome}>
-          Home
-        </Link> */}
+        {/* <ButtonComponent variant='outlined' text='LET GO!' size='large' /> */}
+        {/* <Link to='/home'>LET GO!</Link> */}
+        <Link to='/home' className={styles.linkHome}>
+          LET GO!
+        </Link>
       </div>
       <div className={styles.presentation}>
         <h3>Bienvenidos</h3>
