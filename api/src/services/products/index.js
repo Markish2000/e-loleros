@@ -6,14 +6,43 @@ class ProductsService {
   constructor() {}
 
   //* Obtener todos los productos.
-  async findAll() {
-    const findAllProducts = await productsModel.findAll();
+  async findAll(query) {
+    const options = {
+      limit: 9,
+      offset: 0,
+    };
+
+    options.where = {};
+
+    if (query.category) {
+      options.where.category = { [Op.like]: query.category };
+    }
+
+    if (query.limit) {
+      options.limit = query.limit;
+    }
+
+    if (query.page) {
+      const page = parseInt(query.page);
+      if (isNaN(page) || page < 1) {
+        throw new Error('Número de página invalido.');
+      }
+      options.offset = (page - 1) * (options.limit || query.limit);
+    }
+
+    const productLimit = options.limit;
+
+    const totalProducts = await productsModel.count(options);
+
+    const findAllProducts = await productsModel.findAll(options);
 
     if (findAllProducts.length === 0) {
       throw new Error('La base de datos está vacía.');
     } else {
       return {
         data: findAllProducts,
+        productLimit,
+        totalProducts,
       };
     }
   }
