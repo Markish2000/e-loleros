@@ -5,8 +5,8 @@ import SingleCard from '../SingleCard';
 
 const Cards = () => {
   return (
-    <Container sx={{ pt: '120px' }}>
-      <Grid container spacing={2} pr='16px'>
+    <Container>
+      <Grid container spacing={2}>
         {data.length !== 0
           ? data.map(({ id, name, price, mainImage }) => (
               <Grid item key={id} xs={12} sm={6} md={4}>
