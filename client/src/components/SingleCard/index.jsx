@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   Button,
   CardContent,
@@ -8,9 +9,11 @@ import {
   CardActions,
 } from '@mui/material';
 
-const SingleCard = ({ id, name, price, mainImage }) => {
+import ButtonComponent from '../Button';
+
+const SingleCard = ({ id, name, price, mainImage, maxWidth }) => {
   return (
-    <Card sx={{ maxWidth: '100%' }}>
+    <Card sx={{ maxWidth }}>
       <CardMedia component='img' image={mainImage} height='200' alt={name} />
 
       <CardContent>
@@ -21,10 +24,28 @@ const SingleCard = ({ id, name, price, mainImage }) => {
       </CardContent>
 
       <CardActions>
-        <Button variant='outlined'>ADD CARD</Button>
+        <ButtonComponent
+          variant='outlined'
+          size='medium'
+          text='ADD CARD'
+          onClick={() => {}}
+        >
+          ADD CARD
+        </ButtonComponent>
       </CardActions>
     </Card>
   );
+};
+
+SingleCard.propTypes = {
+  name: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  mainImage: PropTypes.string.isRequired,
+  maxWidth: PropTypes.string,
+};
+
+ButtonComponent.defaultProps = {
+  maxWidth: '100%',
 };
 
 export default SingleCard;
