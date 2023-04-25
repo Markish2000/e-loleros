@@ -7,8 +7,21 @@ class ProductsController {
   //* Obtener todos los productos.
   async findAll(req, res, next) {
     try {
-      const response = await service.findAll();
-      res.status(200).json(response);
+      const page = req.query.page;
+      const query = req.query;
+
+      const response = await service.findAll(query);
+
+      let pages = '';
+      if (response.totalProducts <= response.productLimit) {
+        pages = 1;
+      } else {
+        pages = Math.ceil(response.totalProducts / response.productLimit);
+      }
+
+      const pageNumber = parseInt(page);
+      const hola = { response, pageNumber, pages };
+      res.status(200).json(hola);
     } catch (error) {
       next(error);
     }
@@ -17,7 +30,8 @@ class ProductsController {
   //* Obtener producto por id.
   async findOne(req, res, next) {
     try {
-      const response = await service.findOne();
+      const { id } = req.params;
+      const response = await service.findOne(id);
       res.status(200).json(response);
     } catch (error) {
       next(error);
@@ -38,7 +52,9 @@ class ProductsController {
   //* Editar un producto.
   async update(req, res, next) {
     try {
-      const response = await service.update();
+      const { id } = req.params;
+      const body = req.body;
+      const response = await service.update(id, body);
       res.status(200).json(response);
     } catch (error) {
       next(error);
