@@ -10,7 +10,7 @@ const LandingPage = () => {
         {/* <ButtonComponent variant='outlined' text='LET GO!' size='large' /> */}
         {/* <Link to='/home'>LET GO!</Link> */}
         <Link to='/home' className={styles.linkHome}>
-          Home
+          Let Go!
         </Link>
       </div>
       <div className={styles.presentation}>
