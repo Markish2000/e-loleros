@@ -1,7 +1,7 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import HomePage from './views/HomePage';
-import LandingPage from './views/LandingPage';
+import HomePage from './views/homePage';
+import LandingPage from './views/homePage';
 import NavBar from './components/NavBar';
 
 const App = () => {
