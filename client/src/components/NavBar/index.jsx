@@ -25,7 +25,7 @@ const NavBar = ({ handleThemeChange }) => {
     <>
       <AppBar
         component='nav'
-        position='static'
+        position='sticky'
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
       >
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
