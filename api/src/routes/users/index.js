@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const usersController = require('../../controllers/users');
 const router = Router();
+const usersController = require('../../controllers/users');
 const controller = new usersController();
 
 //* Obtener todos los productos.
@@ -73,7 +73,7 @@ router.get('/', controller.findAll);
  *                       example: "El producto con el id 1 no se encuentra en nuestra base de datos."
  *
  */
-router.get('/:id', controller.findOne);
+router.get('/:nickName', controller.findOne);
 
 //* Crear un producto.
 /**
@@ -189,6 +189,6 @@ router.patch('/:id', controller.update);
  *                       example: "No existe el producto en nuestra base de datos."
  *
  */
-router.delete('/:id', controller.delete);
+router.delete('/:nickName', controller.delete);
 
 module.exports = router;

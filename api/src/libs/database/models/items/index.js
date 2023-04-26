@@ -6,8 +6,16 @@ const items = sequelize.define('items', {
     type: DataTypes.STRING,
     primaryKey: true,
   },
-  image: {},
-  detail: {},
+  image: {
+    type: DataTypes.TEXT,
+    validate: {
+      isUrl: true,
+    },
+  },
+  detail: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 });
 
 module.exports = items;
