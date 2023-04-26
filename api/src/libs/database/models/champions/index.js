@@ -6,29 +6,14 @@ const { promisify } = require('util');
 
 const asyncGetSize = promisify(imageSize);
 
-const products = sequelize.define('products', {
-  id: {
-    type: DataTypes.INTEGER,
+const champions = sequelize.define('champions', {
+  name: {
+    type: DataTypes.STRING(55),
     primaryKey: true,
-    autoIncrement: true,
-  },
-
-  title: {
-    type: DataTypes.STRING(50),
     allowNull: false,
   },
 
-  price: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-
-  detail: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-
-  mainImage: {
+  image: {
     type: DataTypes.TEXT,
     allowNull: false,
     validate: {
@@ -50,33 +35,36 @@ const products = sequelize.define('products', {
     },
   },
 
-  images: {
-    type: DataTypes.ARRAY(DataTypes.TEXT),
+  role: {
+    type: DataTypes.STRING(10),
     allowNull: false,
     validate: {
-      isUrl: true,
+      isIn: [['Asesino', 'Luchador', 'Mago', 'Tirador', 'Soporte', 'Tanque']],
     },
   },
 
-  stock: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-    get() {
-      const stockValue = this.getDataValue('stock');
-      return stockValue < 0 ? 0 : stockValue;
+  difficulty: {
+    type: DataTypes.STRING(10),
+    allowNull: false,
+    validate: {
+      isIn: [['Fácil', 'Medio', 'Difícil']],
     },
   },
 
-  availability: {
-    type: DataTypes.BOOLEAN,
-    get() {
-      if (this.stock <= 0) {
-        return false;
-      } else {
-        return this.getDataValue('availability');
-      }
-    },
+  history: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+
+  skills: {
+    type: DataTypes.ARRAY(DataTypes.JSON),
+    allowNull: false,
+  },
+
+  skins: {
+    type: DataTypes.ARRAY(DataTypes.JSON),
+    allowNull: false,
   },
 });
 
-module.exports = products;
+module.exports = champions;
