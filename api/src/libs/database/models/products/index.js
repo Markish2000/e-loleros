@@ -1,12 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../index');
-const imageSize = require('image-size');
-const { createReadStream } = require('fs');
-const { promisify } = require('util');
 const sharp = require('sharp');
 const rp = require('request-promise-native');
-
-const asyncGetSize = promisify(imageSize);
 
 const products = sequelize.define('products', {
   id: {
