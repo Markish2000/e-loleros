@@ -56,8 +56,8 @@ const NavBar = ({ handleThemeChange }) => {
             <LinkRouter to='shop' value='tienda' />
             <LinkRouter to='campions' value='campeones' />
             <LinkRouter to='about' value='nosotros' />
-            <LinkRouter to='login' value='Iniciar sesión' />
-            <LinkRouter to='singin' value='registrarse' />
+            <LinkRouter to='login' value='Iniciar sesión' variant='contained' />
+            <LinkRouter to='singin' value='registrarse' variant='contained' />
             <Switch onChange={handleThemeChange} />
           </Box>
         </Toolbar>
