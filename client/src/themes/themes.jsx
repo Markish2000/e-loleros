@@ -71,16 +71,28 @@ export const darkTheme = createTheme({
     },
     secondary: {
       main: '#0DC4D9',
-      light: '#1E93C4',
-      dark: '#006D9B',
+      light: 'rgb(61, 207, 224)',
+      dark: 'rgb(9, 137, 151)',
+      contrastText: 'rgba(0, 0, 0, 0.87)',
+    },
+    third: {
+      main: '#071427',
+      light: 'rgb(56, 67, 82)',
+      dark: 'rgb(4, 14, 27)',
       contrastText: '#fff',
+    },
+    aux: {
+      main: '#ffff',
+      primary: '#9C9FA3',
+      secondary: '#3D4349',
+      disabled: '#323940',
     },
     background: {
       paper: '#00070D',
       default: '#07121a',
     },
     text: {
-      primary: '#fff',
+      primary: '#ffff',
       secondary: 'rgba(255, 255, 255, 0.7)',
       disabled: 'rgba(255, 255, 255, 0.5)',
     },

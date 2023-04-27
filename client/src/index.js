@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import LinearLoading from './components/LinearLoading';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      suspense: true,
+    },
+  },
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -18,11 +28,15 @@ window.addEventListener('focus', () => {
 });
 
 root.render(
-  <BrowserRouter>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </BrowserRouter>
+  <Suspense fallback={<LinearLoading />}>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </BrowserRouter>
+    </QueryClientProvider>
+  </Suspense>
 );
 
 // If you want to start measuring performance in your app, pass a function

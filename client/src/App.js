@@ -4,11 +4,12 @@ import HomePage from './views/HomePage';
 import LandingPage from './views/LandingPage';
 import NavBar from './components/NavBar';
 import { ThemeProvider } from '@mui/material/styles';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { lightTheme, darkTheme } from './themes/themes';
 import { Box, CssBaseline } from '@mui/material';
 import ShopPage from './views/ShopPage';
 import CampionsPage from './views/CampionsPage';
+import { CircularProgress } from '@mui/material';
 
 const App = () => {
   const location = useLocation();
