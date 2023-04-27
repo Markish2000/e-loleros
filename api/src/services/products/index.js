@@ -118,7 +118,7 @@ class ProductsService {
     });
 
     if (deleteProduct === 0) {
-      throw new Error('No existe el producto en nuestra base de datos.');
+      `El producto con el id ${id} no se encuentra en nuestra base de datos.`;
     } else {
       return {
         message: 'Borrado',
