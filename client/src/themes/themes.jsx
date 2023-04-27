@@ -2,20 +2,20 @@ import { createTheme } from '@mui/material/styles';
 
 export const lightTheme = createTheme({
   palette: {
-    mode: 'light',
+    mode: 'dark',
     typography: {
       fontFamily: 'Khand, sans-serif',
     },
     primary: {
-      main: '#8375d8',
-      light: 'rgb(155, 144, 223)',
-      dark: 'rgb(91, 81, 151)',
+      main: '#BF9A56',
+      light: '#D9A362',
+      dark: '#8C7446',
       contrastText: '#fff',
     },
     secondary: {
-      main: '#F22294',
-      light: 'rgb(244, 78, 169)',
-      dark: 'rgb(169, 23, 103)',
+      main: '#0DC4D9',
+      light: '#1E93C4',
+      dark: '#006D9B',
       contrastText: '#fff',
     },
     background: {
@@ -64,20 +64,20 @@ export const darkTheme = createTheme({
       fontFamily: 'Khand, sans-serif',
     },
     primary: {
-      main: '#8375d8',
-      light: 'rgb(155, 144, 223)',
-      dark: 'rgb(91, 81, 151)',
+      main: '#BF9A56',
+      light: '#D9A362',
+      dark: '#8C7446',
       contrastText: '#fff',
     },
     secondary: {
-      main: '#F22294',
-      light: 'rgb(244, 78, 169)',
-      dark: 'rgb(169, 23, 103)',
+      main: '#0DC4D9',
+      light: '#1E93C4',
+      dark: '#006D9B',
       contrastText: '#fff',
     },
     background: {
-      paper: '#121212',
-      default: '#121212',
+      paper: '#07121a',
+      default: '#07121a',
     },
     text: {
       primary: '#fff',

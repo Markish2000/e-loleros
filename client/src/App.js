@@ -1,7 +1,7 @@
 import './App.css';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import HomePage from './views/homePage';
-import LandingPage from './views/landingPage';
+import HomePage from './views/HomePage';
+import LandingPage from './views/LandingPage';
 import NavBar from './components/NavBar';
 import { ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
@@ -18,18 +18,18 @@ const App = () => {
 
   return (
     <>
-      {/* <CssBaseline /> */}
-      {/* <ThemeProvider theme={theme}> */}
-      {location.pathname === '/' ? (
-        <LandingPage />
-      ) : (
-        <NavBar handleThemeChange={handleThemeChange} />
-      )}
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        {location.pathname === '/' ? (
+          <LandingPage />
+        ) : (
+          <NavBar handleThemeChange={handleThemeChange} />
+        )}
 
-      <Routes>
-        <Route path='/home' element={<HomePage theme={theme} />} />
-      </Routes>
-      {/* </ThemeProvider> */}
+        <Routes>
+          <Route path='/home' element={<HomePage theme={theme} />} />
+        </Routes>
+      </ThemeProvider>
     </>
   );
 };

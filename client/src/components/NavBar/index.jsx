@@ -57,7 +57,7 @@ const NavBar = ({ handleThemeChange }) => {
             <LinkRouter to='about' value='nosotros' />
             <LinkRouter to='login' value='Iniciar sesión' />
             <LinkRouter to='singin' value='registrarse' />
-            {/* <Switch onChange={handleThemeChange} /> */}
+            <Switch onChange={handleThemeChange} />
           </Box>
         </Toolbar>
       </AppBar>
