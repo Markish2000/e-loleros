@@ -2,7 +2,7 @@ import { createTheme } from '@mui/material/styles';
 
 export const lightTheme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: 'light',
     typography: {
       fontFamily: 'Khand, sans-serif',
     },
@@ -19,7 +19,7 @@ export const lightTheme = createTheme({
       contrastText: '#fff',
     },
     background: {
-      paper: '#fff',
+      paper: '#07121a',
       default: '#fff',
     },
     text: {
@@ -76,7 +76,7 @@ export const darkTheme = createTheme({
       contrastText: '#fff',
     },
     background: {
-      paper: '#07121a',
+      paper: '#00070D',
       default: '#07121a',
     },
     text: {

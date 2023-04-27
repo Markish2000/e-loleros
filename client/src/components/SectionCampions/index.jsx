@@ -1,16 +1,18 @@
 import React from 'react';
 import CarouselCampions from '../Carousel';
-import { Button, Container, Typography } from '@mui/material';
+import { Button, Container, Typography, Box } from '@mui/material';
 import SingleCardCampions from '../SingleCardCampions';
+import SingleCard from '../SingleCard';
+import { Link } from 'react-router-dom';
 
-const SectionCampions = () => {
+const SectionCampions = ({ Component }) => {
   return (
     <Container
       sx={{
         paddingLeft: '10px',
-        display: 'flex',
-        flexDirection: 'column',
+        display: 'flex',flexDirection: 'column',
         marginBottom: '30px',
+        marginTop: '30px',
       }}
     >
       <Typography
@@ -20,27 +22,41 @@ const SectionCampions = () => {
           color: '#BF9A56',
           textTransform: 'uppercase',
           marginBottom: '30px',
+          fontSize: { xs: '2.5rem', sm: '2.75rem', md: '3rem' },
           // paddingLeft: '10px',
         }}
       >
-        Campions
+        Campeones
       </Typography>
-      <CarouselCampions Component={<SingleCardCampions />} />
 
-      <Button
-        variant='text'
-        size='large'
+      <CarouselCampions Component={SingleCardCampions} />
+
+      <Box
         sx={{
-          marginLeft: '10px',
-          marginRight: '10px',
-          marginTop: '10px',
-          width: '200px',
+          display: 'flex',
+          justifyContent: { xs: 'flex-start', sm: 'flex-end' },
         }}
       >
-        Ver Más
-      </Button>
+        <Button
+          variant='outlined'
+          size='large'
+          component={Link}
+          to='/campions'
+          color='secondary'
+          sx={{
+            marginLeft: '10px',
+            marginRight: '10px',
+            marginTop: '10px',
+            width: '200px',
+          }}
+        >
+          Ver Más
+        </Button>
+      </Box>
     </Container>
   );
 };
 
 export default SectionCampions;
+
+        

@@ -5,7 +5,6 @@ import 'slick-carousel/slick/slick-theme.css';
 import data from '../../data.js';
 import SingleCardCampions from '../../components/SingleCardCampions';
 import { Container, Grid, Box, Button } from '@mui/material';
-import './Carousel.module.css';
 import Cards from '../Cards/index.jsx';
 
 const CarouselCampions = ({ Component }) => {
@@ -45,11 +44,7 @@ const CarouselCampions = ({ Component }) => {
         {data.length !== 0 ? (
           data.map((el) => (
             <div key={el.id}>
-              <SingleCardCampions
-                {...el}
-                marginRight='10px'
-                marginLeft='10px'
-              />
+              <Component {...el} marginRight='10px' marginLeft='10px' />
             </div>
           ))
         ) : (

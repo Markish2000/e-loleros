@@ -11,25 +11,62 @@ import {
 
 import ButtonComponent from '../Button';
 import styled from 'styled-components';
+import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 
-const SingleCard = ({ id, name, price, mainImage, maxWidth }) => {
+const SingleCard = ({
+  id,
+  name,
+  price,
+  mainImage,
+  maxWidth,
+  marginRight,
+  marginLeft,
+}) => {
   return (
-    <Card sx={{ maxWidth }}>
+    <Card
+      sx={{
+        maxWidth,
+        marginRight,
+        marginLeft,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        border: '1px solid',
+        borderColor: 'primary.main',
+        paddingBottom: '15px',
+      }}
+    >
       <CardMedia component='img' image={mainImage} height='280' alt={name} />
 
       <CardContent>
-        <Typography variant='h5'>{name}</Typography>
+        <Typography
+          variant='h5'
+          sx={{ textAlign: 'center', color: 'primary.main' }}
+        >
+          {name}
+        </Typography>
       </CardContent>
 
-      <CardActions>
-        <ButtonComponent
+      <CardActions
+        sx={{
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'space-between',
+          paddingLeft: '15px',
+          paddingRight: '15px',
+        }}
+      >
+        <Typography variant='h5' color='secondary' sx={{ textAlign: 'center' }}>
+          $ {price}
+        </Typography>
+        <Button
           variant='outlined'
           size='medium'
-          text='ADD CARD'
+          color='secondary'
           onClick={() => {}}
         >
-          ADD CARD
-        </ButtonComponent>
+          <LocalGroceryStoreIcon />
+        </Button>
       </CardActions>
     </Card>
   );

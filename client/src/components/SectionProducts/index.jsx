@@ -1,15 +1,17 @@
-import React from 'react';
-import CarouselComponent from '../Carousel';
-import { Button, Container, Typography } from '@mui/material';
+import CarouselCampions from '../Carousel';
+import { Button, Container, Typography, Box } from '@mui/material';
+import SingleCard from '../SingleCard';
+import { Link } from 'react-router-dom';
 
-const SectionProducts = () => {
+const SectionProducts = ({ Component }) => {
   return (
     <Container
       sx={{
         paddingLeft: '10px',
         display: 'flex',
         flexDirection: 'column',
-        marginBottom: '30px',
+        marginBottom: '40px',
+        marginTop: '30px',
       }}
     >
       <Typography
@@ -19,25 +21,37 @@ const SectionProducts = () => {
           color: '#BF9A56',
           textTransform: 'uppercase',
           marginBottom: '30px',
+          fontSize: { xs: '2.5rem', sm: '2.75rem', md: '3rem' },
           // paddingLeft: '10px',
         }}
       >
-        Campions
+        Productos
       </Typography>
-      <CarouselComponent />
 
-      <Button
-        variant='text'
-        size='large'
+      <CarouselCampions Component={SingleCard} />
+
+      <Box
         sx={{
-          marginLeft: '10px',
-          marginRight: '10px',
-          marginTop: '10px',
-          width: '200px',
+          display: 'flex',
+          justifyContent: { xs: 'flex-start', sm: 'flex-end' },
         }}
       >
-        Ver Más
-      </Button>
+        <Button
+          variant='outlined'
+          size='large'
+          component={Link}
+          to='/shop'
+          color='secondary'
+          sx={{
+            marginLeft: '10px',
+            marginRight: '10px',
+            marginTop: '20px',
+            width: '200px',
+          }}
+        >
+          Ver Más
+        </Button>
+      </Box>
     </Container>
   );
 };

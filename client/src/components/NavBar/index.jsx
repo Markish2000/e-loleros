@@ -54,6 +54,7 @@ const NavBar = ({ handleThemeChange }) => {
           <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }}>
             <LinkRouter to='home' value='inicio' />
             <LinkRouter to='shop' value='tienda' />
+            <LinkRouter to='campions' value='campeones' />
             <LinkRouter to='about' value='nosotros' />
             <LinkRouter to='login' value='Iniciar sesión' />
             <LinkRouter to='singin' value='registrarse' />

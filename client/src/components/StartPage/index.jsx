@@ -1,10 +1,9 @@
 import { Box, Container, Typography } from '@mui/material';
 import React from 'react';
 import styles from './StartHome.module.css';
-import image from '../../assets/landing3.jpg';
 import styled from 'styled-components';
 
-const StartHome = () => {
+const StartPage = ({ image, title, text }) => {
   return (
     <BoxGeneral image={image}>
       <BoxGradient>
@@ -32,11 +31,12 @@ const StartHome = () => {
               component='h2'
               sx={{
                 fontSize: { xs: '2rem', sm: '3rem', md: '4rem' },
+                textTransform: 'uppercase',
                 color: 'white',
               }}
               className={styles.tracking}
             >
-              ¡BIENVENIDOS!
+              {title}
             </Typography>
 
             <Typography
@@ -44,11 +44,12 @@ const StartHome = () => {
               sx={{
                 fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' },
                 color: 'white',
-                marginTop: '3rem',
+                marginTop: { xs: '1.5rem', sm: '2rem', md: '3rem' },
+                textAlign: 'center',
               }}
               className={styles.tracking}
             >
-              En la oscuridad nos encontramos a nosotros mismos. - Senna
+              {text}
             </Typography>
           </Container>
         </BoxWelcome>
@@ -75,4 +76,4 @@ const BoxWelcome = styled(Box)`
   justify-content: center;
 `;
 
-export default StartHome;
+export default StartPage;

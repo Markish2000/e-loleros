@@ -7,13 +7,15 @@ import { ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import { lightTheme, darkTheme } from './themes/themes';
 import { Box, CssBaseline } from '@mui/material';
+import ShopPage from './views/ShopPage';
+import CampionsPage from './views/CampionsPage';
 
 const App = () => {
   const location = useLocation();
-  const [theme, setTheme] = useState(lightTheme);
+  const [theme, setTheme] = useState(darkTheme);
 
   const handleThemeChange = () => {
-    setTheme(theme === lightTheme ? darkTheme : lightTheme);
+    setTheme(theme === darkTheme ? lightTheme : darkTheme);
   };
 
   return (
@@ -27,7 +29,9 @@ const App = () => {
         )}
 
         <Routes>
-          <Route path='/home' element={<HomePage theme={theme} />} />
+          <Route path='/home' element={<HomePage />} />
+          <Route path='/shop' element={<ShopPage />} />
+          <Route path='/campions' element={<CampionsPage />} />
         </Routes>
       </ThemeProvider>
     </>
