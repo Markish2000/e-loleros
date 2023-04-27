@@ -39,7 +39,7 @@ const champions = sequelize.define('champions', {
     type: DataTypes.STRING(10),
     allowNull: false,
     validate: {
-      isIn: [['Asesino', 'Luchador', 'Mago', 'Tirador', 'Soporte', 'Tanque']],
+      isIn: [['ASESINO', 'LUCHADOR', 'MAGO', 'TIRADOR', 'SOPORTE', 'TANQUE']],
     },
   },
 
@@ -47,23 +47,21 @@ const champions = sequelize.define('champions', {
     type: DataTypes.STRING(10),
     allowNull: false,
     validate: {
-      isIn: [['Fácil', 'Medio', 'Difícil']],
+      isIn: [['BAJA', 'MODERADA', 'ALTA']],
     },
   },
 
   history: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
 
   skills: {
     type: DataTypes.ARRAY(DataTypes.JSON),
-    allowNull: false,
   },
 
   skins: {
     type: DataTypes.ARRAY(DataTypes.JSON),
-    allowNull: false,
   },
 });
 

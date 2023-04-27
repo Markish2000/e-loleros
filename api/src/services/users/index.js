@@ -8,7 +8,11 @@ class UsersService {
   //* Obtener todos los usuario.
   async findAll() {
     const getAllUsers = await usersModel.findAll();
-    return getAllUsers;
+    if (getAllUsers.length === 0) {
+      throw new Error('La base de datos está vacía.');
+    } else {
+      return getAllUsers;
+    }
   }
 
   //* Obtener usuario por nickName.
