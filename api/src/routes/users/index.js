@@ -151,7 +151,7 @@ router.post('/', controller.create);
  *                       example: "El producto con el id 1 no existe en nuestra base de datos."
  *
  */
-router.patch('/:id', controller.update);
+router.patch('/:nickName', controller.update);
 
 //* Borrar un producto.
 /**

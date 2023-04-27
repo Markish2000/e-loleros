@@ -35,7 +35,6 @@ const products = sequelize.define('products', {
     allowNull: false,
     validate: {
       isUrl: true,
-
       async isValidImage(value) {
         try {
           const buffer = await rp.get({ url: value, encoding: null });
