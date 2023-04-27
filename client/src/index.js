@@ -7,6 +7,16 @@ import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
+let previousTitle = document.title;
+window.addEventListener('blur', () => {
+  previousTitle = document.title;
+  document.title = '¡Vuelve, tenemos que jugar!🎮';
+});
+
+window.addEventListener('focus', () => {
+  document.title = previousTitle;
+});
+
 root.render(
   <BrowserRouter>
     <React.StrictMode>
