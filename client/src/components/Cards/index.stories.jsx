@@ -7,8 +7,6 @@ export default {
   title: 'Cards',
   component: Cards,
   tags: ['autodocs'],
-  description:
-    'Componente que muestra una serie de tarjetas con información de productos',
 };
 
 const Template = (args) => (

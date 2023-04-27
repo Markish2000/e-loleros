@@ -10,7 +10,7 @@ const LandingPage = () => {
         {/* <ButtonComponent variant='outlined' text='LET GO!' size='large' /> */}
         {/* <Link to='/home'>LET GO!</Link> */}
         <Link to='/home' className={styles.linkHome}>
-          LET GO!
+          Aventurarse!
         </Link>
       </div>
       <div className={styles.presentation}>
@@ -23,7 +23,7 @@ const LandingPage = () => {
         </p>
         <iframe
           className={styles.video}
-          src='https://www.youtube.com/embed/kmNui6kC1Lk'
+          src='https://www.youtube.com/embed/vzHrjOMfHPY?controls=0'
           title='YouTube video player'
           frameborder='0'
           allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'

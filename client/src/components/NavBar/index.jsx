@@ -25,10 +25,21 @@ const NavBar = ({ handleThemeChange }) => {
     <>
       <AppBar
         component='nav'
-        position='sticky'
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        position='fixed'
+        sx={{
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+          backgroundColor: 'transparent',
+          color: 'white',
+          boxShadow: 'none',
+        }}
       >
-        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Toolbar
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            backgroundColor: 'transparent',
+          }}
+        >
           <Typography variant='h5'>E-LOLEROS</Typography>
 
           <IconButton
@@ -41,12 +52,12 @@ const NavBar = ({ handleThemeChange }) => {
           </IconButton>
 
           <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }}>
-            <LinkRouter to='home' />
-            <LinkRouter to='shop' />
-            <LinkRouter to='about' />
-            <LinkRouter to='login' />
-            <LinkRouter to='singin' value='Sing In' />
-            <Switch onChange={handleThemeChange} />
+            <LinkRouter to='home' value='inicio' />
+            <LinkRouter to='shop' value='tienda' />
+            <LinkRouter to='about' value='nosotros' />
+            <LinkRouter to='login' value='Iniciar sesión' />
+            <LinkRouter to='singin' value='registrarse' />
+            {/* <Switch onChange={handleThemeChange} /> */}
           </Box>
         </Toolbar>
       </AppBar>

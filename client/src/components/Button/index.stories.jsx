@@ -1,10 +1,9 @@
-import React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { lightTheme } from '../../themes/themes';
 import ButtonComponent from './index';
 
 export default {
-  title: 'Button Prueba',
+  title: 'Atom/Button',
   component: ButtonComponent,
   tags: ['autodocs'],
   argTypes: {

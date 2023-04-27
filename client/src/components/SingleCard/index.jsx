@@ -10,17 +10,15 @@ import {
 } from '@mui/material';
 
 import ButtonComponent from '../Button';
+import styled from 'styled-components';
 
 const SingleCard = ({ id, name, price, mainImage, maxWidth }) => {
   return (
     <Card sx={{ maxWidth }}>
-      <CardMedia component='img' image={mainImage} height='200' alt={name} />
+      <CardMedia component='img' image={mainImage} height='280' alt={name} />
 
       <CardContent>
         <Typography variant='h5'>{name}</Typography>
-        <Typography variant='body1' component='p'>
-          {price}
-        </Typography>
       </CardContent>
 
       <CardActions>

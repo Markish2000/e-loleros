@@ -1,6 +1,4 @@
-import React from 'react'
 import PropTypes from "prop-types"
-// import { PropTypes } from '@mui/material'
 import { Button } from '@mui/material'
 
 const ButtonComponent = ({variant, size, text, onClick}) => {
