@@ -19,17 +19,17 @@ const App = () => {
   return (
     <>
       {/* <CssBaseline /> */}
-      <ThemeProvider theme={theme}>
-        {location.pathname === '/' ? (
-          <LandingPage />
-        ) : (
-          <NavBar handleThemeChange={handleThemeChange} />
-        )}
+      {/* <ThemeProvider theme={theme}> */}
+      {location.pathname === '/' ? (
+        <LandingPage />
+      ) : (
+        <NavBar handleThemeChange={handleThemeChange} />
+      )}
 
-        <Routes>
-          <Route path='/home' element={<HomePage theme={theme} />} />
-        </Routes>
-      </ThemeProvider>
+      <Routes>
+        <Route path='/home' element={<HomePage theme={theme} />} />
+      </Routes>
+      {/* </ThemeProvider> */}
     </>
   );
 };
