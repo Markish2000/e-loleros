@@ -37,7 +37,16 @@ class ChampionsController {
   }
 
   //* Editar un producto.
-  async update(req, res, next) {}
+  async update(req, res, next) {
+    try {
+      const { name } = req.params;
+      const body = req.body;
+      const response = await service.update(name, body);
+      res.status(200).json(response);
+    } catch (error) {
+      next(error);
+    }
+  }
 
   //* Borrar un producto.
   async delete(req, res, next) {
