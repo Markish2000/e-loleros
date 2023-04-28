@@ -1,6 +1,7 @@
 const { Op } = require('sequelize');
 const sequelize = require('../../libs/database');
 const productsModel = require('../../libs/database/models/products');
+const regex = /[^a-zA-Z0-9]/;
 
 class ProductsService {
   constructor() {}
@@ -50,13 +51,12 @@ class ProductsService {
   //* Obtener producto por id.
   async findOne(id) {
     const findOneProduct = await productsModel.findByPk(id);
-    if (findOneProduct === null) {
+    if (!findOneProduct) {
       throw new Error(
         `El producto con el id ${id} no se encuentra en nuestra base de datos.`
       );
-    } else {
-      return findOneProduct;
     }
+    return findOneProduct;
   }
 
   //* Crear un producto.
@@ -69,6 +69,46 @@ class ProductsService {
     stock,
     availability,
   }) {
+    if (!title) {
+      throw new Error(
+        `No se ha recibido el title del producto, el mismo es obligatorio.`
+      );
+    }
+    if (!price) {
+      throw new Error(
+        `No se ha recibido el price del producto, el mismo es obligatorio.`
+      );
+    }
+    if (!detail) {
+      throw new Error(
+        `No se ha recibido el detail del producto, el mismo es obligatorio.`
+      );
+    }
+    if (!mainImage) {
+      throw new Error(
+        `No se ha recibido el mainImage del producto, el mismo es obligatorio.`
+      );
+    }
+    if (!images) {
+      throw new Error(
+        `No se ha recibido el images del producto, el mismo es obligatorio.`
+      );
+    }
+    if (!stock) {
+      throw new Error(
+        `No se ha recibido el stock del producto, el mismo es obligatorio.`
+      );
+    }
+    if (!availability) {
+      throw new Error(
+        `No se ha recibido el stock del producto, el mismo es obligatorio.`
+      );
+    }
+    if (regex.test(title)) {
+      throw new Error(
+        `Se recibió el símbolo ${title} y no se aceptan símbolos.`
+      );
+    }
     const newProduct = await productsModel.create({
       title,
       price,
@@ -96,6 +136,11 @@ class ProductsService {
         `El producto con el id ${id} no se encuentra en nuestra base de datos.`
       );
     }
+    if (!title) {
+      throw new Error(
+        `No se ha recibido el history del campeón, el mismo es obligatorio.`
+      );
+    }
 
     const updatedProduct = await product.update({
       stock: stock ?? product.stock,
@@ -120,13 +165,14 @@ class ProductsService {
     });
 
     if (deleteProduct === 0) {
-      `El producto con el id ${id} no se encuentra en nuestra base de datos.`;
-    } else {
-      return {
-        message: 'Borrado',
-        data: id,
-      };
+      throw new Error(
+        `El producto con el id ${id} no se encuentra en nuestra base de datos.`
+      );
     }
+    return {
+      message: 'Borrado',
+      data: id,
+    };
   }
 }
 
