@@ -4,7 +4,7 @@ const service = new usersService();
 class UsersController {
   constructor() {}
 
-  //* Obtener todos los productos.
+  //* Obtener todos los usuarios.
   async findAll(req, res, next) {
     try {
       const response = await service.findAll();
@@ -14,7 +14,7 @@ class UsersController {
     }
   }
 
-  //* Obtener producto por nickName.
+  //* Obtener usuario por nickName.
   async findOne(req, res, next) {
     try {
       const { nickName } = req.params;
@@ -25,7 +25,7 @@ class UsersController {
     }
   }
 
-  //* Crear un producto.
+  //* Crear un usuario.
   async create(req, res, next) {
     try {
       const body = req.body;
@@ -36,7 +36,7 @@ class UsersController {
     }
   }
 
-  //* Editar un producto.
+  //* Editar un usuario.
   async update(req, res, next) {
     try {
       const { nickName } = req.params;
@@ -48,7 +48,7 @@ class UsersController {
     }
   }
 
-  //* Borrar un producto.
+  //* Borrar un usuario.
   async delete(req, res, next) {
     try {
       const { nickName } = req.params;
