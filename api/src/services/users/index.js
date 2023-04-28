@@ -1,6 +1,8 @@
 const { Op } = require('sequelize');
 const sequelize = require('../../libs/database');
+const bcrypt = require('bcrypt');
 const usersModel = require('../../libs/database/models/users');
+const generateToken = require('../../helpers/token/generateToken');
 const regex = /[^a-zA-Z0-9]/;
 
 class UsersService {
@@ -8,7 +10,11 @@ class UsersService {
 
   //* Obtener todos los usuarios.
   async findAll() {
-    const getAllUsers = await usersModel.findAll();
+    const getAllUsers = await usersModel.findAll({
+      attributes: {
+        exclude: ['password'],
+      },
+    });
     if (getAllUsers.length === 0) {
       throw new Error('La base de datos está vacía.');
     }
@@ -17,7 +23,11 @@ class UsersService {
 
   //* Obtener usuario por nickName.
   async findOne(nickName) {
-    const findOneUser = await usersModel.findByPk(nickName);
+    const findOneUser = await usersModel.findByPk(nickName, {
+      attributes: {
+        exclude: ['password'],
+      },
+    });
     const validateString = parseInt(nickName);
     if (validateString) {
       throw new Error(
@@ -51,47 +61,8 @@ class UsersService {
   }) {
     const validateNickName = await usersModel.findByPk(nickName);
     const validateEmail = await usersModel.findOne({ where: { email: email } });
+    const hash = await bcrypt.hash(password, 10);
 
-    if (!nickName) {
-      throw new Error(
-        `No se ha recibido el name del campeón, el mismo es obligatorio.`
-      );
-    }
-    if (!email) {
-      throw new Error(
-        `No se ha recibido el email del campeón, el mismo es obligatorio.`
-      );
-    }
-    if (!firstName) {
-      throw new Error(
-        `No se ha recibido el firstName del campeón, el mismo es obligatorio.`
-      );
-    }
-    if (!lastName) {
-      throw new Error(
-        `No se ha recibido el lastName del campeón, el mismo es obligatorio.`
-      );
-    }
-    if (!dateOfBirth) {
-      throw new Error(
-        `No se ha recibido el dateOfBirth del campeón, el mismo es obligatorio.`
-      );
-    }
-    if (!genre) {
-      throw new Error(
-        `No se ha recibido el genre del campeón, el mismo es obligatorio.`
-      );
-    }
-    if (!nationality) {
-      throw new Error(
-        `No se ha recibido el nationality del campeón, el mismo es obligatorio.`
-      );
-    }
-    if (!password) {
-      throw new Error(
-        `No se ha recibido el password del campeón, el mismo es obligatorio.`
-      );
-    }
     if (validateNickName && validateEmail) {
       throw new Error(
         `El nickName ${nickName} y el email ${email} ya existen que nuestra base de datos.`
@@ -114,12 +85,14 @@ class UsersService {
       genre,
       nationality,
       image,
-      password,
+      password: hash,
     });
+
+    const token = await generateToken(newUser);
 
     return {
       message: 'Creado',
-      data: [newUser],
+      token,
     };
   }
 
