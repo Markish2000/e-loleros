@@ -11,9 +11,8 @@ class ChampionsService {
     const findAllChampions = await championsModel.findAll();
     if (findAllChampions.length === 0) {
       throw new Error('La base de datos está vacía.');
-    } else {
-      return findAllChampions;
     }
+    return findAllChampions;
   }
 
   //* Obtener campeón por name.
@@ -25,14 +24,14 @@ class ChampionsService {
         `No existe el campeón con el name ${name} en nuestra base de datos.`
       );
     }
+    if (regex.test(name)) {
+      throw new Error(
+        `Se recibió el símbolo ${name} y no se aceptan símbolos.`
+      );
+    }
     if (validateString) {
       throw new Error(
         `El name del campeón no es válido debido a que ${name} es un número y no se aceptan números.`
-      );
-    }
-    if (regex.test(name)) {
-      throw new Error(
-        `Usted ha enviado el símbolo ${name} y no se aceptan símbolos.`
       );
     }
     return findOneChampion;
@@ -137,6 +136,7 @@ class ChampionsService {
       skills,
       skins,
     });
+
     return {
       message: 'Creado',
       data: newChampion,
@@ -146,16 +146,6 @@ class ChampionsService {
   //* Editar un campeón.
   async update(name, { image, role, difficulty, history, skills, skin }) {
     const champion = await championsModel.findByPk(name);
-    if (!champion) {
-      throw new Error(
-        `El campeón con el name ${name} no se encuentra en nuestra base de datos.`
-      );
-    }
-    if (!history) {
-      throw new Error(
-        `No se ha recibido el history del campeón, el mismo es obligatorio.`
-      );
-    }
     if (skills.length !== 5) {
       throw new Error(
         `Los campeones deben poseer 5 skills y se está recibiendo ${skills.length} skills.`
@@ -187,7 +177,7 @@ class ChampionsService {
     }
     if (regex.test(name)) {
       throw new Error(
-        `Usted ha enviado el símbolo ${name} y no se aceptan símbolos.`
+        `Se recibió el símbolo ${name} y no se aceptan símbolos.`
       );
     }
     const deleteChampion = await championsModel.destroy({
