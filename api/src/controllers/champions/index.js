@@ -15,7 +15,15 @@ class ChampionsController {
   }
 
   //* Obtener producto por id.
-  async findOne(req, res, next) {}
+  async findOne(req, res, next) {
+    try {
+      const { name } = req.params;
+      const response = await service.findOne(name);
+      res.status(200).json(response);
+    } catch (error) {
+      next(error);
+    }
+  }
 
   //* Crear un producto.
   async create(req, res, next) {
