@@ -90,25 +90,27 @@ class ProductsService {
     id,
     { stock, availability, title, price, detail, mainImage, images }
   ) {
-    const updateProduct = await productsModel.findByPk(id);
-    if (updateProduct === null) {
+    const product = await productsModel.findByPk(id);
+    if (!product) {
       throw new Error(
         `El producto con el id ${id} no se encuentra en nuestra base de datos.`
       );
-    } else {
-      updateProduct.stock = stock || updateProduct.stock;
-      updateProduct.availability = availability || updateProduct.availability;
-      updateProduct.title = title || updateProduct.title;
-      updateProduct.price = price || updateProduct.price;
-      updateProduct.detail = detail || updateProduct.detail;
-      updateProduct.mainImage = mainImage || updateProduct.mainImage;
-      updateProduct.images = images || updateProduct.images;
-      await updateProduct.save();
-      return {
-        message: `El producto con el id ${id} se ha actualizado con éxito.`,
-        data: updateProduct,
-      };
     }
+
+    const updatedProduct = await product.update({
+      stock: stock ?? product.stock,
+      availability: availability ?? product.availability,
+      title: title ?? product.title,
+      price: price ?? product.price,
+      detail: detail ?? product.detail,
+      mainImage: mainImage ?? product.mainImage,
+      images: images ?? product.images,
+    });
+
+    return {
+      message: `El producto con el id ${id} se ha actualizado con éxito.`,
+      data: updatedProduct,
+    };
   }
 
   //* Borrar un producto.

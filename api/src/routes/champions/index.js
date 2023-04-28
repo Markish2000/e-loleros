@@ -3,19 +3,19 @@ const ChampionsController = require('../../controllers/champions');
 const router = Router();
 const controller = new ChampionsController();
 
-//* Obtener todos los campeones.
+//* Obtener todos los champions.
 router.get('/', controller.findAll);
 
-//* Obtener producto por name.
+//* Obtener champion por name.
 router.get('/:name', controller.findOne);
 
-//* Crear un campeón.
+//* Crear un champion.
 router.post('/', controller.create);
 
-//* Editar un producto.
+//* Editar un champion.
 router.patch('/:name', controller.update);
 
-//* Borrar un producto.
+//* Borrar un champion.
 router.delete('/:name', controller.delete);
 
 module.exports = router;
