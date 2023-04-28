@@ -1,5 +1,7 @@
-const ProductsService = require('../../services/products');
-const service = new ProductsService();
+const bcrypt = require('bcrypt');
+const loginRouter = require('express').Router();
+const LoginService = require('../../services/login');
+const service = new LoginService();
 
 class LoginController {
   constructor() {}
@@ -7,7 +9,15 @@ class LoginController {
   //* Obtener todos los productos.
   async findAll(req, res, next) {
     try {
-      const { nickName } = req.body;
+      const { nickName, password } = req.body;
+      const user = await service.findOne(nickName);
+      const passwordCorrect =
+        user === null
+          ? false
+          : await bcrypt.compare(password, user.passwordHash);
+      if (!passwordCorrect) {
+        res;
+      }
     } catch (error) {}
   }
 }

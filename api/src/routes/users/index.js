@@ -2,7 +2,7 @@ const { Router } = require('express');
 const router = Router();
 const usersController = require('../../controllers/users');
 const controller = new usersController();
-
+const validateToken = require('../../middlewares/validatetoken');
 //* Obtener todos los usuarios.
 /**
  * @openapi
@@ -37,7 +37,7 @@ const controller = new usersController();
  *                       example: "La base de datos está vacía."
  *
  */
-router.get('/', controller.findAll);
+router.get('/', validateToken, controller.findAll);
 
 //* Obtener usuario por nickName.
 /**
@@ -73,7 +73,7 @@ router.get('/', controller.findAll);
  *                       example: "El producto con el id 1 no se encuentra en nuestra base de datos."
  *
  */
-router.get('/:nickName', controller.findOne);
+router.get('/:nickName', validateToken, controller.findOne);
 
 //* Crear un usuario.
 /**
@@ -151,7 +151,7 @@ router.post('/', controller.create);
  *                       example: "El producto con el id 1 no existe en nuestra base de datos."
  *
  */
-router.patch('/:nickName', controller.update);
+router.patch('/:nickName', validateToken, controller.update);
 
 //* Borrar un usuario.
 /**
@@ -189,6 +189,6 @@ router.patch('/:nickName', controller.update);
  *                       example: "No existe el producto en nuestra base de datos."
  *
  */
-router.delete('/:nickName', controller.delete);
+router.delete('/:nickName', validateToken, controller.delete);
 
 module.exports = router;
