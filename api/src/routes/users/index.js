@@ -3,7 +3,7 @@ const router = Router();
 const usersController = require('../../controllers/users');
 const controller = new usersController();
 
-//* Obtener todos los productos.
+//* Obtener todos los usuarios.
 /**
  * @openapi
  * /api/v1/users:
@@ -39,7 +39,7 @@ const controller = new usersController();
  */
 router.get('/', controller.findAll);
 
-//* Obtener producto por id.
+//* Obtener usuario por nickName.
 /**
  * @openapi
  * /api/v1/users/:id:
@@ -75,7 +75,7 @@ router.get('/', controller.findAll);
  */
 router.get('/:nickName', controller.findOne);
 
-//* Crear un producto.
+//* Crear un usuario.
 /**
  * @openapi
  * /api/v1/users:
@@ -114,7 +114,7 @@ router.get('/:nickName', controller.findOne);
  */
 router.post('/', controller.create);
 
-//* Editar un producto.
+//* Editar un usuario.
 /**
  * @openapi
  * /api/v1/users/:id:
@@ -153,7 +153,7 @@ router.post('/', controller.create);
  */
 router.patch('/:nickName', controller.update);
 
-//* Borrar un producto.
+//* Borrar un usuario.
 /**
  * @openapi
  * /api/v1/users/:id:
