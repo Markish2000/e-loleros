@@ -6,7 +6,7 @@ const regex = /[^a-zA-Z0-9]/;
 class ChampionsService {
   constructor() {}
 
-  //* Obtener todos los champions.
+  //* Obtener todos los campeones.
   async findAll() {
     const findAllChampions = await championsModel.findAll();
     if (findAllChampions.length === 0) {
@@ -16,10 +16,15 @@ class ChampionsService {
     }
   }
 
-  //* Obtener champion por name.
+  //* Obtener campeón por name.
   async findOne(name) {
     const findOneChampion = await championsModel.findByPk(name);
     const validateString = parseInt(name);
+    if (!findOneChampion) {
+      throw new Error(
+        `No existe el campeón con el name ${name} en nuestra base de datos.`
+      );
+    }
     if (validateString) {
       throw new Error(
         `El name del campeón no es válido debido a que ${name} es un número y no se aceptan números.`
@@ -30,16 +35,10 @@ class ChampionsService {
         `Usted ha enviado el símbolo ${name} y no se aceptan símbolos.`
       );
     }
-    if (findOneChampion === null) {
-      throw new Error(
-        `No existe el campeón con el name ${name} en nuestra base de datos.`
-      );
-    } else {
-      return findOneChampion;
-    }
+    return findOneChampion;
   }
 
-  //* Crear un champion.
+  //* Crear un campeón.
   async create({ name, image, role, difficulty, history, skills, skins }) {
     const existingChampion = await championsModel.findByPk(name);
     const validateString = parseInt(name);
@@ -144,7 +143,7 @@ class ChampionsService {
     };
   }
 
-  //* Editar un champion.
+  //* Editar un campeón.
   async update(name, { image, role, difficulty, history, skills, skin }) {
     const champion = await championsModel.findByPk(name);
     if (!champion) {
@@ -178,7 +177,7 @@ class ChampionsService {
     };
   }
 
-  //* Borrar un champion.
+  //* Borrar un campeón.
   async delete(name) {
     const validateString = parseInt(name);
     if (validateString) {
@@ -198,12 +197,11 @@ class ChampionsService {
       throw new Error(
         `El campeón con el name ${name} no se encuentra en nuestra base de datos.`
       );
-    } else {
-      return {
-        message: 'Borrado',
-        data: deleteChampion,
-      };
     }
+    return {
+      message: 'Borrado',
+      data: deleteChampion,
+    };
   }
 }
 

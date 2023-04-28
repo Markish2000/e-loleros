@@ -4,7 +4,7 @@ const service = new ChampionsService();
 class ChampionsController {
   constructor() {}
 
-  //* Obtener todos los champions.
+  //* Obtener todos los campeones.
   async findAll(req, res, next) {
     try {
       const response = await service.findAll();
@@ -14,7 +14,7 @@ class ChampionsController {
     }
   }
 
-  //* Obtener champion por id.
+  //* Obtener campeón por id.
   async findOne(req, res, next) {
     try {
       const { name } = req.params;
@@ -25,7 +25,7 @@ class ChampionsController {
     }
   }
 
-  //* Crear un champion.
+  //* Crear un campeón.
   async create(req, res, next) {
     try {
       const body = req.body;
@@ -36,7 +36,7 @@ class ChampionsController {
     }
   }
 
-  //* Editar un champion.
+  //* Editar un campeón.
   async update(req, res, next) {
     try {
       const { name } = req.params;
@@ -48,7 +48,7 @@ class ChampionsController {
     }
   }
 
-  //* Borrar un champion.
+  //* Borrar un campeón.
   async delete(req, res, next) {
     try {
       const { name } = req.params;
