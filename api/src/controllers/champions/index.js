@@ -40,7 +40,15 @@ class ChampionsController {
   async update(req, res, next) {}
 
   //* Borrar un producto.
-  async delete(req, res, next) {}
+  async delete(req, res, next) {
+    try {
+      const { name } = req.params;
+      const response = await service.delete(name);
+      res.status(200).json(response);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = ChampionsController;
