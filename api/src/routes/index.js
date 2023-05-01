@@ -12,8 +12,8 @@ const routesApi = (app) => {
   router.use('/products', productRoute);
   router.use('/users', usersRoute);
   router.use('/champions', championsRoute);
-  router.use('/authentication', authenticationRoute);
-  router.use('/login ', loginRoute);
+  // router.use('/authentication', authenticationRoute);
+  // router.use('/login ', loginRoute);
 };
 
 module.exports = routesApi;
