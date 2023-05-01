@@ -2,7 +2,8 @@ const { Router } = require('express');
 const router = Router();
 const usersController = require('../../controllers/users');
 const controller = new usersController();
-const validateToken = require('../../middlewares/validatetoken');
+const validateToken = require('../../middlewares/validateToken');
+const schemaValidation = require('../../middlewares/schemaValidation');
 //* Obtener todos los usuarios.
 /**
  * @openapi
@@ -112,7 +113,7 @@ router.get('/:nickName', validateToken, controller.findOne);
  *                       example: "notNull Violation: users.price cannot be null"
  *
  */
-router.post('/', controller.create);
+router.post('/', schemaValidation, controller.create);
 
 //* Editar un usuario.
 /**
