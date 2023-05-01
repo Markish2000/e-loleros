@@ -20,12 +20,9 @@
     "mercadopago": "^1.5.15",
     "morgan": "^1.10.0",
     "nodemailer": "^6.9.1",
-<<<<<<< HEAD
     "nodemon": "^2.0.22",
-=======
     "passport": "^0.6.0",
     "passport-google-oidc": "^0.1.0",
->>>>>>> 2b4ee200d55e313822d7b1736b7632a19534403b
     "pg": "^8.10.0",
     "pg-hstore": "^2.3.4",
     "request-promise-native": "^1.0.9",
