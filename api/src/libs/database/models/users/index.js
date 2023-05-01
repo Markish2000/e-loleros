@@ -1,5 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../index');
+const sharp = require('sharp');
+const rp = require('request-promise-native');
 
 const users = sequelize.define('users', {
   nickName: {
@@ -52,6 +54,17 @@ const users = sequelize.define('users', {
       'https://lol-skin.weblog.vc/img/wallpaper/tiles/Vayne_25.webp',
     validate: {
       isUrl: true,
+      async isValidImage(value) {
+        try {
+          const buffer = await rp.get({ url: value, encoding: null });
+          const metadata = await sharp(buffer).metadata();
+          if (metadata.width < 1 || metadata.height < 1) {
+            throw new Error('La imagen es inválida.');
+          }
+        } catch (error) {
+          throw new Error('No se pudo obtener las dimensiones de la imagen.');
+        }
+      },
     },
   },
 

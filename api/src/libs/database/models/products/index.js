@@ -1,10 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../index');
-const imageSize = require('image-size');
-const { createReadStream } = require('fs');
-const { promisify } = require('util');
-
-const asyncGetSize = promisify(imageSize);
+const sharp = require('sharp');
+const rp = require('request-promise-native');
 
 const products = sequelize.define('products', {
   id: {
@@ -33,20 +30,17 @@ const products = sequelize.define('products', {
     allowNull: false,
     validate: {
       isUrl: true,
-      // isValidImage(value) {
-      //   return (async function () {
-      //     try {
-      //       const { width, height } = await asyncGetSize(
-      //         createReadStream(value)
-      //       );
-      //       if (width < 1 || height < 1) {
-      //         throw new Error('La imagen es inválida.');
-      //       }
-      //     } catch (error) {
-      //       throw new Error('La URL de la imagen es inválida.');
-      //     }
-      //   })();
-      // },
+      async isValidImage(value) {
+        try {
+          const buffer = await rp.get({ url: value, encoding: null });
+          const metadata = await sharp(buffer).metadata();
+          if (metadata.width < 1 || metadata.height < 1) {
+            throw new Error('La imagen es inválida.');
+          }
+        } catch (error) {
+          throw new Error('No se pudo obtener las dimensiones de la imagen.');
+        }
+      },
     },
   },
 

@@ -1,9 +1,9 @@
 const { Router } = require('express');
-const usersController = require('../../controllers/users');
 const router = Router();
+const usersController = require('../../controllers/users');
 const controller = new usersController();
-
-//* Obtener todos los productos.
+const validateToken = require('../../middlewares/validatetoken');
+//* Obtener todos los usuarios.
 /**
  * @openapi
  * /api/v1/users:
@@ -37,9 +37,9 @@ const controller = new usersController();
  *                       example: "La base de datos está vacía."
  *
  */
-router.get('/', controller.findAll);
+router.get('/', validateToken, controller.findAll);
 
-//* Obtener producto por id.
+//* Obtener usuario por nickName.
 /**
  * @openapi
  * /api/v1/users/:id:
@@ -73,9 +73,9 @@ router.get('/', controller.findAll);
  *                       example: "El producto con el id 1 no se encuentra en nuestra base de datos."
  *
  */
-router.get('/:id', controller.findOne);
+router.get('/:nickName', validateToken, controller.findOne);
 
-//* Crear un producto.
+//* Crear un usuario.
 /**
  * @openapi
  * /api/v1/users:
@@ -114,7 +114,7 @@ router.get('/:id', controller.findOne);
  */
 router.post('/', controller.create);
 
-//* Editar un producto.
+//* Editar un usuario.
 /**
  * @openapi
  * /api/v1/users/:id:
@@ -151,9 +151,9 @@ router.post('/', controller.create);
  *                       example: "El producto con el id 1 no existe en nuestra base de datos."
  *
  */
-router.patch('/:id', controller.update);
+router.patch('/:nickName', validateToken, controller.update);
 
-//* Borrar un producto.
+//* Borrar un usuario.
 /**
  * @openapi
  * /api/v1/users/:id:
@@ -189,6 +189,6 @@ router.patch('/:id', controller.update);
  *                       example: "No existe el producto en nuestra base de datos."
  *
  */
-router.delete('/:id', controller.delete);
+router.delete('/:nickName', validateToken, controller.delete);
 
 module.exports = router;

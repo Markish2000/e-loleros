@@ -1,6 +1,6 @@
 import { LinearProgress } from '@mui/material';
 
-const LinearLoading = () => {
+const LineLoading = () => {
   return (
     <LinearProgress
       sx={{
@@ -13,4 +13,4 @@ const LinearLoading = () => {
   );
 };
 
-export default LinearLoading;
+export default LineLoading;

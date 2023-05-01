@@ -8,7 +8,7 @@ import { Suspense, useState } from 'react';
 import { lightTheme, darkTheme } from './themes/themes';
 import { Box, CssBaseline } from '@mui/material';
 import ShopPage from './views/ShopPage';
-import CampionsPage from './views/CampionsPage';
+import CampionsPage from './views/ChampionsPage';
 import { CircularProgress } from '@mui/material';
 
 const App = () => {

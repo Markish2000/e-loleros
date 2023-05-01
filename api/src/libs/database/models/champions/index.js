@@ -1,10 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../index');
-const imageSize = require('image-size');
-const { createReadStream } = require('fs');
-const { promisify } = require('util');
-
-const asyncGetSize = promisify(imageSize);
+const sharp = require('sharp');
+const rp = require('request-promise-native');
 
 const champions = sequelize.define('champions', {
   name: {
@@ -18,20 +15,17 @@ const champions = sequelize.define('champions', {
     allowNull: false,
     validate: {
       isUrl: true,
-      // isValidImage(value) {
-      //   return (async function () {
-      //     try {
-      //       const { width, height } = await asyncGetSize(
-      //         createReadStream(value)
-      //       );
-      //       if (width < 1 || height < 1) {
-      //         throw new Error('La imagen es inválida.');
-      //       }
-      //     } catch (error) {
-      //       throw new Error('La URL de la imagen es inválida.');
-      //     }
-      //   })();
-      // },
+      async isValidImage(value) {
+        try {
+          const buffer = await rp.get({ url: value, encoding: null });
+          const metadata = await sharp(buffer).metadata();
+          if (metadata.width < 1 || metadata.height < 1) {
+            throw new Error('La imagen es inválida.');
+          }
+        } catch (error) {
+          throw new Error('No se pudo obtener las dimensiones de la imagen.');
+        }
+      },
     },
   },
 
@@ -39,7 +33,7 @@ const champions = sequelize.define('champions', {
     type: DataTypes.STRING(10),
     allowNull: false,
     validate: {
-      isIn: [['Asesino', 'Luchador', 'Mago', 'Tirador', 'Soporte', 'Tanque']],
+      isIn: [['ASESINO', 'LUCHADOR', 'MAGO', 'TIRADOR', 'SOPORTE', 'TANQUE']],
     },
   },
 
@@ -47,23 +41,21 @@ const champions = sequelize.define('champions', {
     type: DataTypes.STRING(10),
     allowNull: false,
     validate: {
-      isIn: [['Fácil', 'Medio', 'Difícil']],
+      isIn: [['BAJA', 'MODERADA', 'ALTA']],
     },
   },
 
   history: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
 
   skills: {
     type: DataTypes.ARRAY(DataTypes.JSON),
-    allowNull: false,
   },
 
   skins: {
     type: DataTypes.ARRAY(DataTypes.JSON),
-    allowNull: false,
   },
 });
 

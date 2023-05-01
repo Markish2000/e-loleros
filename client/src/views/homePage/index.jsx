@@ -3,7 +3,7 @@ import StartHome from '../../components/StartPage';
 import { Box, Container } from '@mui/material';
 import SingleCard from '../../components/SingleCard';
 import SectionCampions from '../../components/SectionCampions';
-import SingleCardCampions from '../../components/SingleCardCampions';
+import SingleCardCampions from '../../components/SingleCardChampions';
 import image from '../../assets/homeStart.jpg';
 import SectionProducts from '../../components/SectionProducts';
 

@@ -1,6 +1,7 @@
 const { Op } = require('sequelize');
 const sequelize = require('../../libs/database');
 const productsModel = require('../../libs/database/models/products');
+const regex = /[^a-zA-Z0-9]/;
 
 class ProductsService {
   constructor() {}
@@ -40,7 +41,7 @@ class ProductsService {
       throw new Error('La base de datos está vacía.');
     } else {
       return {
-        data: findAllProducts,
+        products: findAllProducts,
         productLimit,
         totalProducts,
       };
@@ -50,13 +51,12 @@ class ProductsService {
   //* Obtener producto por id.
   async findOne(id) {
     const findOneProduct = await productsModel.findByPk(id);
-    if (findOneProduct === null) {
+    if (!findOneProduct) {
       throw new Error(
         `El producto con el id ${id} no se encuentra en nuestra base de datos.`
       );
-    } else {
-      return findOneProduct;
     }
+    return findOneProduct;
   }
 
   //* Crear un producto.
@@ -69,6 +69,46 @@ class ProductsService {
     stock,
     availability,
   }) {
+    if (!title) {
+      throw new Error(
+        `No se ha recibido el title del producto, el mismo es obligatorio.`
+      );
+    }
+    if (!price) {
+      throw new Error(
+        `No se ha recibido el price del producto, el mismo es obligatorio.`
+      );
+    }
+    if (!detail) {
+      throw new Error(
+        `No se ha recibido el detail del producto, el mismo es obligatorio.`
+      );
+    }
+    if (!mainImage) {
+      throw new Error(
+        `No se ha recibido el mainImage del producto, el mismo es obligatorio.`
+      );
+    }
+    if (!images) {
+      throw new Error(
+        `No se ha recibido el images del producto, el mismo es obligatorio.`
+      );
+    }
+    if (!stock) {
+      throw new Error(
+        `No se ha recibido el stock del producto, el mismo es obligatorio.`
+      );
+    }
+    if (!availability) {
+      throw new Error(
+        `No se ha recibido el stock del producto, el mismo es obligatorio.`
+      );
+    }
+    if (regex.test(title)) {
+      throw new Error(
+        `Se recibió el símbolo ${title} y no se aceptan símbolos.`
+      );
+    }
     const newProduct = await productsModel.create({
       title,
       price,
@@ -90,25 +130,32 @@ class ProductsService {
     id,
     { stock, availability, title, price, detail, mainImage, images }
   ) {
-    const updateProduct = await productsModel.findByPk(id);
-    if (updateProduct === null) {
+    const product = await productsModel.findByPk(id);
+    if (!product) {
       throw new Error(
         `El producto con el id ${id} no se encuentra en nuestra base de datos.`
       );
-    } else {
-      updateProduct.stock = stock || updateProduct.stock;
-      updateProduct.availability = availability || updateProduct.availability;
-      updateProduct.title = title || updateProduct.title;
-      updateProduct.price = price || updateProduct.price;
-      updateProduct.detail = detail || updateProduct.detail;
-      updateProduct.mainImage = mainImage || updateProduct.mainImage;
-      updateProduct.images = images || updateProduct.images;
-      await updateProduct.save();
-      return {
-        message: `El producto con el id ${id} se ha actualizado con éxito.`,
-        data: updateProduct,
-      };
     }
+    if (!title) {
+      throw new Error(
+        `No se ha recibido el history del campeón, el mismo es obligatorio.`
+      );
+    }
+
+    const updatedProduct = await product.update({
+      stock: stock ?? product.stock,
+      availability: availability ?? product.availability,
+      title: title ?? product.title,
+      price: price ?? product.price,
+      detail: detail ?? product.detail,
+      mainImage: mainImage ?? product.mainImage,
+      images: images ?? product.images,
+    });
+
+    return {
+      message: `El producto con el id ${id} se ha actualizado con éxito.`,
+      data: updatedProduct,
+    };
   }
 
   //* Borrar un producto.
@@ -118,13 +165,14 @@ class ProductsService {
     });
 
     if (deleteProduct === 0) {
-      throw new Error('No existe el producto en nuestra base de datos.');
-    } else {
-      return {
-        message: 'Borrado',
-        data: id,
-      };
+      throw new Error(
+        `El producto con el id ${id} no se encuentra en nuestra base de datos.`
+      );
     }
+    return {
+      message: 'Borrado',
+      data: id,
+    };
   }
 }
 

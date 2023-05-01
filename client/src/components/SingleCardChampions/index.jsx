@@ -12,7 +12,7 @@ import {
 import ButtonComponent from '../Button';
 import styled from 'styled-components';
 
-const SingleCardCampions = ({
+const SingleCardChampions = ({
   name,
   mainImage,
   maxWidth,
@@ -53,4 +53,4 @@ const StyledCardContent = styled(CardContent)`
   }
 `;
 
-export default SingleCardCampions;
+export default SingleCardChampions;

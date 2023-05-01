@@ -1,7 +1,7 @@
 import StartPage from '../../components/StartPage';
 import image from '../../assets/productsStart.jpg';
 import Cards from '../../components/Cards';
-import { Pagination } from '@mui/material';
+import { Container, Pagination, Box } from '@mui/material';
 import axios from 'axios';
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
@@ -18,6 +18,7 @@ const ShopPage = () => {
     );
 
     return response.data;
+    // throw new Error('Holis');
   };
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -39,7 +40,7 @@ const ShopPage = () => {
   const data = query.data.response?.data;
 
   return (
-    <div>
+    <Box>
       <StartPage image={image} title='productos' text={text} />
       <Cards data={data} />
       <Pagination
@@ -47,7 +48,7 @@ const ShopPage = () => {
         onChange={handlePageChange}
         count={totalPage}
       />
-    </div>
+    </Box>
   );
 };
 

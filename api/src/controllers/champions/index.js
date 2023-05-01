@@ -1,10 +1,10 @@
-const usersService = require('../../services/users');
-const service = new usersService();
+const ChampionsService = require('../../services/champions');
+const service = new ChampionsService();
 
-class UsersController {
+class ChampionsController {
   constructor() {}
 
-  //* Obtener todos los usuarios.
+  //* Obtener todos los campeones.
   async findAll(req, res, next) {
     try {
       const response = await service.findAll();
@@ -14,18 +14,18 @@ class UsersController {
     }
   }
 
-  //* Obtener usuario por nickName.
+  //* Obtener campeón por id.
   async findOne(req, res, next) {
     try {
-      const { nickName } = req.params;
-      const response = await service.findOne(nickName);
+      const { name } = req.params;
+      const response = await service.findOne(name);
       res.status(200).json(response);
     } catch (error) {
       next(error);
     }
   }
 
-  //* Crear un usuario.
+  //* Crear un campeón.
   async create(req, res, next) {
     try {
       const body = req.body;
@@ -36,23 +36,23 @@ class UsersController {
     }
   }
 
-  //* Editar un usuario.
+  //* Editar un campeón.
   async update(req, res, next) {
     try {
-      const { nickName } = req.params;
+      const { name } = req.params;
       const body = req.body;
-      const response = await service.update(nickName, body);
+      const response = await service.update(name, body);
       res.status(200).json(response);
     } catch (error) {
       next(error);
     }
   }
 
-  //* Borrar un usuario.
+  //* Borrar un campeón.
   async delete(req, res, next) {
     try {
-      const { nickName } = req.params;
-      const response = await service.delete(nickName);
+      const { name } = req.params;
+      const response = await service.delete(name);
       res.status(200).json(response);
     } catch (error) {
       next(error);
@@ -60,4 +60,4 @@ class UsersController {
   }
 }
 
-module.exports = UsersController;
+module.exports = ChampionsController;

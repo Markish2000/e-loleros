@@ -1,8 +1,7 @@
 import React from 'react';
 import CarouselCampions from '../Carousel';
 import { Button, Container, Typography, Box } from '@mui/material';
-import SingleCardCampions from '../SingleCardCampions';
-import SingleCard from '../SingleCard';
+import SingleCardCampions from '../SingleCardChampions';
 import { Link } from 'react-router-dom';
 
 const SectionCampions = ({ Component }) => {
@@ -10,7 +9,8 @@ const SectionCampions = ({ Component }) => {
     <Container
       sx={{
         paddingLeft: '10px',
-        display: 'flex',flexDirection: 'column',
+        display: 'flex',
+        flexDirection: 'column',
         marginBottom: '30px',
         marginTop: '30px',
       }}
@@ -58,5 +58,3 @@ const SectionCampions = ({ Component }) => {
 };
 
 export default SectionCampions;
-
-        

@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import data from '../../data.js';
-import SingleCardCampions from '../../components/SingleCardCampions';
+import SingleCardCampions from '../SingleCardChampions/index.jsx';
 import { Container, Grid, Box, Button } from '@mui/material';
 import Cards from '../Cards/index.jsx';
 
