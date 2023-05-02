@@ -17,6 +17,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ButtonTheme from '../ButtonTheme';
+import { useThemeContext, useThemeToggleContext } from '../../context/ThemeContext';
 
 const NavBar = ({ handleThemeChange }) => {
   const [open, setOpen] = useState(false);

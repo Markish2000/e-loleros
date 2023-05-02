@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const { PORT } = process.env
+const { PORT_BACK } = process.env
 
 const instance = axios.create({
-  baseURL: `http://localhost:${PORT}/api/v1`
+  baseURL: `http://localhost:3001/api/v1`
 })
 
 export default instance;

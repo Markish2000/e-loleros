@@ -7,20 +7,32 @@ export const lightTheme = createTheme({
       fontFamily: 'Khand, sans-serif',
     },
     primary: {
+      main: '#030640',
+      light: 'rgb(53, 55, 102)',
+      dark: 'rgb(2, 4, 44)',
+      contrastText: '#fff',
+    },
+    // secondary: {
+    //   main: '#1445A6',
+    //   light: 'rgb(67, 106, 183)',
+    //   dark: 'rgb(14, 48, 116)',
+    //   contrastText: '#fff',
+    // },
+    secondary: {
       main: '#BF9A56',
       light: '#D9A362',
       dark: '#8C7446',
       contrastText: '#fff',
     },
-    secondary: {
-      main: '#0DC4D9',
-      light: '#1E93C4',
-      dark: '#006D9B',
+    third: {
+      main: '#5f89a6',
+      light: 'rgb(127, 160, 183)',
+      dark: 'rgb(66, 95, 116)',
       contrastText: '#fff',
     },
     background: {
-      paper: '#07121a',
-      default: '#fff',
+      paper: '#ffffff',
+      default: '#ffff',
     },
     text: {
       primary: 'rgba(0, 0, 0, 0.87)',

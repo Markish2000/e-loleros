@@ -4,6 +4,6 @@ const router = Router();
 const controller = new LoginController();
 
 //* Obtener todos los campeones.
-router.get('/', controller.validateToken);
+// router.get('/', controller.validateToken);
 
 module.exports = router;

@@ -23,7 +23,8 @@ const SingleCard = ({
   marginLeft,
 }) => {
   return (
-    <Card
+    <StyledCard
+      // elevation={4}
       sx={{
         maxWidth,
         marginRight,
@@ -36,7 +37,15 @@ const SingleCard = ({
         paddingBottom: '15px',
       }}
     >
-      <CardMedia component='img' image={mainImage} height='280' alt={name} />
+       <StyledCardMediaContainer>
+        <StyleCardMedia
+          component='img'
+          image={mainImage}
+          height='280'
+          alt={name}
+        />
+      </StyledCardMediaContainer>
+
 
       <CardContent>
         <Typography
@@ -68,9 +77,36 @@ const SingleCard = ({
           <LocalGroceryStoreIcon />
         </Button>
       </CardActions>
-    </Card>
+    </StyledCard>
   );
 };
+
+const StyledCard = styled(Card)`
+  position: relative;
+  // &::before {
+  //   content: "";
+  //   position: absolute;
+  //   top: 0px;
+  //   right: 0px;
+  //   width: 11%;
+  //   padding-top: 11%;
+  //   background-color: rgb(255, 255, 255);
+  //   transition: transform 0.5s ease 0s;
+  //   transform: translate(50%, -50%) rotate(45deg);
+  }
+`;
+
+const StyledCardMediaContainer = styled.div`
+  overflow: hidden;
+`;
+
+const StyleCardMedia = styled(CardMedia)`
+transition: transform 0.3s ease-in-out;
+overflow: hidden;
+&:hover {
+  transform: scale(1.05);
+}
+`
 
 SingleCard.propTypes = {
   name: PropTypes.string.isRequired,

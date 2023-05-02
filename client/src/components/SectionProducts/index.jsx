@@ -11,14 +11,14 @@ const SectionProducts = ({ Component }) => {
         display: 'flex',
         flexDirection: 'column',
         marginBottom: '40px',
-        marginTop: '30px',
+        // marginTop: '30px',
       }}
     >
       <Typography
         variant='h3'
         component='h3'
         sx={{
-          color: '#BF9A56',
+          color: 'primary.main',
           textTransform: 'uppercase',
           marginBottom: '30px',
           fontSize: { xs: '2.5rem', sm: '2.75rem', md: '3rem' },
@@ -45,7 +45,7 @@ const SectionProducts = ({ Component }) => {
           sx={{
             marginLeft: '10px',
             marginRight: '10px',
-            marginTop: '20px',
+            // marginTop: '20px',
             width: '200px',
           }}
         >

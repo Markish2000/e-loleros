@@ -6,6 +6,7 @@ import data from '../../data.js';
 import SingleCardCampions from '../SingleCardChampions/index.jsx';
 import { Container, Grid, Box, Button } from '@mui/material';
 import Cards from '../Cards/index.jsx';
+import styled from 'styled-components';
 
 const CarouselCampions = ({ Component }) => {
   const settings = {
@@ -43,9 +44,9 @@ const CarouselCampions = ({ Component }) => {
       <Slider {...settings}>
         {data.length !== 0 ? (
           data.map((el) => (
-            <div key={el.id}>
+            <StyledDivCarousel key={el.id}>
               <Component {...el} marginRight='10px' marginLeft='10px' />
-            </div>
+            </StyledDivCarousel>
           ))
         ) : (
           <p>No hay personajes</p>
@@ -54,5 +55,11 @@ const CarouselCampions = ({ Component }) => {
     </Box>
   );
 };
+
+const StyledDivCarousel = styled.div`
+  padding-top: 20px;
+  padding-bottom: 20px;
+  // background-color: red;
+`;
 
 export default CarouselCampions;
