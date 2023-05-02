@@ -38,7 +38,7 @@ const schemaValidation = require('../../middlewares/schemaValidation');
  *                       example: "La base de datos está vacía."
  *
  */
-router.get('/', validateToken, controller.findAll);
+router.get('/', controller.findAll);
 
 //* Obtener usuario por nickName.
 /**
