@@ -12,7 +12,7 @@ class UsersService {
   async findAll() {
     const getAllUsers = await usersModel.findAll({
       attributes: {
-        exclude: ['password'],
+        exclude: ['createdAt', 'updatedAt', 'password'],
       },
     });
     if (getAllUsers.length === 0) {
@@ -25,7 +25,7 @@ class UsersService {
   async findOne(nickName) {
     const findOneUser = await usersModel.findByPk(nickName, {
       attributes: {
-        exclude: ['password'],
+        exclude: ['createdAt', 'updatedAt', 'password'],
       },
     });
     const validateString = parseInt(nickName);
@@ -59,8 +59,11 @@ class UsersService {
     image,
     password,
   }) {
+    const emailLowerCase = email.toLowerCase();
     const validateNickName = await usersModel.findByPk(nickName);
-    const validateEmail = await usersModel.findOne({ where: { email: email } });
+    const validateEmail = await usersModel.findOne({
+      where: { email: emailLowerCase },
+    });
     const hash = await bcrypt.hash(password, 10);
 
     if (validateNickName && validateEmail) {
@@ -78,7 +81,7 @@ class UsersService {
     }
     const newUser = await usersModel.create({
       nickName,
-      email,
+      email: emailLowerCase,
       firstName,
       lastName,
       dateOfBirth,

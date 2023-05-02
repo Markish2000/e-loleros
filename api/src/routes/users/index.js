@@ -113,7 +113,7 @@ router.get('/:nickName', validateToken, controller.findOne);
  *                       example: "notNull Violation: users.price cannot be null"
  *
  */
-router.post('/', schemaValidation, controller.create);
+router.post('/', controller.create);
 
 //* Editar un usuario.
 /**
