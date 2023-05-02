@@ -22,7 +22,6 @@ class LoginService {
       throw new Error('La contraseña es incorrecta.');
     }
     const token = await generateToken(user);
-
     delete user.dataValues.password;
     return { message: 'Se ha iniciado sesión con éxito.', token };
   }
