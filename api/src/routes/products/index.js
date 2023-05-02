@@ -74,7 +74,7 @@ router.get('/', controller.findAll);
  *                       example: "El producto con el id 1 no se encuentra en nuestra base de datos."
  *
  */
-router.get('/:id', validateToken, controller.findOne);
+router.get('/:id', controller.findOne);
 
 //* Crear un producto.
 /**
