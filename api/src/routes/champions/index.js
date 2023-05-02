@@ -8,7 +8,7 @@ const validateToken = require('../../middlewares/validateToken');
 router.get('/', controller.findAll);
 
 //* Obtener campeón por name.
-router.get('/:name', validateToken, controller.findOne);
+router.get('/:name', controller.findOne);
 
 //* Crear un campeón.
 router.post('/', validateToken, controller.create);
