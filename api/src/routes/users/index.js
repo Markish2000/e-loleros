@@ -2,7 +2,8 @@ const { Router } = require('express');
 const router = Router();
 const usersController = require('../../controllers/users');
 const controller = new usersController();
-const validateToken = require('../../middlewares/validatetoken');
+const validateToken = require('../../middlewares/validateToken');
+const schemaValidation = require('../../middlewares/schemaValidation');
 //* Obtener todos los usuarios.
 /**
  * @openapi

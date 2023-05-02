@@ -3,7 +3,6 @@ const router = Router();
 const productRoute = require('./products');
 const usersRoute = require('./users');
 const championsRoute = require('./champions');
-const authenticationRoute = require('./authentication');
 const loginRoute = require('./login');
 
 const routesApi = (app) => {
@@ -12,8 +11,7 @@ const routesApi = (app) => {
   router.use('/products', productRoute);
   router.use('/users', usersRoute);
   router.use('/champions', championsRoute);
-  router.use('/authentication', authenticationRoute);
-  router.use('/login ', loginRoute);
+  router.use('/login', loginRoute);
 };
 
 module.exports = routesApi;

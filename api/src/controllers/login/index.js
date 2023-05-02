@@ -6,19 +6,15 @@ const service = new LoginService();
 class LoginController {
   constructor() {}
 
-  //* Obtener todos los productos.
-  async findAll(req, res, next) {
+  //* Iniciar sesión localmente.
+  async login(req, res, next) {
     try {
-      const { nickName, password } = req.body;
-      const user = await service.findOne(nickName);
-      const passwordCorrect =
-        user === null
-          ? false
-          : await bcrypt.compare(password, user.passwordHash);
-      if (!passwordCorrect) {
-        res;
-      }
-    } catch (error) {}
+      const { email, password } = req.body;
+      const user = await service.login(email.toLowerCase(), password);
+      res.status(200).json(user);
+    } catch (error) {
+      next(error);
+    }
   }
 }
 
