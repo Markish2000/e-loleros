@@ -14,8 +14,7 @@ import styled from 'styled-components';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 
 const SingleCard = ({
-  id,
-  name,
+  title,
   price,
   mainImage,
   maxWidth,
@@ -42,8 +41,8 @@ const SingleCard = ({
           component='img'
           image={mainImage}
           // height='280'
-          alt={name}
-          title={name}
+          alt={title}
+          title={title}
           loading='lazy'
           sx={{
             borderRadius: { xs: '50%', sm: '0px' },
@@ -58,7 +57,7 @@ const SingleCard = ({
           variant='h5'
           sx={{ textAlign: 'center', color: 'primary.main' }}
         >
-          {name}
+          {title}
         </Typography>
       </CardContent>
 

@@ -6,7 +6,7 @@ import data from '../../data.js';
 import { Box } from '@mui/material';
 import styled from 'styled-components';
 
-const CarouselCampions = ({ Component, slidesToShow, slidesToScroll }) => {
+const CarouselCampions = ({ Component }) => {
   const settings = {
     dots: false, // Oculta los puntos de navegación
     arrows: false,
