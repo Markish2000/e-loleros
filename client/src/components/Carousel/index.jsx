@@ -45,8 +45,8 @@ const CarouselCampions = ({
   return (
     <Box>
       <Slider {...settings}>
-        {data.length !== 0 ? (
-          data.map((el) => (
+        {data?.length !== 0 ? (
+          data?.map((el) => (
             <StyledDivCarousel key={el.id}>
               <Component {...el} marginRight='10px' marginLeft='10px' />
             </StyledDivCarousel>
