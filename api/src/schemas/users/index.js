@@ -22,7 +22,7 @@ const genre = Joi.string().valid(
 const nationality = Joi.string().max(50);
 const image = Joi.string().uri();
 const password = Joi.string().min(8);
-const role = Joi.string().min(3);
+const role = Joi.string().valid('admin', 'cliente');
 
 const createUserSchema = Joi.object({
   nickName: nickName.required(),
@@ -53,8 +53,13 @@ const getUserSchema = Joi.object({
   nickName: nickName.required(),
 });
 
+const deleteUserSchema = Joi.object({
+  nickName: nickName.required(),
+});
+
 module.exports = {
   createUserSchema,
   updateSchema,
   getUserSchema,
+  deleteUserSchema,
 };
