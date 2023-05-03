@@ -17,6 +17,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ButtonTheme from '../ButtonTheme';
+import { useThemeContext, useThemeToggleContext } from '../../context/ThemeContext';
 
 const NavBar = ({ handleThemeChange }) => {
   const [open, setOpen] = useState(false);
@@ -54,10 +55,11 @@ const NavBar = ({ handleThemeChange }) => {
           <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }}>
             <LinkRouter to='home' value='inicio' />
             <LinkRouter to='shop' value='tienda' />
+            <LinkRouter to='campions' value='campeones' />
             <LinkRouter to='about' value='nosotros' />
-            <LinkRouter to='login' value='Iniciar sesión' />
-            <LinkRouter to='singin' value='registrarse' />
-            {/* <Switch onChange={handleThemeChange} /> */}
+            <LinkRouter to='login' value='Iniciar sesión' variant='contained' />
+            <LinkRouter to='singin' value='registrarse' variant='contained' />
+            <Switch onChange={handleThemeChange} />
           </Box>
         </Toolbar>
       </AppBar>

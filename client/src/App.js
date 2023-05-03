@@ -1,35 +1,38 @@
 import './App.css';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import HomePage from './views/homePage';
-import LandingPage from './views/landingPage';
+import HomePage from './views/HomePage';
+import LandingPage from './views/LandingPage';
 import NavBar from './components/NavBar';
 import { ThemeProvider } from '@mui/material/styles';
-import { useState } from 'react';
-import { lightTheme, darkTheme } from './themes/themes';
 import { Box, CssBaseline } from '@mui/material';
+import ShopPage from './views/ShopPage';
+import CampionsPage from './views/ChampionsPage';
+import { useThemeContext, useThemeToggleContext } from './context/ThemeContext';
+import Footer from './components/Footer';
 
 const App = () => {
   const location = useLocation();
-  const [theme, setTheme] = useState(lightTheme);
 
-  const handleThemeChange = () => {
-    setTheme(theme === lightTheme ? darkTheme : lightTheme);
-  };
+  const theme = useThemeContext();
+  const handleThemeChange = useThemeToggleContext();
 
   return (
     <>
-      {/* <CssBaseline /> */}
-      {/* <ThemeProvider theme={theme}> */}
-      {location.pathname === '/' ? (
-        <LandingPage />
-      ) : (
-        <NavBar handleThemeChange={handleThemeChange} />
-      )}
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        {location.pathname === '/' ? (
+          <LandingPage />
+        ) : (
+          <NavBar handleThemeChange={handleThemeChange} />
+        )}
 
-      <Routes>
-        <Route path='/home' element={<HomePage theme={theme} />} />
-      </Routes>
-      {/* </ThemeProvider> */}
+        <Routes>
+          <Route path='/home' element={<HomePage />} />
+          <Route path='/shop' element={<ShopPage />} />
+          <Route path='/campions' element={<CampionsPage />} />
+        </Routes>
+        <Footer />
+      </ThemeProvider>
     </>
   );
 };

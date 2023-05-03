@@ -2,9 +2,14 @@ import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const LinkRouter = ({ to, value }) => {
+const LinkRouter = ({ to, value, variant }) => {
   return (
-    <Button component={Link} to={`/${to}`} sx={{ color: 'white' }}>
+    <Button
+      variant={variant}
+      component={Link}
+      to={`/${to}`}
+      sx={{ color: 'white', marginRight: '10px' }}
+    >
       {value ? value : to}
     </Button>
   );

@@ -12,7 +12,7 @@ import {
 import ButtonComponent from '../Button';
 import styled from 'styled-components';
 
-const SingleCardCampions = ({
+const SingleCardChampions = ({
   name,
   mainImage,
   maxWidth,
@@ -27,14 +27,18 @@ const SingleCardCampions = ({
         marginRight,
         cursor: 'pointer',
         // clipPath: 'polygon(0 0, 100% 0, 100% 80%, 80% 100%, 0 100%)',
-        border: '1px solid #BF9A56',
+        border: '1px solid',
+        borderColor: 'primary.main',
       }}
       onClick={() => {}}
     >
       <CardMedia component='img' image={mainImage} height='300' alt={name} />
 
-      <StyledCardContent sx={{ backgroundColor: '#00070D' }}>
-        <Typography variant='h5' sx={{ textAlign: 'center', color: 'white' }}>
+      <StyledCardContent>
+        <Typography
+          variant='h5'
+          sx={{ textAlign: 'center', color: 'primary.main' }}
+        >
           {name}
         </Typography>
       </StyledCardContent>
@@ -49,4 +53,4 @@ const StyledCardContent = styled(CardContent)`
   }
 `;
 
-export default SingleCardCampions;
+export default SingleCardChampions;

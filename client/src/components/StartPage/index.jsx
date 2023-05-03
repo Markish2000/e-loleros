@@ -1,13 +1,14 @@
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Container, Typography, useTheme } from '@mui/material';
 import React from 'react';
 import styles from './StartHome.module.css';
-import image from '../../assets/landing3.jpg';
 import styled from 'styled-components';
 
-const StartHome = () => {
+const StartPage = ({ image, title, text }) => {
+  const theme = useTheme();
+
   return (
     <BoxGeneral image={image}>
-      <BoxGradient>
+      <BoxGradient sx={{ background: `linear-gradient(to bottom, rgba(255, 255, 255, 0), ${theme.palette.background.default})`}}>
         <BoxWelcome
           sx={{
             paddingLeft: { xs: 2, sm: 3, md: 4 },
@@ -21,7 +22,8 @@ const StartHome = () => {
               justifyContent: 'center',
               alignItems: 'center',
               clipPath: 'polygon(0 0, 100% 0, 100% 80%, 80% 100%, 0 100%)',
-              border: '1px solid #BF9A56',
+              border: '1px solid',
+              borderColor: 'primary.main',
               marginTop: '25vh',
               height: 'auto',
               padding: '40px',
@@ -32,23 +34,25 @@ const StartHome = () => {
               component='h2'
               sx={{
                 fontSize: { xs: '2rem', sm: '3rem', md: '4rem' },
-                color: 'white',
+                textTransform: 'uppercase',
+                color: 'primary.main',
               }}
               className={styles.tracking}
             >
-              ¡BIENVENIDOS!
+              {title}
             </Typography>
 
             <Typography
               variant='body1'
               sx={{
                 fontSize: { xs: '1rem', sm: '1.25rem', md: '1.5rem' },
-                color: 'white',
-                marginTop: '3rem',
+                color: 'primary.main',
+                marginTop: { xs: '1.5rem', sm: '2rem', md: '3rem' },
+                textAlign: 'center',
               }}
               className={styles.tracking}
             >
-              En la oscuridad nos encontramos a nosotros mismos. - Senna
+              {text}
             </Typography>
           </Container>
         </BoxWelcome>
@@ -59,15 +63,15 @@ const StartHome = () => {
 
 const BoxGeneral = styled(Box)`
   width: 100%;
-  height: 70vh;
+  height: 80vh;
   background-image: url(${(props) => props.image});
   background-size: cover;
+  // background-position: center;
 `;
 
 const BoxGradient = styled(Box)`
   width: 100%;
-  height: 70vh;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #07121a);
+  height: 80vh;
 `;
 
 const BoxWelcome = styled(Box)`
@@ -75,4 +79,4 @@ const BoxWelcome = styled(Box)`
   justify-content: center;
 `;
 
-export default StartHome;
+export default StartPage;
