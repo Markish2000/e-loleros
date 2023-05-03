@@ -2,6 +2,7 @@ const { Router } = require('express');
 const ProductsController = require('../../controllers/products');
 const router = Router();
 const controller = new ProductsController();
+const validateToken = require('../../middlewares/validateToken');
 
 //* Obtener todos los productos.
 /**
@@ -112,7 +113,7 @@ router.get('/:id', controller.findOne);
  *                       example: "notNull Violation: products.price cannot be null"
  *
  */
-router.post('/', controller.create);
+router.post('/', validateToken, controller.create);
 
 //* Editar un producto.
 /**
@@ -151,7 +152,7 @@ router.post('/', controller.create);
  *                       example: "El producto con el id 1 no existe en nuestra base de datos."
  *
  */
-router.patch('/:id', controller.update);
+router.patch('/:id', validateToken, controller.update);
 
 //* Borrar un producto.
 /**
@@ -189,6 +190,6 @@ router.patch('/:id', controller.update);
  *                       example: "No existe el producto en nuestra base de datos."
  *
  */
-router.delete('/:id', controller.delete);
+router.delete('/:id', validateToken, controller.delete);
 
 module.exports = router;

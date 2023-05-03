@@ -3,7 +3,7 @@ const LoginController = require('../../controllers/login');
 const router = Router();
 const controller = new LoginController();
 
-//* Obtener todos los campeones.
-// router.get('/', controller.validateToken);
+//* Iniciar sesión localmente.
+router.post('/', controller.login);
 
 module.exports = router;

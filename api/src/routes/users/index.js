@@ -2,7 +2,8 @@ const { Router } = require('express');
 const router = Router();
 const usersController = require('../../controllers/users');
 const controller = new usersController();
-const validateToken = require('../../middlewares/validatetoken');
+const validateToken = require('../../middlewares/validateToken');
+const schemaValidation = require('../../middlewares/schemaValidation');
 //* Obtener todos los usuarios.
 /**
  * @openapi
@@ -37,7 +38,7 @@ const validateToken = require('../../middlewares/validatetoken');
  *                       example: "La base de datos está vacía."
  *
  */
-router.get('/', validateToken, controller.findAll);
+router.get('/', controller.findAll);
 
 //* Obtener usuario por nickName.
 /**
@@ -73,7 +74,7 @@ router.get('/', validateToken, controller.findAll);
  *                       example: "El producto con el id 1 no se encuentra en nuestra base de datos."
  *
  */
-router.get('/:nickName', validateToken, controller.findOne);
+router.get('/:nickName', controller.findOne);
 
 //* Crear un usuario.
 /**

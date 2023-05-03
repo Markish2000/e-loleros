@@ -2,6 +2,7 @@ const { Router } = require('express');
 const ChampionsController = require('../../controllers/champions');
 const router = Router();
 const controller = new ChampionsController();
+const validateToken = require('../../middlewares/validateToken');
 
 //* Obtener todos los campeones.
 router.get('/', controller.findAll);
@@ -10,12 +11,12 @@ router.get('/', controller.findAll);
 router.get('/:name', controller.findOne);
 
 //* Crear un campeón.
-router.post('/', controller.create);
+router.post('/', validateToken, controller.create);
 
 //* Editar un campeón.
-router.patch('/:name', controller.update);
+router.patch('/:name', validateToken, controller.update);
 
 //* Borrar un campeón.
-router.delete('/:name', controller.delete);
+router.delete('/:name', validateToken, controller.delete);
 
 module.exports = router;
