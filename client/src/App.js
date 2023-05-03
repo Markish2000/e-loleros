@@ -1,20 +1,42 @@
-import "./App.css";
-import { Routes, Route } from "react-router-dom";
-import Home from "./views/Home/Home";
-import Landing from "./views/Lading/Landing";
-import NavBar from "./components/NavBar/NavBar";
+import './App.css';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import HomePage from './views/HomePage';
+import LandingPage from './views/LandingPage';
+import NavBar from './components/NavBar';
+import { ThemeProvider } from '@mui/material/styles';
+import { Box, CssBaseline } from '@mui/material';
+import ShopPage from './views/ShopPage';
+import CampionsPage from './views/ChampionsPage';
+import { useThemeContext, useThemeToggleContext } from './context/ThemeContext';
+import Footer from './components/Footer';
 
 const App = () => {
+  const location = useLocation();
+
+  const theme = useThemeContext();
+  const handleThemeChange = useThemeToggleContext();
+
   return (
     <>
-      <NavBar />
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/landing" element={<Landing />} />
-      </Routes>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        {location.pathname === '/' ? (
+          <LandingPage />
+        ) : (
+          <NavBar handleThemeChange={handleThemeChange} />
+        )}
+
+        <Routes>
+          <Route path='/home' element={<HomePage />} />
+          <Route path='/shop' element={<ShopPage />} />
+          <Route path='/campions' element={<CampionsPage />} />
+        </Routes>
+        <Footer />
+      </ThemeProvider>
     </>
   );
 };
 
-//
 export default App;
+
+//Holitas
