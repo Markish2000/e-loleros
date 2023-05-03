@@ -4,6 +4,7 @@ const usersController = require('../../controllers/users');
 const controller = new usersController();
 const validateToken = require('../../middlewares/validateToken');
 const schemaValidation = require('../../middlewares/schemaValidation');
+const { createUserSchema } = require('../../schemas/users');
 //* Obtener todos los usuarios.
 /**
  * @openapi
@@ -113,7 +114,7 @@ router.get('/:nickName', controller.findOne);
  *                       example: "notNull Violation: users.price cannot be null"
  *
  */
-router.post('/', controller.create);
+router.post('/', schemaValidation(createUserSchema, 'body'), controller.create);
 
 //* Editar un usuario.
 /**

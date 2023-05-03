@@ -29,7 +29,6 @@ const createUserSchema = Joi.object({
   password: password.required(),
   email: email.required(),
   genre: genre.required(),
-  role: role,
   nationality: nationality,
   dateOfBirth: dateOfBirth.required(),
   firstName: firstName.required(),
@@ -54,13 +53,8 @@ const getUserSchema = Joi.object({
   nickName: nickName.required(),
 });
 
-const userFollowSchema = Joi.object({
-  userNickName: userNickName.required(),
-});
-
 module.exports = {
   createUserSchema,
   updateSchema,
   getUserSchema,
-  userFollowSchema,
 };
