@@ -31,9 +31,8 @@ const StyledCarousel = styled(Carousel)`
   }
 
   .slick-dots li button {
-    background-color: ${theme.palette
-      .primary}; /* Cambia el color de los indicadores */
+    background-color: ${({ theme }) =>
+      theme.palette.primary.main}; /* Cambia el color de los indicadores */
   }
 `;
-
 export default CarouselAnt;
