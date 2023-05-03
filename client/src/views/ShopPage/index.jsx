@@ -6,12 +6,13 @@ import { Pagination, Box } from '@mui/material';
 import { useState } from 'react';
 import { useAllProducts } from '../../hooks/products';
 import { useThemeContext } from '../../context/ThemeContext';
+import Paginated from '../../components/Paginated';
 
 const ShopPage = () => {
   const text =
     'Sólo tu puedes oírme invocador ¿Qué obra maestra vamos a tocar hoy? -Sona';
 
-  const theme = useThemeContext()
+  const theme = useThemeContext();
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -27,16 +28,26 @@ const ShopPage = () => {
 
   const totalPage = query.data?.pages || 1; // Establecer 1 como valor predeterminado si no hay datos disponibles
 
-  const data = query.data?.products;
+  const data = query.data.data?.products;
 
   return (
-    <Box>
-      <StartPage image={theme.palette.mode === 'light' ? imageLight : imageDark} title='productos' text={text} />
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <StartPage
+        image={theme.palette.mode === 'light' ? imageLight : imageDark}
+        title='productos'
+        text={text}
+      />
       <Cards data={data} />
-      <Pagination
+      <Paginated
         page={currentPage}
-        onChange={handlePageChange}
-        count={totalPage}
+        handlePageChange={handlePageChange}
+        totalPage={totalPage}
       />
     </Box>
   );
