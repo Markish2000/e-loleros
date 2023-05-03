@@ -37,15 +37,16 @@ const SingleCard = ({
         paddingBottom: '15px',
       }}
     >
-       <StyledCardMediaContainer>
+      <StyledCardMediaContainer>
         <StyleCardMedia
           component='img'
           image={mainImage}
           height='280'
           alt={name}
+          title={name}
+          loading='lazy'
         />
       </StyledCardMediaContainer>
-
 
       <CardContent>
         <Typography
@@ -101,12 +102,12 @@ const StyledCardMediaContainer = styled.div`
 `;
 
 const StyleCardMedia = styled(CardMedia)`
-transition: transform 0.3s ease-in-out;
-overflow: hidden;
-&:hover {
-  transform: scale(1.05);
-}
-`
+  transition: transform 0.3s ease-in-out;
+  overflow: hidden;
+  &:hover {
+    transform: scale(1.05);
+  }
+`;
 
 SingleCard.propTypes = {
   name: PropTypes.string.isRequired,

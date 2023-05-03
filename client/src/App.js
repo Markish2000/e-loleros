@@ -8,6 +8,7 @@ import { Box, CssBaseline } from '@mui/material';
 import ShopPage from './views/ShopPage';
 import CampionsPage from './views/ChampionsPage';
 import { useThemeContext, useThemeToggleContext } from './context/ThemeContext';
+import Footer from './components/Footer';
 
 const App = () => {
   const location = useLocation();
@@ -30,6 +31,7 @@ const App = () => {
           <Route path='/shop' element={<ShopPage />} />
           <Route path='/campions' element={<CampionsPage />} />
         </Routes>
+        <Footer />
       </ThemeProvider>
     </>
   );

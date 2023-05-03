@@ -4,7 +4,7 @@ import imageLight from '../../assets/shopLight.jpg';
 import Cards from '../../components/Cards';
 import { Pagination, Box } from '@mui/material';
 import { useState } from 'react';
-import { useAllProducts } from '../../services/products';
+import { useAllProducts } from '../../hooks/products';
 import { useThemeContext } from '../../context/ThemeContext';
 
 const ShopPage = () => {

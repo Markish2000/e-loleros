@@ -10,7 +10,7 @@ const getAllProducts = async ({ queryKey }) => {
       }
     }
   );
-console.log('respuesta', response.data);
+
   return response.data;
   // throw new Error('Holis');
 };

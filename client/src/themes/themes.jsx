@@ -12,18 +12,18 @@ export const lightTheme = createTheme({
       dark: 'rgb(2, 4, 44)',
       contrastText: '#fff',
     },
-    // secondary: {
-    //   main: '#1445A6',
-    //   light: 'rgb(67, 106, 183)',
-    //   dark: 'rgb(14, 48, 116)',
-    //   contrastText: '#fff',
-    // },
     secondary: {
-      main: '#BF9A56',
-      light: '#D9A362',
-      dark: '#8C7446',
+      main: '#1445A6',
+      light: 'rgb(67, 106, 183)',
+      dark: 'rgb(14, 48, 116)',
       contrastText: '#fff',
     },
+    // secondary: {
+    //   main: '#BF9A56',
+    //   light: '#D9A362',
+    //   dark: '#8C7446',
+    //   contrastText: '#fff',
+    // },
     third: {
       main: '#5f89a6',
       light: 'rgb(127, 160, 183)',
