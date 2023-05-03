@@ -1,42 +1,77 @@
+import {
+  Box,
+  Button,
+  CardMedia,
+  Container,
+  Typography,
+  useTheme,
+} from '@mui/material';
 import styles from './Landing.module.css';
 import { Link } from 'react-router-dom';
+import LinkRouter from '../../components/LinkRouter';
+import styled from 'styled-components';
+import imageLanding from '../../assets/landing11.jpg';
+import imageLogo from '../../assets/logoBlanco.png';
+import ColumnLanding from '../../components/ColumnLanding';
+import VideoSection from '../../components/VideoSection';
 
 const LandingPage = () => {
+  const theme = useTheme();
+
   return (
-    <div className={styles.container}>
-      <div className={styles.divTitle}>
-        <h1 className={styles.titleH1}>E-Loleros</h1>
-        <h2>League of Legends</h2>
-        {/* <ButtonComponent variant='outlined' text='LET GO!' size='large' /> */}
-        {/* <Link to='/home'>LET GO!</Link> */}
-        <Link to='/home' className={styles.linkHome}>
-          Aventurarse!
-        </Link>
-      </div>
-      <div className={styles.presentation}>
-        <h3>Bienvenidos</h3>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Exercitationem expedita facere blanditiis veritatis numquam, vero,
-          dolor, laboriosam amet iste fugit dicta repudiandae maxime ipsa quis?
-          Eum esse accusamus voluptas sint!
-        </p>
-        <iframe
-          className={styles.video}
-          src='https://www.youtube.com/embed/vzHrjOMfHPY?controls=0'
-          title='YouTube video player'
-          frameborder='0'
-          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-          allowfullscreen
-        ></iframe>
-      </div>
-    </div>
+    <StyledBoxGeneral image={imageLanding}>
+      <Box
+        sx={{
+          background: `linear-gradient(to bottom, rgba(255, 255, 255, 0), ${theme.palette.background.default})`,
+          width: '100%',
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
+          alignItems: { xs: 'center', md: '' },
+          justifyContent: { xs: 'center', md: 'space-evenly' },
+          paddingTop: { xs: '30px', md: '0px' },
+          paddingBottom: { xs: '30px', md: '0px' },
+        }}
+      >
+        <ColumnLanding>
+          <CardMedia
+            component='img'
+            image={imageLogo}
+            alt='Logo'
+            title='logo'
+            loading='lazy'
+          />
+
+          <Button
+            component={Link}
+            to='/home'
+            color='primary'
+            variant='contained'
+            size='large'
+            sx={{
+              marginTop: '4rem',
+            }}
+          >
+            Aventurarse!
+          </Button>
+        </ColumnLanding>
+
+        <ColumnLanding none='none'>
+          <VideoSection />
+        </ColumnLanding>
+      </Box>
+    </StyledBoxGeneral>
   );
 };
 
-export default LandingPage;
+const StyledBoxGeneral = styled(Box)`
+  width: auto;
+  height: 100vh;
+  background-image: url(${imageLanding});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  // justify-content: space-evenly;
+`;
 
-// ??
-// !!
-// TODO
-// *
+export default LandingPage;

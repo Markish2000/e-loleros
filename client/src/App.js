@@ -31,7 +31,7 @@ const App = () => {
           <Route path='/shop' element={<ShopPage />} />
           <Route path='/campions' element={<CampionsPage />} />
         </Routes>
-        <Footer />
+        {location.pathname !== '/' && <Footer />}
       </ThemeProvider>
     </>
   );
