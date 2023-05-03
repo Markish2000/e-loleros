@@ -6,10 +6,11 @@ const validateToken = require('../../middlewares/validateToken');
 const schemaValidation = require('../../middlewares/schemaValidation');
 const {
   createUserSchema,
-  getUserSchema,
-  updateSchema,
+  getOneUserSchema,
+  updateUserSchema,
   deleteUserSchema,
 } = require('../../schemas/users');
+
 //* Obtener todos los usuarios.
 /**
  * @openapi
@@ -82,7 +83,7 @@ router.get('/', controller.findAll);
  */
 router.get(
   '/:nickName',
-  schemaValidation(getUserSchema, 'params'),
+  schemaValidation(getOneUserSchema, 'params'),
   controller.findOne
 );
 
@@ -164,7 +165,7 @@ router.post('/', schemaValidation(createUserSchema, 'body'), controller.create);
  */
 router.patch(
   '/:nickName',
-  schemaValidation(updateSchema, 'body'),
+  schemaValidation(updateUserSchema, 'body'),
   validateToken,
   controller.update
 );
