@@ -3,6 +3,13 @@ const ProductsController = require('../../controllers/products');
 const router = Router();
 const controller = new ProductsController();
 const validateToken = require('../../middlewares/validateToken');
+const schemaValidation = require('../../middlewares/schemaValidation');
+const {
+  getOneProductSchema,
+  createProductSchema,
+  updateProductSchema,
+  buyProductSchema,
+} = require('../../schemas/products');
 
 //* Obtener todos los productos.
 /**
@@ -74,7 +81,11 @@ router.get('/', controller.findAll);
  *                       example: "El producto con el id 1 no se encuentra en nuestra base de datos."
  *
  */
-router.get('/:id', controller.findOne);
+router.get(
+  '/:id',
+  schemaValidation(getOneProductSchema, 'params'),
+  controller.findOne
+);
 
 //* Crear un producto.
 /**
@@ -113,7 +124,12 @@ router.get('/:id', controller.findOne);
  *                       example: "notNull Violation: products.price cannot be null"
  *
  */
-router.post('/', validateToken, controller.create);
+router.post(
+  '/',
+  schemaValidation(createProductSchema, 'body'),
+  validateToken,
+  controller.create
+);
 
 //* Editar un producto.
 /**
@@ -152,7 +168,12 @@ router.post('/', validateToken, controller.create);
  *                       example: "El producto con el id 1 no existe en nuestra base de datos."
  *
  */
-router.patch('/:id', validateToken, controller.update);
+router.patch(
+  '/:id',
+  schemaValidation(updateProductSchema, 'body'),
+  validateToken,
+  controller.update
+);
 
 //* Borrar un producto.
 /**

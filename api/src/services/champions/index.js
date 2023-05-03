@@ -71,6 +71,11 @@ class ChampionsService {
         exclude: ['createdAt', 'updatedAt'],
       },
     });
+    if (!champion) {
+      throw new Error(
+        `El campeón con el name ${name} no se encuentra en nuestra base de datos.`
+      );
+    }
     if (skills.length !== 5) {
       throw new Error(
         `Los campeones deben poseer 5 skills y se está recibiendo ${skills.length} skills.`
