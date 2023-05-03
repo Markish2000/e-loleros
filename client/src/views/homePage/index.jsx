@@ -10,7 +10,7 @@ import SectionProducts from '../../components/SectionProducts';
 import { useThemeContext } from '../../context/ThemeContext';
 
 const HomePage = () => {
-  const theme = useThemeContext()
+  const theme = useThemeContext();
 
   return (
     <div>
@@ -23,7 +23,6 @@ const HomePage = () => {
       <SectionProducts />
       <SectionCampions />
       {/* <Cards Component={<SingleCard />} /> */}
-      <Paginated />
     </div>
   );
 };

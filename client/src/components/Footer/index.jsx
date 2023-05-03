@@ -19,7 +19,7 @@ const Footer = () => {
       image={themeApp.palette.mode === 'light' ? imageLight : imageDark}
       sx={{
         height: 'auto',
-        backgroundColor: 'primary.main',
+        // backgroundColor: 'primary.main',
         // backgroundImage: `url(${imageDark})`,
       }}
     >

@@ -11,11 +11,12 @@ const Paginated = ({ currentPage, handlePageChange, totalPage }) => {
         onChange={handlePageChange}
         showFirstButton
         showLastButton
+        color='primary'
+        size='large'
+        sx={{ marginBottom: '50px', marginTop: '50px' }}
       />
     </Stack>
   );
 };
-
-// { pageCount, handlePageChange, page }
 
 export default Paginated;
