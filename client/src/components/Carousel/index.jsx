@@ -3,12 +3,15 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import data from '../../data.js';
-import SingleCardCampions from '../SingleCardChampions/index.jsx';
-import { Container, Grid, Box, Button } from '@mui/material';
-import Cards from '../Cards/index.jsx';
+import { Box } from '@mui/material';
 import styled from 'styled-components';
 
-const CarouselCampions = ({ Component }) => {
+const CarouselCampions = ({
+  Component,
+  data,
+  slidesToShow,
+  slidesToScroll,
+}) => {
   const settings = {
     dots: false, // Oculta los puntos de navegación
     arrows: false,
@@ -59,6 +62,7 @@ const CarouselCampions = ({ Component }) => {
 const StyledDivCarousel = styled.div`
   padding-top: 20px;
   padding-bottom: 20px;
+  width: 100%;
   // background-color: red;
 `;
 

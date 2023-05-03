@@ -38,13 +38,18 @@ const SingleCard = ({
       }}
     >
       <StyledCardMediaContainer>
-        <StyleCardMedia
+        <StyledCardMedia
           component='img'
           image={mainImage}
-          height='280'
+          // height='280'
           alt={name}
           title={name}
           loading='lazy'
+          sx={{
+            borderRadius: { xs: '50%', sm: '0px' },
+            width: { xs: '100%' },
+            // height: { xs: '200px', md: 'auto' },
+          }}
         />
       </StyledCardMediaContainer>
 
@@ -101,7 +106,7 @@ const StyledCardMediaContainer = styled.div`
   overflow: hidden;
 `;
 
-const StyleCardMedia = styled(CardMedia)`
+const StyledCardMedia = styled(CardMedia)`
   transition: transform 0.3s ease-in-out;
   overflow: hidden;
   &:hover {
