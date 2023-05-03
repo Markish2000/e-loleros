@@ -32,7 +32,7 @@ router.post(
 //* Editar un campeón por name.
 router.patch(
   '/:name',
-  schemaValidation(updateChampionSchema, 'params'),
+  schemaValidation(updateChampionSchema, 'body'),
   validateToken,
   controller.update
 );
