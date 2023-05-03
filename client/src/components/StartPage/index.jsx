@@ -8,7 +8,11 @@ const StartPage = ({ image, title, text }) => {
 
   return (
     <BoxGeneral image={image}>
-      <BoxGradient sx={{ background: `linear-gradient(to bottom, rgba(255, 255, 255, 0), ${theme.palette.background.default})`}}>
+      <BoxGradient
+        sx={{
+          background: `linear-gradient(to bottom, rgba(255, 255, 255, 0), ${theme.palette.background.default})`,
+        }}
+      >
         <BoxWelcome
           sx={{
             paddingLeft: { xs: 2, sm: 3, md: 4 },
@@ -63,7 +67,7 @@ const StartPage = ({ image, title, text }) => {
 
 const BoxGeneral = styled(Box)`
   width: 100%;
-  height: 80vh;
+  height: 75vh;
   background-image: url(${(props) => props.image});
   background-size: cover;
   // background-position: center;
@@ -71,7 +75,7 @@ const BoxGeneral = styled(Box)`
 
 const BoxGradient = styled(Box)`
   width: 100%;
-  height: 80vh;
+  height: 75vh;
 `;
 
 const BoxWelcome = styled(Box)`
