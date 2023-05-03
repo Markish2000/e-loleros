@@ -19,7 +19,7 @@ const SectionCampions = ({ Component }) => {
         variant='h3'
         component='h3'
         sx={{
-          color: '#BF9A56',
+          color: 'primary.main',
           textTransform: 'uppercase',
           marginBottom: '30px',
           fontSize: { xs: '2.5rem', sm: '2.75rem', md: '3rem' },

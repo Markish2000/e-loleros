@@ -7,6 +7,7 @@ import SingleCardCampions from '../../components/SingleCardChampions';
 import imageDark from '../../assets/homeStart.jpg';
 import imageLight from '../../assets/homeLight2.jpg';
 import SectionProducts from '../../components/SectionProducts';
+import SectionServices from '../../components/SectionServices';
 import { useThemeContext } from '../../context/ThemeContext';
 
 const HomePage = () => {
@@ -19,7 +20,7 @@ const HomePage = () => {
         title='¡bienvenidos!'
         text='En la oscuridad nos encontramos a nosotros mismos. - Senna'
       />
-
+      <SectionServices />
       <SectionProducts />
       <SectionCampions />
       {/* <Cards Component={<SingleCard />} /> */}
