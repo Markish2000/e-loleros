@@ -4,7 +4,13 @@ const usersController = require('../../controllers/users');
 const controller = new usersController();
 const validateToken = require('../../middlewares/validateToken');
 const schemaValidation = require('../../middlewares/schemaValidation');
-const { createUserSchema } = require('../../schemas/users');
+const {
+  createUserSchema,
+  getOneUserSchema,
+  updateUserSchema,
+  deleteUserSchema,
+} = require('../../schemas/users');
+
 //* Obtener todos los usuarios.
 /**
  * @openapi
@@ -75,7 +81,11 @@ router.get('/', controller.findAll);
  *                       example: "El producto con el id 1 no se encuentra en nuestra base de datos."
  *
  */
-router.get('/:nickName', controller.findOne);
+router.get(
+  '/:nickName',
+  schemaValidation(getOneUserSchema, 'params'),
+  controller.findOne
+);
 
 //* Crear un usuario.
 /**
@@ -153,7 +163,12 @@ router.post('/', schemaValidation(createUserSchema, 'body'), controller.create);
  *                       example: "El producto con el id 1 no existe en nuestra base de datos."
  *
  */
-router.patch('/:nickName', validateToken, controller.update);
+router.patch(
+  '/:nickName',
+  schemaValidation(updateUserSchema, 'body'),
+  validateToken,
+  controller.update
+);
 
 //* Borrar un usuario.
 /**
@@ -191,6 +206,11 @@ router.patch('/:nickName', validateToken, controller.update);
  *                       example: "No existe el producto en nuestra base de datos."
  *
  */
-router.delete('/:nickName', validateToken, controller.delete);
+router.delete(
+  '/:nickName',
+  schemaValidation(deleteUserSchema, 'params'),
+  validateToken,
+  controller.delete
+);
 
 module.exports = router;

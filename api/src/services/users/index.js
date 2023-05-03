@@ -6,8 +6,6 @@ const generateToken = require('../../helpers/token/generateToken');
 const MailerService = require('../nodemailer');
 const mailerService = new MailerService();
 
-const regex = /[^a-zA-Z0-9]/;
-
 class UsersService {
   constructor() {}
 
@@ -35,11 +33,6 @@ class UsersService {
     if (validateString) {
       throw new Error(
         `El name del campeón no es válido debido a que ${nickName} es un número y no se aceptan números.`
-      );
-    }
-    if (regex.test(nickName)) {
-      throw new Error(
-        `Se recibió el símbolo ${nickName} y no se aceptan símbolos.`
       );
     }
     if (!findOneUser) {
@@ -118,7 +111,11 @@ class UsersService {
       role,
     }
   ) {
-    const user = await usersModel.findByPk(nickName);
+    const user = await usersModel.findByPk(nickName, {
+      attributes: {
+        exclude: ['createdAt', 'updatedAt'],
+      },
+    });
     if (!user) {
       throw new Error(
         `El usuario con el nickName ${nickName} no se encuentra en nuestra base de datos.`
@@ -148,11 +145,6 @@ class UsersService {
     if (validateString) {
       throw new Error(
         `El nickName del usuario no es válido debido a que ${nickName} es un número y no se aceptan números.`
-      );
-    }
-    if (regex.test(nickName)) {
-      throw new Error(
-        `Se recibió el símbolo ${nickName} y no se aceptan símbolos.`
       );
     }
     const deleteUser = await usersModel.destroy({ where: { nickName } });
