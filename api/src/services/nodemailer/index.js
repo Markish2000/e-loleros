@@ -8,9 +8,9 @@ class MailerService {
   async sendMail(infoEmail) {
     try {
       const transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: true,
+        host: 'sandbox.smtp.mailtrap.io',
+        port: 2525,
+        // secure: true,
         auth: {
           user: MAIL,
           pass: MAILER_PASS,
