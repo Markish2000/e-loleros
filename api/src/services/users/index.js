@@ -3,6 +3,9 @@ const sequelize = require('../../libs/database');
 const bcrypt = require('bcrypt');
 const usersModel = require('../../libs/database/models/users');
 const generateToken = require('../../helpers/token/generateToken');
+const MailerService = require('../nodemailer');
+const mailerService = new MailerService();
+
 const regex = /[^a-zA-Z0-9]/;
 
 class UsersService {
@@ -92,6 +95,7 @@ class UsersService {
     });
 
     const token = await generateToken(newUser);
+    mailerService.sendWelcomeMail(newUser);
 
     return {
       message: 'Creado',
