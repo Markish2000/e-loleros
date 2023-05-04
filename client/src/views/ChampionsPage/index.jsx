@@ -28,7 +28,7 @@ const ChampionsPage = () => {
 
   const totalPage = query.data?.pages || 1; // Establecer 1 como valor predeterminado si no hay datos disponibles
 
-  const data = query.data;
+  const data = query.data.data.champions;
 
   return (
     <Box

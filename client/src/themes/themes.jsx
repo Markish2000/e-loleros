@@ -30,6 +30,12 @@ export const lightTheme = createTheme({
       dark: 'rgb(66, 95, 116)',
       contrastText: '#fff',
     },
+    nav: {
+      main: '#C8D3EA',
+      light: '#92A9D5',
+      dark: '#476EB9',
+      contrastText: '#fff',
+    },
     background: {
       paper: '#ffffff',
       default: '#ffff',
@@ -93,6 +99,12 @@ export const darkTheme = createTheme({
       dark: 'rgb(4, 14, 27)',
       contrastText: '#fff',
     },
+    nav: {
+      main: '#00070D',
+      light: 'rgb(56, 67, 82)',
+      dark: 'rgb(4, 14, 27)',
+      // contrastText: '#fff',
+    },
     aux: {
       main: '#ffff',
       primary: '#9C9FA3',
@@ -102,6 +114,7 @@ export const darkTheme = createTheme({
     background: {
       paper: '#00070D',
       default: '#07121a',
+      gradient: 'transparent',
     },
     text: {
       primary: '#ffff',
