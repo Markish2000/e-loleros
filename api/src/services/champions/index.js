@@ -30,7 +30,7 @@ class ChampionsService {
 
     const totalChampions = await championsModel.count(options);
 
-    const findAllChampions = await championsModel.findAll({
+    const findAllChampions = await championsModel.findAll(options, {
       attributes: {
         exclude: ['createdAt', 'updatedAt'],
       },
