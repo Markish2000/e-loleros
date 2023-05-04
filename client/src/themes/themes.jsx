@@ -102,6 +102,7 @@ export const darkTheme = createTheme({
     background: {
       paper: '#00070D',
       default: '#07121a',
+      gradient: 'transparent',
     },
     text: {
       primary: '#ffff',
