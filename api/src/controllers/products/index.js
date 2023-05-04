@@ -71,6 +71,17 @@ class ProductsController {
       next(error);
     }
   }
+
+  //* Comprar un producto.
+  async buyOneProduct(req, res, next) {
+    try {
+      const body = req.body;
+      const buyOneProduct = await service.buyOneProduct(body);
+      res.status(200).json(buyOneProduct);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = ProductsController;

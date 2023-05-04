@@ -17,17 +17,37 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import CarouselAnt from '../../components/CarouselAnt';
 import SingleCard from '../../components/SingleCard';
+import axios from 'axios';
 
 const DetailProductPage = () => {
   const { id } = useParams();
   const query = useDetailProducts(id);
+  const { title, detail, images, mainImage, price, stock } = query.data;
 
   if (query.error) {
     return <div>{query.error.message}</div>;
   }
 
+  const email = 'marcosparella2000@gmail.com';
+  const handleByNow = async () => {
+    try {
+      const response = await axios.post(
+        'http://localhost:3001/api/v1/products/buy',
+        {
+          id,
+          title,
+          price,
+          email,
+          quantity: stock,
+        }
+      );
+      window.location.href = response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   console.log(query.data);
-  const { title, detail, images, mainImage, price, stock } = query.data;
   console.log(images);
   return (
     <Box
@@ -104,7 +124,9 @@ const DetailProductPage = () => {
           </Box>
 
           <Button variant='outlined'>AGREGAR AL CARRITO</Button>
-          <Button variant='contained'>COMPRAR AHORA</Button>
+          <Button variant='contained' onClick={handleByNow}>
+            COMPRAR AHORA
+          </Button>
         </Box>
       </Container>
     </Box>
