@@ -1,8 +1,9 @@
 const { Op } = require('sequelize');
 const sequelize = require('../../libs/database');
+const mercadopago = require('mercadopago');
 const productsModel = require('../../libs/database/models/products');
-const regex = /[^a-zA-Z0-9]/;
-
+const { mercadopagoconfig } = require('../../libs/mercadopago');
+mercadopagoconfig();
 class ProductsService {
   constructor() {}
 
@@ -146,6 +147,31 @@ class ProductsService {
       message: 'Borrado',
       data: id,
     };
+  }
+
+  //* Comprar un producto.
+  async buyOneProduct({ id, title, price, email, quantity }) {
+    let preference = {
+      items: [
+        {
+          title: title,
+          unit_price: price,
+          currency_id: 'ARS',
+          quantity: quantity,
+        },
+      ],
+      back_urls: {
+        success: `http://localhost:3001/api/v1/products/success?customer=${email}`,
+        failure: '',
+        pending: '',
+      },
+      auto_return: 'approved',
+      binary_mode: true,
+    };
+
+    // const product = await productsModel.findOne({ where: { id: id } });
+    const response = await mercadopago.preferences.create(preference);
+    return response.body.init_point;
   }
 }
 

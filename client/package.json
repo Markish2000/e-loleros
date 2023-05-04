@@ -7,6 +7,8 @@
     "@cloudinary/url-gen": "^1.10.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@mercadopago/sdk-react": "^0.0.8",
+    "mercadopago": "^1.5.15",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.1",
     "@tanstack/react-query": "^4.29.5",
