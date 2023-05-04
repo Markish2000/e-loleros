@@ -29,6 +29,7 @@ const DetailProductPage = () => {
     return <div>{query.error.message}</div>;
   }
 
+  //!! CAPTURAR EMAIL DEL USUARIO POR EL LOCAL STORAGE.
   const email = 'marcosparella2000@gmail.com';
   const handleByNow = async () => {
     try {
@@ -39,7 +40,7 @@ const DetailProductPage = () => {
           title,
           price,
           email,
-          quantity: stock,
+          quantity: 1,
         }
       );
       window.location.href = response.data;

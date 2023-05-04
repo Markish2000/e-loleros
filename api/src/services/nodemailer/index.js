@@ -38,8 +38,18 @@ class MailerService {
         <p>El equipo de eLoleros</p>
       `,
     };
-
     this.sendMail(mail);
+  }
+
+  async buySuccess(email) {
+    const mail = {
+      from: MAIL,
+      to: email,
+      subject: 'Compra confirmada.',
+      html: `<b>Muchas gracias por tu compra!!!!</b>`,
+    };
+    const message = await this.sendMail(mail);
+    return message;
   }
 }
 
