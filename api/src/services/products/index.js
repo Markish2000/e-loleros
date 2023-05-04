@@ -161,7 +161,7 @@ class ProductsService {
         },
       ],
       back_urls: {
-        success: `http://localhost:3001/api/v1/products/success?customer=${email}`,
+        success: `http://localhost:3001/api/v1/products/success?email=${email}`,
         failure: '',
         pending: '',
       },
