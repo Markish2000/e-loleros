@@ -9,15 +9,21 @@ class ChampionsController {
     try {
       const page = req.query.page;
       const query = req.query;
+
       const response = await service.findAll(query);
+
       let pages = '';
+
       if (response.totalChampions <= response.championLimit) {
         pages = 1;
       } else {
         pages = Math.ceil(response.totalChampions / response.championLimit);
       }
+
       const pageNumber = parseInt(page);
+
       const totalResponse = { data: response, pageNumber, pages };
+
       res.status(200).json(totalResponse);
     } catch (error) {
       next(error);
