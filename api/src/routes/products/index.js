@@ -213,4 +213,6 @@ router.patch(
  */
 router.delete('/:id', validateToken, controller.delete);
 
+router.post('/buy', controller.buyOneProduct);
+
 module.exports = router;
