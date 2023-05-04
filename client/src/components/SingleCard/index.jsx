@@ -12,10 +12,11 @@ import {
 import ButtonComponent from '../Button';
 import styled from 'styled-components';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
+import { Link } from 'react-router-dom';
 
 const SingleCard = ({
   id,
-  name,
+  title,
   price,
   mainImage,
   maxWidth,
@@ -37,28 +38,29 @@ const SingleCard = ({
         paddingBottom: '15px',
       }}
     >
-      <StyledCardMediaContainer>
-        <StyledCardMedia
-          component='img'
-          image={mainImage}
-          // height='280'
-          alt={name}
-          title={name}
-          loading='lazy'
-          sx={{
-            borderRadius: { xs: '50%', sm: '0px' },
-            width: { xs: '100%' },
-            // height: { xs: '200px', md: 'auto' },
-          }}
-        />
-      </StyledCardMediaContainer>
+      <Link to={`/detail-product/${id}`}>
+        <StyledCardMediaContainer>
+          <StyledCardMedia
+            component='img'
+            image={mainImage}
+            // height='280'
+            alt={title}
+            title={title}
+            loading='lazy'
+            sx={{
+              width: { xs: '100%' },
+              // height: { xs: '200px', md: 'auto' },
+            }}
+          />
+        </StyledCardMediaContainer>
+      </Link>
 
       <CardContent>
         <Typography
           variant='h5'
           sx={{ textAlign: 'center', color: 'primary.main' }}
         >
-          {name}
+          {title}
         </Typography>
       </CardContent>
 

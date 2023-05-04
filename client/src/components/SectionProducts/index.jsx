@@ -2,8 +2,22 @@ import CarouselCampions from '../Carousel';
 import { Button, Container, Typography, Box } from '@mui/material';
 import SingleCard from '../SingleCard';
 import { Link } from 'react-router-dom';
+import data from '../../data.js';
+import CarouselAnt from '../CarouselAnt';
+import { useQueryClient } from '@tanstack/react-query';
+import { useAllProducts } from '../../hooks/products/allProducts';
 
 const SectionProducts = ({ Component }) => {
+  const queryClient = useQueryClient();
+
+  const query = useAllProducts();
+
+  if (query.error) {
+    return <div>{query.error.message}</div>;
+  }
+
+  const data = query.data.data?.products;
+
   return (
     <Container
       sx={{
@@ -28,7 +42,8 @@ const SectionProducts = ({ Component }) => {
         Productos
       </Typography>
 
-      <CarouselCampions Component={SingleCard} />
+      {/* <CarouselCampions dat={data} Component={SingleCard} /> */}
+      <CarouselAnt data={data} Component={SingleCard} />
 
       <Box
         sx={{
