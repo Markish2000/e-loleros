@@ -11,6 +11,7 @@ import {
   Switch,
   useScrollTrigger,
   useTheme,
+  Button,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import LinkRouter from '../LinkRouter';
@@ -24,6 +25,7 @@ import {
   useThemeToggleContext,
 } from '../../context/ThemeContext';
 import imageLogo from '../../assets/logoBlanco.png';
+import NavBarDrawer from '../NavBarDrawer';
 
 const NavBar = ({ handleThemeChange }) => {
   const theme = useTheme();
@@ -76,9 +78,9 @@ const NavBar = ({ handleThemeChange }) => {
           <img src='' alt='' />
 
           <IconButton
-            color='inherit'
+            color='white'
             size='large'
-            onClick={() => setOpen(true)}
+            onClick={handleDrawerToggle}
             sx={{ display: { xs: 'flex', sm: 'flex', md: 'none' } }}
           >
             <MenuIcon />
@@ -106,75 +108,11 @@ const NavBar = ({ handleThemeChange }) => {
         </Toolbar>
       </AppBar>
 
-      <Drawer
+      <NavBarDrawer
         open={open}
-        anchor='right'
-        onClose={handleDrawerToggle}
-        sx={{
-          display: { xs: 'block', sm: 'block', md: 'none' },
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '60vw' },
-          zIndex: 1200,
-        }}
-      >
-        <Box sx={{ p: 2 }}>
-          <List>
-            <Switch onChange={handleThemeChange} />
-            <ListItem
-              button
-              component={Link}
-              to='home'
-              onClick={() => setOpen(false)}
-            >
-              <ListItemText primary='Inicio' />
-            </ListItem>
-
-            <ListItem
-              button
-              component={Link}
-              to='shop'
-              onClick={() => setOpen(false)}
-            >
-              <ListItemText primary='Tienda' />
-            </ListItem>
-
-            <ListItem
-              button
-              component={Link}
-              to='champions'
-              onClick={() => setOpen(false)}
-            >
-              <ListItemText primary='Campeones' />
-            </ListItem>
-
-            <ListItem
-              button
-              component={Link}
-              to='about'
-              onClick={() => setOpen(false)}
-            >
-              <ListItemText primary='Nosotros' />
-            </ListItem>
-
-            <ListItem
-              button
-              component={Link}
-              to='login'
-              onClick={() => setOpen(false)}
-            >
-              <ListItemText primary='Iniciar sesión' />
-            </ListItem>
-
-            <ListItem
-              button
-              component={Link}
-              to='newuser'
-              onClick={() => setOpen(false)}
-            >
-              <ListItemText primary='Registrarse' />
-            </ListItem>
-          </List>
-        </Box>
-      </Drawer>
+        handleDrawerToggle={handleDrawerToggle}
+        handleThemeChange={handleThemeChange}
+      />
     </>
   );
 };
