@@ -17,6 +17,7 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import CarouselAnt from '../../components/CarouselAnt';
 import SingleCard from '../../components/SingleCard';
+import StockComponent from '../../components/StockComponent';
 import axios from 'axios';
 
 const DetailProductPage = () => {
@@ -87,13 +88,17 @@ const DetailProductPage = () => {
             height: 'autos',
             width: '500px',
             overflow: 'hidden',
-            // display: 'flex',
-            // flexDirection: 'column',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '30px',
           }}
         >
-          <Box sx={{ flexGrow: 1, display: 'grid', gap: 1 }}>
+          <Box>
             <Typography
               variant='h3'
+              color='primary'
               sx={{
                 marginBottom: '1.5rem',
               }}
@@ -103,13 +108,14 @@ const DetailProductPage = () => {
             <Typography variant='h4' component='p'>
               $ {price}
             </Typography>
-            <Typography variant='h6' component='p'>
+            <Typography variant='h6' component='p' sx={{ marginTop: '0.5rem' }}>
               en 12x $ {price % 12}
             </Typography>
             <Typography
               variant='body1'
               sx={{
                 marginTop: '3rem',
+                marginBottom: '3rem',
               }}
             >
               {detail} Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -118,15 +124,28 @@ const DetailProductPage = () => {
               esse, quasi ipsum quibusdam ab!
             </Typography>
 
-            <Typography variant='body1'>Unidades {stock}</Typography>
-            <Typography variant='body1'>+</Typography>
-            <Typography variant='body1'>-</Typography>
+            <StockComponent maxStock={stock} />
           </Box>
-
-          <Button variant='outlined'>AGREGAR AL CARRITO</Button>
-          <Button variant='contained' onClick={handleByNow}>
-            COMPRAR AHORA
-          </Button>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '100%',
+              marginTop: '3rem',
+            }}
+          >
+            <Button variant='outlined' size='large' color='secondary'>
+              AGREGAR AL CARRITO
+            </Button>
+            <Button
+              variant='contained'
+              size='large'
+              color='secondary'
+              onClick={handleByNow}
+            >
+              COMPRAR AHORA
+            </Button>
+          </Box>
         </Box>
       </Container>
     </Box>
