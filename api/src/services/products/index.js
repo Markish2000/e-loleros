@@ -1,8 +1,9 @@
 const { Op } = require('sequelize');
 const sequelize = require('../../libs/database');
+const mercadopago = require('mercadopago');
 const productsModel = require('../../libs/database/models/products');
-const regex = /[^a-zA-Z0-9]/;
-
+const { mercadopagoconfig } = require('../../libs/mercadopago');
+mercadopagoconfig();
 class ProductsService {
   constructor() {}
 
@@ -35,7 +36,11 @@ class ProductsService {
 
     const totalProducts = await productsModel.count(options);
 
-    const findAllProducts = await productsModel.findAll(options);
+    const findAllProducts = await productsModel.findAll(options, {
+      attributes: {
+        exclude: ['createdAt', 'updatedAt'],
+      },
+    });
 
     if (findAllProducts.length === 0) {
       throw new Error('La base de datos está vacía.');
@@ -50,7 +55,11 @@ class ProductsService {
 
   //* Obtener producto por id.
   async findOne(id) {
-    const findOneProduct = await productsModel.findByPk(id);
+    const findOneProduct = await productsModel.findByPk(id, {
+      attributes: {
+        exclude: ['createdAt', 'updatedAt'],
+      },
+    });
     if (!findOneProduct) {
       throw new Error(
         `El producto con el id ${id} no se encuentra en nuestra base de datos.`
@@ -69,46 +78,6 @@ class ProductsService {
     stock,
     availability,
   }) {
-    if (!title) {
-      throw new Error(
-        `No se ha recibido el title del producto, el mismo es obligatorio.`
-      );
-    }
-    if (!price) {
-      throw new Error(
-        `No se ha recibido el price del producto, el mismo es obligatorio.`
-      );
-    }
-    if (!detail) {
-      throw new Error(
-        `No se ha recibido el detail del producto, el mismo es obligatorio.`
-      );
-    }
-    if (!mainImage) {
-      throw new Error(
-        `No se ha recibido el mainImage del producto, el mismo es obligatorio.`
-      );
-    }
-    if (!images) {
-      throw new Error(
-        `No se ha recibido el images del producto, el mismo es obligatorio.`
-      );
-    }
-    if (!stock) {
-      throw new Error(
-        `No se ha recibido el stock del producto, el mismo es obligatorio.`
-      );
-    }
-    if (!availability) {
-      throw new Error(
-        `No se ha recibido el stock del producto, el mismo es obligatorio.`
-      );
-    }
-    if (regex.test(title)) {
-      throw new Error(
-        `Se recibió el símbolo ${title} y no se aceptan símbolos.`
-      );
-    }
     const newProduct = await productsModel.create({
       title,
       price,
@@ -130,15 +99,20 @@ class ProductsService {
     id,
     { stock, availability, title, price, detail, mainImage, images }
   ) {
-    const product = await productsModel.findByPk(id);
+    const product = await productsModel.findByPk(id, {
+      attributes: {
+        exclude: ['createdAt', 'updatedAt'],
+      },
+    });
+    const validateNumber = parseInt(id);
+    if (!validateNumber) {
+      throw new Error(
+        `El id ${id} es incorrecto debido a que sólo se aceptan números..`
+      );
+    }
     if (!product) {
       throw new Error(
         `El producto con el id ${id} no se encuentra en nuestra base de datos.`
-      );
-    }
-    if (!title) {
-      throw new Error(
-        `No se ha recibido el history del campeón, el mismo es obligatorio.`
       );
     }
 
@@ -173,6 +147,31 @@ class ProductsService {
       message: 'Borrado',
       data: id,
     };
+  }
+
+  //* Comprar un producto.
+  async buyOneProduct({ id, title, price, email, quantity }) {
+    let preference = {
+      items: [
+        {
+          title: title,
+          unit_price: price,
+          currency_id: 'ARS',
+          quantity: quantity,
+        },
+      ],
+      back_urls: {
+        success: `http://localhost:3001/api/v1/products/success?email=${email}`,
+        failure: '',
+        pending: '',
+      },
+      auto_return: 'approved',
+      binary_mode: true,
+    };
+
+    // const product = await productsModel.findOne({ where: { id: id } });
+    const response = await mercadopago.preferences.create(preference);
+    return response.body.init_point;
   }
 }
 

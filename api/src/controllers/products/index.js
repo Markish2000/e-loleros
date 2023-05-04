@@ -1,6 +1,7 @@
 const ProductsService = require('../../services/products');
 const service = new ProductsService();
-
+const MailerService = require('../../services/nodemailer');
+const mailer = new MailerService();
 class ProductsController {
   constructor() {}
 
@@ -67,6 +68,27 @@ class ProductsController {
       const { id } = req.params;
       const deleteProduct = await service.delete(id);
       res.status(200).json(deleteProduct);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  //* Comprar un producto.
+  async buyOneProduct(req, res, next) {
+    try {
+      const body = req.body;
+      const buyOneProduct = await service.buyOneProduct(body);
+      res.status(200).json(buyOneProduct);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async buySuccess(req, res, next) {
+    try {
+      const { email } = req.query;
+      mailer.buySuccess(email);
+      res.redirect(`http://localhost:3000/home`);
     } catch (error) {
       next(error);
     }

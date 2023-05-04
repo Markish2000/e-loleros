@@ -7,11 +7,16 @@ import duoImageDark from '../../assets/hierroDark.PNG';
 import coachingImage from '../../assets/coachingProfesional.jpg';
 import cuentasImage from '../../assets/cuenta.jpg';
 import skinsImage from '../../assets/skins.jpg';
+import {
+  textEloBoost,
+  textDuoBoost,
+  textCoachingProfesional,
+  textCuentas,
+} from '../../texts/servicesText';
 
 const SectionServices = () => {
   const theme = useTheme();
-  const text =
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem expedita facere blanditiis veritatis numquam, vero, dolor, laboriosam amet iste fugit dicta repudiandae maxime ipsa quis? Eum esse accusamus voluptas sint';
+
   return (
     <Container sx={{ marginBottom: '60px' }}>
       <Typography
@@ -30,35 +35,35 @@ const SectionServices = () => {
       <Grid container spacing={2}>
         <OfferedServices
           title='Elo boost'
-          text={text}
+          text={textEloBoost}
           sm='6'
           md='4'
           image={theme.palette.mode === 'light' ? eloImageLight : eloImageDark}
         />
         <OfferedServices
           title='Duo boost'
-          text={text}
+          text={textDuoBoost}
           sm='6'
           md='4'
           image={theme.palette.mode === 'light' ? duoImageLight : duoImageDark}
         />
         <OfferedServices
           title='Cuentas'
-          text={text}
+          text={textCuentas}
           sm='6'
           md='4'
           image={cuentasImage}
         />
         <OfferedServices
           title='Coaching Profesional'
-          text={text}
+          text={textCoachingProfesional}
           sm='6'
           md='6'
           image={coachingImage}
         />
         <OfferedServices
           title='Skins'
-          text={text}
+          text={textCoachingProfesional}
           sm='12'
           md='6'
           image={skinsImage}

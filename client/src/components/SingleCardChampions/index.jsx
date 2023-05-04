@@ -14,7 +14,9 @@ import styled from 'styled-components';
 
 const SingleCardChampions = ({
   name,
-  mainImage,
+  image,
+  difficulty,
+  role,
   maxWidth,
   marginLeft,
   marginRight,
@@ -32,7 +34,7 @@ const SingleCardChampions = ({
       }}
       onClick={() => {}}
     >
-      <CardMedia component='img' image={mainImage} height='300' alt={name} />
+      <CardMedia component='img' image={image} height='300' alt={name} />
 
       <StyledCardContent>
         <Typography
@@ -42,6 +44,20 @@ const SingleCardChampions = ({
           {name}
         </Typography>
       </StyledCardContent>
+
+      <CardContent
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-evenly',
+        }}
+      >
+        <Typography variant='subtitle1' sx={{ color: 'secondary.main' }}>
+          {role}
+        </Typography>
+        <Typography variant='subtitle1' sx={{ color: 'secondary.main' }}>
+          {difficulty}
+        </Typography>
+      </CardContent>
     </Card>
   );
 };
