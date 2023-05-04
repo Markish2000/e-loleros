@@ -4,7 +4,7 @@ import imageLight from '../../assets/shopLight.jpg';
 import Cards from '../../components/Cards';
 import { Pagination, Box } from '@mui/material';
 import { useState } from 'react';
-import { useAllProducts } from '../../hooks/products';
+import { useAllProducts } from '../../hooks/products/allProducts';
 import { useThemeContext } from '../../context/ThemeContext';
 import Paginated from '../../components/Paginated';
 

@@ -9,6 +9,10 @@ import ShopPage from './views/ShopPage';
 import CampionsPage from './views/ChampionsPage';
 import { useThemeContext, useThemeToggleContext } from './context/ThemeContext';
 import Footer from './components/Footer';
+import LoginPage from './views/LoginPage';
+import RegisterPage from './views/RegisterPage';
+import AboutPage from './views/AboutPage';
+import DetailProductPage from './views/DetailProductPage';
 
 const App = () => {
   const location = useLocation();
@@ -30,6 +34,10 @@ const App = () => {
           <Route path='/home' element={<HomePage />} />
           <Route path='/shop' element={<ShopPage />} />
           <Route path='/campions' element={<CampionsPage />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/newuser' element={<RegisterPage />} />
+          <Route path='/about' element={<AboutPage />} />
+          <Route path='/detail-product/:id' element={<DetailProductPage />} />
         </Routes>
         {location.pathname !== '/' && <Footer />}
       </ThemeProvider>

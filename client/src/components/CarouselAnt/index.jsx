@@ -1,21 +1,28 @@
 import { Box } from '@mui/material';
 import { Carousel, theme } from 'antd';
-import styled, { useTheme } from 'styled-components';
+import styled from 'styled-components';
+import { useThemeContext } from '../../context/ThemeContext';
 
 const CarouselAnt = ({ Component, data }) => {
-  const theme = useTheme();
+  const theme = useThemeContext();
+  let colorLine = '';
+
+  theme.palette.mode === 'light'
+    ? (colorLine = '#030640')
+    : (colorLine = '#BF9A56');
 
   return (
     <Box
       sx={{
         marginBottom: '20px',
+        border: 'none',
       }}
     >
       <StyledCarousel
         autoplay
         slidesToShow={3}
         dotPosition='bottom'
-        theme={theme}
+        colorLine={colorLine}
       >
         {data.map((el) => (
           <Component key={el.id} {...el} marginRight='10px' />
@@ -30,9 +37,13 @@ const StyledCarousel = styled(Carousel)`
     bottom: -20px; /* Ajusta la posición vertical de los indicadores */
   }
 
+  .slick-slide {
+    border: none;
+  }
+
   .slick-dots li button {
-    background-color: ${({ theme }) =>
-      theme.palette.primary.main}; /* Cambia el color de los indicadores */
+    background-color: ${(props) => props.colorLine};
   }
 `;
+
 export default CarouselAnt;

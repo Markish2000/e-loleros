@@ -1,11 +1,11 @@
 import { Box, Container } from '@mui/material';
 
-const RegisterPage = () => {
+const AboutPage = () => {
   return (
     <Box>
-      <h2>Holis</h2>
+      <h1>holis</h1>
     </Box>
   );
 };
 
-export default RegisterPage;
+export default AboutPage;

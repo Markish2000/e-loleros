@@ -1,4 +1,4 @@
-import instance from '../../config';
+import instance from '../../../config';
 import { useQuery } from '@tanstack/react-query';
 
 const getAllProducts = async ({ queryKey }) => {
