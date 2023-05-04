@@ -213,6 +213,10 @@ router.patch(
  */
 router.delete('/:id', validateToken, controller.delete);
 
+//* Comprar un producto con MercadoPago.
 router.post('/buy', controller.buyOneProduct);
+
+//* Compra exitosa.
+router.get('/success', controller.buySuccess);
 
 module.exports = router;
