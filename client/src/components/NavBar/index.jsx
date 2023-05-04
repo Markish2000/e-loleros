@@ -58,11 +58,15 @@ const NavBar = ({ handleThemeChange }) => {
         component='nav'
         position='fixed'
         sx={{
-          background: `linear-gradient(to bottom, rgba(255, 255, 255, 0), ${theme.palette.background.default})`,
+          // background: `linear-gradient(to bottom, rgba(255, 255, 255, 0), ${theme.palette.background.default})`,
+          // background: trigger
+          //   ? 'rgba(255, 255, 255, 0)'
+          //   : `rgba(255, 255, 255, 0)`,
           background: trigger
-            ? 'rgba(255, 255, 255, 0)'
+            ? `${theme.palette.nav.main}`
             : `rgba(255, 255, 255, 0)`,
-          backdropFilter: trigger ? 'blur(30px)' : `blur(10px)`,
+          // background: 'transparent',
+          backdropFilter: trigger ? '' : `blur(15px)`,
           color: trigger ? 'white' : 'black',
           boxShadow: trigger ? '0px 2px 4px rgba(0, 0, 0, 0.1)' : 'none',
           transition: 'background-color 0.3s, color 0.3s, box-shadow 0.3s',
