@@ -38,7 +38,7 @@ const SingleCard = ({
         paddingBottom: '15px',
       }}
     >
-      <Link to={`/detail-product/${id}`}>
+      <Link to={`/shop/${id}`}>
         <StyledCardMediaContainer>
           <StyledCardMedia
             component='img'
