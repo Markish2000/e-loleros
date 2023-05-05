@@ -5,14 +5,14 @@ import LandingPage from './views/LandingPage';
 import NavBar from './components/NavBar';
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
-import CampionsPage from './views/ChampionsPage';
 import { useThemeContext, useThemeToggleContext } from './context/ThemeContext';
 import Footer from './components/Footer';
 import LoginPage from './views/LoginPage';
 import RegisterPage from './views/RegisterPage';
 import AboutPage from './views/AboutPage';
 import ShopRouter from './routers/shop';
-import Error404Page from './views/Error404';
+import Error404Page from './views/Error404Page';
+import ChampionsRouter from './routers/champions';
 
 const App = () => {
   const location = useLocation();
@@ -22,7 +22,7 @@ const App = () => {
 
   const isLadingPage = location.pathname !== '/';
   const isLoginPage = location.pathname !== '/login';
-  const isNewUserPage = location.pathname !== '/newuser';
+  const isSigInPage = location.pathname !== '/sigIn';
 
   return (
     <>
@@ -37,13 +37,13 @@ const App = () => {
         <Routes>
           <Route path='/home' element={<HomePage />} />
           <Route path='/shop/*' element={<ShopRouter />} />
-          <Route path='/champions' element={<CampionsPage />} />
+          <Route path='/champions/*' element={<ChampionsRouter />} />
           <Route path='/login' element={<LoginPage />} />
-          <Route path='/newuser' element={<RegisterPage />} />
+          <Route path='/sigIn' element={<RegisterPage />} />
           <Route path='/about' element={<AboutPage />} />
           <Route path='*' element={<Error404Page />} />
         </Routes>
-        {isLadingPage && isLoginPage && isNewUserPage && <Footer />}
+        {isLadingPage && isLoginPage && isSigInPage && <Footer />}
       </ThemeProvider>
     </>
   );
