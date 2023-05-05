@@ -19,7 +19,6 @@ import ButtonComponent from '../Button';
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import ButtonTheme from '../ButtonTheme';
 import {
   useThemeContext,
   useThemeToggleContext,

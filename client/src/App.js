@@ -20,6 +20,10 @@ const App = () => {
   const theme = useThemeContext();
   const handleThemeChange = useThemeToggleContext();
 
+  const isLadingPage = location.pathname !== '/';
+  const isLoginPage = location.pathname !== '/login';
+  const isNewUserPage = location.pathname !== '/newuser';
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -39,7 +43,7 @@ const App = () => {
           <Route path='/about' element={<AboutPage />} />
           <Route path='/detail-product/:id' element={<DetailProductPage />} />
         </Routes>
-        {location.pathname !== '/' && <Footer />}
+        {isLadingPage && isLoginPage && isNewUserPage && <Footer />}
       </ThemeProvider>
     </>
   );
