@@ -119,7 +119,7 @@ export const darkTheme = createTheme({
     text: {
       primary: '#ffff',
       secondary: 'rgba(255, 255, 255, 0.7)',
-      disabled: 'rgba(255, 255, 255, 0.5)',
+      disabled: 'rgba(255, 255, 255, 0.1)',
     },
     error: {
       main: '#d32f2f',

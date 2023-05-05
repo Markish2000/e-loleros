@@ -2,13 +2,9 @@ import {
   Box,
   Button,
   CardMedia,
-  Container,
-  Typography,
   useTheme,
 } from '@mui/material';
-import styles from './Landing.module.css';
 import { Link } from 'react-router-dom';
-import LinkRouter from '../../components/LinkRouter';
 import styled from 'styled-components';
 import imageLanding from '../../assets/landing11.jpg';
 import imageLogo from '../../assets/logoBlanco.png';
