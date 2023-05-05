@@ -4,15 +4,15 @@ import HomePage from './views/HomePage';
 import LandingPage from './views/LandingPage';
 import NavBar from './components/NavBar';
 import { ThemeProvider } from '@mui/material/styles';
-import { Box, CssBaseline } from '@mui/material';
-import ShopPage from './views/ShopPage';
+import { CssBaseline } from '@mui/material';
 import CampionsPage from './views/ChampionsPage';
 import { useThemeContext, useThemeToggleContext } from './context/ThemeContext';
 import Footer from './components/Footer';
 import LoginPage from './views/LoginPage';
 import RegisterPage from './views/RegisterPage';
 import AboutPage from './views/AboutPage';
-import DetailProductPage from './views/DetailProductPage';
+import ShopRouter from './routers/shop';
+import Error404Page from './views/Error404';
 
 const App = () => {
   const location = useLocation();
@@ -36,12 +36,12 @@ const App = () => {
 
         <Routes>
           <Route path='/home' element={<HomePage />} />
-          <Route path='/shop' element={<ShopPage />} />
+          <Route path='/shop/*' element={<ShopRouter />} />
           <Route path='/champions' element={<CampionsPage />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/newuser' element={<RegisterPage />} />
           <Route path='/about' element={<AboutPage />} />
-          <Route path='/detail-product/:id' element={<DetailProductPage />} />
+          <Route path='*' element={<Error404Page />} />
         </Routes>
         {isLadingPage && isLoginPage && isNewUserPage && <Footer />}
       </ThemeProvider>
