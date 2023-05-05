@@ -45,7 +45,7 @@ const NavBarDrawer = ({ open, handleDrawerToggle, handleThemeChange }) => {
             <Button variant='contained'>Iniciar sesión</Button>
           </ListItem>
 
-          <ListItem button component={Link} to='sigIn'>
+          <ListItem button component={Link} to='signIn'>
             <Button variant='contained'>Registrarse</Button>
           </ListItem>
         </List>
