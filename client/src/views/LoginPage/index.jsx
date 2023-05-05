@@ -139,7 +139,7 @@ const LoginPage = () => {
                 size='small'
                 sx={{ marginLeft: '0.5rem' }}
                 component={Link}
-                to='/newuser'
+                to='/sigIn'
               >
                 Registrarse
               </Button>

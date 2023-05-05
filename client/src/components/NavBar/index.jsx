@@ -101,7 +101,7 @@ const NavBar = ({ handleThemeChange }) => {
               color='white'
             />
             <LinkRouter
-              to='newuser'
+              to='sigIn'
               value='registrarse'
               variant='contained'
               color='white'
