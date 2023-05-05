@@ -22,7 +22,7 @@ const App = () => {
 
   const isLadingPage = location.pathname !== '/';
   const isLoginPage = location.pathname !== '/login';
-  const isSigInPage = location.pathname !== '/sigIn';
+  const isSignInPage = location.pathname !== '/signIn';
 
   return (
     <>
@@ -39,11 +39,11 @@ const App = () => {
           <Route path='/shop/*' element={<ShopRouter />} />
           <Route path='/champions/*' element={<ChampionsRouter />} />
           <Route path='/login' element={<LoginPage />} />
-          <Route path='/sigIn' element={<RegisterPage />} />
+          <Route path='/signIn' element={<RegisterPage />} />
           <Route path='/about' element={<AboutPage />} />
           <Route path='*' element={<Error404Page />} />
         </Routes>
-        {isLadingPage && isLoginPage && isSigInPage && <Footer />}
+        {isLadingPage && isLoginPage && isSignInPage && <Footer />}
       </ThemeProvider>
     </>
   );
