@@ -1,17 +1,9 @@
-import {
-  Box,
-  TextField,
-  Typography,
-  Button,
-  useTheme,
-  Divider,
-  MenuItem,
-} from '@mui/material';
-import imageLight from '../../assets/loginLight.jpg';
-import imageDark from '../../assets/loginDark.jpg';
+import { Box, Button, useTheme, Divider } from '@mui/material';
+import imageLight from '../../assets/registerLight.jpg';
+import imageDark from '../../assets/registerDark.jpg';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { useAllCountries } from '../../hooks/countries';
 import ButtonNetworks from '../../components/ButtonNetworks';
 import FormImage from '../../components/FormImage';
 import FormContainer from '../../components/FormContainer';
@@ -19,7 +11,6 @@ import FormFields from '../../components/FormFields';
 import FormButton from '../../components/FormButton';
 import FormTitle from '../../components/FormTitle';
 import FormInput from '../../components/FormInput';
-import { useAllCountries } from '../../hooks/countries';
 import FormInputImage from '../../components/FormInputImage';
 import FormSelect from '../../components/FormSelect';
 import FormDate from '../../components/FormDate';
