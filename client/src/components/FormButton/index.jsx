@@ -7,8 +7,8 @@ const FormButton = ({ text }) => {
       type='submit'
       sx={{
         width: '100%',
-        marginTop: '1rem',
-        marginBottom: '1.5rem',
+        marginTop: '1.25rem',
+        // marginBottom: '1.5rem',
       }}
     >
       {text}

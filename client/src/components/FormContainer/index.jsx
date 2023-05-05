@@ -4,7 +4,7 @@ const FormContainer = ({ children }) => {
   return (
     <Box
       sx={{
-        height: '100vh',
+        height: { xs: 'auto', sm: 'auto', md: '100vh' },
         display: 'flex',
         flexDirection: { xs: 'column', sm: 'column', md: 'row' },
       }}

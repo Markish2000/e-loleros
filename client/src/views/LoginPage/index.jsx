@@ -15,12 +15,11 @@ import imageLight from '../../assets/loginLight.jpg';
 import imageDark from '../../assets/loginDark.jpg';
 import styled from 'styled-components';
 import { useThemeContext } from '../../context/ThemeContext';
-import BaseAccess from '../../components/BaseAccess';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import ButtonNetworks from '../../components/ButtonNetworks';
 
-const LoginPage = ({ children, img }) => {
+const LoginPage = () => {
   const themeContext = useThemeContext();
   const theme = useTheme();
   const [mail, setMail] = useState();
