@@ -6,7 +6,6 @@ import imageLight from '../../assets/aboutLight.jpg';
 import { useThemeContext } from '../../context/ThemeContext';
 import imageAboutFlorDark from '../../assets/florDark.png';
 import imageAboutFlorLight from '../../assets/florLight.png';
-import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import MailIcon from '@mui/icons-material/Mail';
@@ -238,7 +237,7 @@ const AboutPage = () => {
         </Container>
       </Box>
 
-      <Box>
+      <Box sx={{ mb: '4rem' }}>
         <Container>
           <Typography
             variant='h3'
@@ -251,6 +250,35 @@ const AboutPage = () => {
           >
             Tecnologías utilizadas 🦾
           </Typography>
+          <Grid container spacing={4}>
+            <Grid item xs={12} sm={6} md={6}>
+              <Typography
+                variant='subtitle1'
+                sx={{ fontSize: '1.5rem', mb: '0.75rem' }}
+              >
+                Frontend
+              </Typography>
+              <Typography variant='body1'>
+                HTML5 | CSS3 | Responsive design | React Js | Axios | React
+                Query | SweetAlert2 | Cloudinary | Material UI | TailwindCSS |
+                Storybook | Jest.
+              </Typography>
+              <Box></Box>
+            </Grid>
+
+            <Grid item xs={12} sm={6} md={6}>
+              <Typography
+                variant='subtitle1'
+                sx={{ fontSize: '1.5rem', mb: '0.75rem' }}
+              >
+                Backend
+              </Typography>
+              <Typography variant='subtitle1'>
+                NodeJs | Express | Joi | MercadoPago | Nodemailer | Sequelize |
+                Swagger | Jest | Supertest | JWT | Passport.
+              </Typography>
+            </Grid>
+          </Grid>
         </Container>
       </Box>
     </Box>

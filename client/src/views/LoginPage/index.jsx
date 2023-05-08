@@ -56,6 +56,8 @@ const LoginPage = () => {
         handleSubmit,
         errors,
         touched,
+        isValid,
+        isSubmitting,
       }) => (
         <FormContainer>
           <FormImage imageLight={imageLight} imageDark={imageDark} />
@@ -104,7 +106,11 @@ const LoginPage = () => {
                 </Button>
               </Typography>
 
-              <FormButton text='Ingresar' />
+              <FormButton
+                text='Ingresar'
+                isValid={isValid}
+                isSubmitting={isSubmitting}
+              />
             </form>
 
             {errorAlertOpen && (
