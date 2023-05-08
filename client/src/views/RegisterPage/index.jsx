@@ -1,4 +1,12 @@
-import { Box, Button, useTheme, Divider, TextField } from '@mui/material';
+import {
+  Box,
+  Button,
+  useTheme,
+  Divider,
+  TextField,
+  Alert,
+  CircularProgress,
+} from '@mui/material';
 import imageLight from '../../assets/registerLight.jpg';
 import imageDark from '../../assets/registerDark.jpg';
 import styled from 'styled-components';
@@ -16,46 +24,23 @@ import FormSelect from '../../components/FormSelect';
 import FormDate from '../../components/FormDate';
 import { useRegisterUser } from '../../hooks/users/registerUser';
 import { useNavigate } from 'react-router-dom';
-import { Formik, useFormik } from 'formik';
+import { Formik } from 'formik';
 import validationSchema from './validation';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { Field } from 'formik';
+import dayjs from 'dayjs';
+import { getErrorMessage } from './errorMessage';
+import { passwordFields, fields, genreOptions } from './formFields';
 
 const RegisterPage = () => {
   const theme = useTheme();
   const navigate = useNavigate();
-  const [fieldOne, setFiledOne] = useState(true);
-  const [fieldTwo, setFiledTwo] = useState(false);
+  const [fieldOne, setFieldOne] = useState(true);
+  const [fieldTwo, setFieldTwo] = useState(false);
+  const [fieldThree, setFieldThree] = useState(false);
   const [errorAlertOpen, setErrorAlertOpen] = useState(false);
+  const [errorStatus, setErrorStatus] = useState('');
+  const [errorAlertMessage, setErrorAlertMessage] = useState('');
+
   const registerUser = useRegisterUser();
-  const genre = [
-    'Femenino',
-    'Masculino',
-    'No binario',
-    'Prefiero no decirlo',
-    'Otro',
-  ];
-  const fields = [
-    {
-      field: 'nickName',
-      label: 'Usuario',
-    },
-    {
-      field: 'firstName',
-      label: 'Nombre',
-    },
-    {
-      field: 'lastName',
-      label: 'Apellido',
-    },
-    {
-      field: 'email',
-      label: 'Correo electrónico',
-    },
-  ];
 
   const query = useAllCountries();
   const countries = query.data;
@@ -64,22 +49,50 @@ const RegisterPage = () => {
     <div>Error</div>;
   }
 
-  const handleClickFiled = () => {
-    setFiledOne(!fieldOne);
-    setFiledTwo(!fieldTwo);
+  const handleClickField = () => {
+    if (fieldOne) {
+      setFieldOne(false);
+      setFieldTwo(true);
+    } else if (fieldTwo) {
+      setFieldTwo(false);
+      setFieldThree(true);
+    }
+  };
+
+  const handleClickBack = () => {
+    if (fieldTwo) {
+      setFieldTwo(false);
+      setFieldOne(true);
+    } else if (fieldThree) {
+      setFieldThree(false);
+      setFieldTwo(true);
+      setErrorAlertOpen(false); //Ver esto
+    }
   };
 
   const handleSubmit = (values) => {
-    // registerUser.mutate(values, {
-    //   onSuccess: () => {
-    //     navigate('/home');
-    //   },
-    //   onError: () => {
-    //     setErrorAlertOpen(true);
-    //   },
-    // });
-    console.log('me estoy enviando');
-    console.log(values);
+    // delete values.repeatPassword;
+    let newValues = { ...values };
+    delete newValues.repeatPassword;
+
+    newValues = {
+      ...newValues,
+      dateOfBirth: dayjs(values.dateOfBirth).format('MM/DD/YYYY'),
+    };
+
+    setErrorStatus('loading');
+
+    registerUser.mutate(newValues, {
+      onSuccess: () => {
+        setErrorStatus('success');
+        navigate('/home');
+      },
+      onError: (error) => {
+        setErrorAlertOpen(true);
+        setErrorAlertMessage(getErrorMessage(error));
+        setErrorStatus('error');
+      },
+    });
   };
 
   const initialValues = {
@@ -90,6 +103,8 @@ const RegisterPage = () => {
     genre: '',
     dateOfBirth: null,
     nationality: '',
+    password: '',
+    repeatPassword: '',
     image: '',
   };
 
@@ -106,13 +121,18 @@ const RegisterPage = () => {
         handleSubmit,
         errors,
         touched,
+        setFieldValue,
       }) => (
         <FormContainer>
           <FormImage imageLight={imageLight} imageDark={imageDark} />
           <FormFields>
             <FormTitle text='Regístrate en eLoleros' />
             <form onSubmit={handleSubmit}>
-              <Box sx={{ display: `${fieldOne ? '' : 'none'}` }}>
+              <Box
+                sx={{
+                  display: `${fieldOne ? '' : 'none'}`,
+                }}
+              >
                 {fields.map(({ field, label }) => (
                   <TextField
                     name={field}
@@ -128,7 +148,7 @@ const RegisterPage = () => {
                   />
                 ))}
                 <FormSelect
-                  data={genre}
+                  data={genreOptions}
                   name='genre'
                   label='Género'
                   values={values}
@@ -137,12 +157,23 @@ const RegisterPage = () => {
                   errors={errors}
                   touched={touched}
                 />
-                <Button
-                  onClick={handleClickFiled}
-                  sx={{ mt: '0.75rem', mb: '0.75rem' }}
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    width: '100%',
+                  }}
                 >
-                  Siguiente
-                </Button>
+                  <Button
+                    onClick={handleClickField}
+                    sx={{
+                      mt: '0.75rem',
+                      mb: '0.75rem',
+                    }}
+                  >
+                    Siguiente
+                  </Button>
+                </Box>
               </Box>
 
               <Box sx={{ display: `${fieldTwo ? '' : 'none'}` }}>
@@ -163,37 +194,86 @@ const RegisterPage = () => {
                   errors={errors}
                   touched={touched}
                 />
-                {/* <FormInput id='password' label='Contraseña' type='password' /> */}
-                <TextField
-                  name='password'
-                  label='Contaseña'
-                  variant='outlined'
-                  type='password'
-                  fullWidth
-                  margin='normal'
-                  value={values.password}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  error={touched.password && Boolean(errors.password)}
-                  helperText={touched.password && errors.password}
+
+                {passwordFields.map(({ field, label }) => (
+                  <TextField
+                    name={field}
+                    label={label}
+                    type='password'
+                    variant='outlined'
+                    fullWidth
+                    margin='normal'
+                    value={values[field]}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    error={touched[field] && Boolean(errors[field])}
+                    helperText={touched[field] && errors[field]}
+                  />
+                ))}
+
+                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <Button
+                    onClick={handleClickBack}
+                    sx={{ mt: '1.25rem', mb: '0.75rem' }}
+                  >
+                    Atrás
+                  </Button>
+                  <Button
+                    onClick={handleClickField}
+                    sx={{ mt: '1.25rem', mb: '0.75rem' }}
+                  >
+                    Siguiente
+                  </Button>
+                </Box>
+              </Box>
+              <Box sx={{ display: `${fieldThree ? '' : 'none'}` }}>
+                <FormInputImage
+                  name='image'
+                  errors={errors}
+                  touched={touched}
+                  setFieldValue={setFieldValue}
                 />
 
-                
-                <FormInput label='Repite tu contraseña' type='password' />
-                <FormInputImage />
                 <FormButton text='Registrarse' />
+
+                {errorStatus === 'loading' && (
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <CircularProgress />
+                  </Box>
+                )}
+
+                {errorStatus === 'error' && errorAlertOpen && (
+                  <Alert
+                    variant='outlined'
+                    severity='error'
+                    sx={{
+                      mt: '0.75rem',
+                      color: theme.palette.error.main,
+                      borderColor: theme.palette.error.main,
+                    }}
+                  >
+                    {errorAlertMessage}
+                  </Alert>
+                )}
+
                 <Button
-                  onClick={handleClickFiled}
+                  onClick={handleClickBack}
                   sx={{ mt: '1.25rem', mb: '0.75rem' }}
                 >
                   Atrás
                 </Button>
               </Box>
             </form>
+
             <DividerStyled theme={theme} />
             <ButtonNetworks />
           </FormFields>
-          {console.log(values)}
         </FormContainer>
       )}
     </Formik>

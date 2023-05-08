@@ -9,6 +9,7 @@ export default {
   argTypes: {
     variant: { control: 'select', options: ['contained', 'outlined', 'text'] },
     size: { control: 'select', options: ['small', 'medium', 'large'] },
+    backgroundColor: { control: 'color' },
   },
   decorators: [
     (Story) => (

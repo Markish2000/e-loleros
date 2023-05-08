@@ -8,6 +8,7 @@ import dayjs from 'dayjs';
 
 const FormDate = ({ values, touched, errors, handleBlur }) => {
   const eighteenYearsAgo = dayjs().subtract(18, 'year').subtract(1, 'day');
+
   const [error, setError] = useState(null);
 
   const errorMessage = useMemo(() => {
@@ -55,10 +56,11 @@ const FormDate = ({ values, touched, errors, handleBlur }) => {
                     touched.dateOfBirth && Boolean(errors.dateOfBirth)
                       ? true
                       : false,
+                  format: 'DD/MM/YYYY',
                 },
               }}
               maxDate={eighteenYearsAgo}
-              sx={{ width: '100%' }}
+              sx={{ width: '100%', mb: '0.50rem' }}
             />
           )}
         </Field>
