@@ -18,7 +18,7 @@ import LinkRouter from '../LinkRouter';
 import ButtonComponent from '../Button';
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   useThemeContext,
   useThemeToggleContext,
@@ -28,6 +28,7 @@ import NavBarDrawer from '../NavBarDrawer';
 
 const NavBar = ({ handleThemeChange }) => {
   const theme = useTheme();
+  const location = useLocation();
   const [open, setOpen] = useState(false);
   const trigger = useScrollTrigger({
     disableHysteresis: true,
@@ -94,18 +95,24 @@ const NavBar = ({ handleThemeChange }) => {
             <LinkRouter to='shop' value='tienda' />
             <LinkRouter to='champions' value='campeones' />
             <LinkRouter to='about' value='nosotros' />
-            <LinkRouter
-              to='login'
-              value='Iniciar sesión'
-              variant='contained'
-              color='white'
-            />
-            <LinkRouter
-              to='signIn'
-              value='registrarse'
-              variant='contained'
-              color='white'
-            />
+            {location.pathname !== '/signIn' &&
+              location.pathname !== '/login' && (
+                <>
+                  <LinkRouter
+                    to='login'
+                    value='Iniciar sesión'
+                    variant='contained'
+                    color='white'
+                  />
+                  <LinkRouter
+                    to='signIn'
+                    value='registrarse'
+                    variant='contained'
+                    color='white'
+                  />
+                </>
+              )}
+
             <Switch onChange={handleThemeChange} />
           </Box>
         </Toolbar>

@@ -11,6 +11,7 @@ const FormImage = ({ imageLight, imageDark }) => {
       sx={{
         width: { xs: '100%', sm: '100%', md: '50%', lg: '65%' },
         height: { xs: '35vh', sm: '35vh', md: 'auto' },
+        
       }}
     />
   );

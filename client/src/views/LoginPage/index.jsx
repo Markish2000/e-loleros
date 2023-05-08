@@ -20,7 +20,6 @@ import FormButton from '../../components/FormButton';
 import { Formik } from 'formik';
 import validationSchema from './validation';
 import { useLoginUser } from '../../hooks/users/loginUser';
-import Swal from 'sweetalert2';
 import { useState } from 'react';
 
 const LoginPage = () => {
@@ -39,12 +38,6 @@ const LoginPage = () => {
         navigate('/home');
       },
       onError: () => {
-        // Alerta de error
-        // Swal.fire(
-        //   'Error al iniciar sesión',
-        //   'Hubo un error al iniciar sesión',
-        //   'error'
-        // );
         setErrorAlertOpen(true);
       },
     });

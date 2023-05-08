@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { lightTheme, darkTheme } from '../../themes/themes';
-import Cards from '.';
+import Cards from './index';
 
 export default {
   title: 'Cards',
