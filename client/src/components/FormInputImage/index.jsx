@@ -75,10 +75,11 @@ const FormInputImage = ({ errors, touched, setFieldValue }) => {
               ) : previewSource ? (
                 <ImgStyled src={previewSource} alt='Preview' width='300px' />
               ) : (
-                <ImgStyled
-                  src={theme.palette.mode === 'light' ? imageLight : imageDark}
-                  alt='Default Profile'
-                />
+                // <ImgStyled
+                //   // src={theme.palette.mode === 'light' ? imageLight : imageDark}
+                //   alt='Default Profile'
+                // />
+                ''
               )}
             </Box>
             <input
