@@ -10,8 +10,8 @@ import { Field } from 'formik';
 import { useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import imageLight from '../../assets/imageFormLight.jpg';
-import imageDark from '../../assets/imageFormDark.jpg';
+import imageLight from '../../assets/challenger.png';
+import imageDark from '../../assets/platino2.png';
 
 const FormInputImage = ({ errors, touched, setFieldValue }) => {
   const theme = useTheme();
@@ -75,11 +75,10 @@ const FormInputImage = ({ errors, touched, setFieldValue }) => {
               ) : previewSource ? (
                 <ImgStyled src={previewSource} alt='Preview' width='300px' />
               ) : (
-                // <ImgStyled
-                //   // src={theme.palette.mode === 'light' ? imageLight : imageDark}
-                //   alt='Default Profile'
-                // />
-                ''
+                <ImgDefaultStyled
+                  src={theme.palette.mode === 'light' ? imageLight : imageDark}
+                  alt='Default Profile'
+                />
               )}
             </Box>
             <input
@@ -159,6 +158,10 @@ const FormInputImage = ({ errors, touched, setFieldValue }) => {
 const ImgStyled = styled.img`
   width: 300px;
   height: 300px;
+`;
+const ImgDefaultStyled = styled.img`
+  width: 220px;
+  height: 220px;
 `;
 
 export default FormInputImage;

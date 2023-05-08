@@ -6,11 +6,12 @@ import {
   TextField,
   Alert,
   CircularProgress,
+  Typography,
 } from '@mui/material';
 import imageLight from '../../assets/registerLight.jpg';
 import imageDark from '../../assets/registerDark.jpg';
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAllCountries } from '../../hooks/countries';
 import ButtonNetworks from '../../components/ButtonNetworks';
 import FormImage from '../../components/FormImage';
@@ -24,7 +25,7 @@ import FormSelect from '../../components/FormSelect';
 import FormDate from '../../components/FormDate';
 import { useRegisterUser } from '../../hooks/users/registerUser';
 import { useNavigate } from 'react-router-dom';
-import { Formik } from 'formik';
+import { Formik, useFormikContext } from 'formik';
 import validationSchema from './validation';
 import dayjs from 'dayjs';
 import { getErrorMessage } from './errorMessage';
@@ -39,6 +40,7 @@ const RegisterPage = () => {
   const [errorAlertOpen, setErrorAlertOpen] = useState(false);
   const [errorStatus, setErrorStatus] = useState('');
   const [errorAlertMessage, setErrorAlertMessage] = useState('');
+  const [hasFieldOneErrors, setHasFieldOneErrors] = useState(true);
 
   const registerUser = useRegisterUser();
 
@@ -122,6 +124,9 @@ const RegisterPage = () => {
         errors,
         touched,
         setFieldValue,
+        isValid,
+        isSubmitting,
+        dirty,
       }) => (
         <FormContainer>
           <FormImage imageLight={imageLight} imageDark={imageDark} />
@@ -234,7 +239,25 @@ const RegisterPage = () => {
                   setFieldValue={setFieldValue}
                 />
 
-                <FormButton text='Registrarse' />
+                <FormButton
+                  text='Registrarse'
+                  isValid={isValid}
+                  isSubmitting={isSubmitting}
+                />
+
+                {!isValid && (
+                  <Typography
+                    variant='body2'
+                    sx={{
+                      mt: '0.75rem',
+                      color: theme.palette.error.main,
+                      ml: '1rem',
+                      fontSize: '0.80rem',
+                    }}
+                  >
+                    Por favor, corrige los errores en el formulario.
+                  </Typography>
+                )}
 
                 {errorStatus === 'loading' && (
                   <Box

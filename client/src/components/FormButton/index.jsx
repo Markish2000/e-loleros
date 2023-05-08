@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 
-const FormButton = ({ text }) => {
+const FormButton = ({ text, isValid, isSubmitting, text2 }) => {
   return (
     <Button
       variant='contained'
@@ -10,6 +10,7 @@ const FormButton = ({ text }) => {
         marginTop: '1.25rem',
         // marginBottom: '1.5rem',
       }}
+      disabled={!isValid}
     >
       {text}
     </Button>
