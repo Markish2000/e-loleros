@@ -126,7 +126,6 @@ const RegisterPage = () => {
         setFieldValue,
         isValid,
         isSubmitting,
-        dirty,
       }) => (
         <FormContainer>
           <FormImage imageLight={imageLight} imageDark={imageDark} />

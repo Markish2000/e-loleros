@@ -37,8 +37,12 @@ export const lightTheme = createTheme({
       contrastText: '#fff',
     },
     background: {
-      paper: '#ffffff',
+      main: '#ffff',
       default: '#ffff',
+    },
+    section: {
+      main: '#F5F5F5',
+      default: '#F5F5F5',
     },
     text: {
       primary: 'rgba(0, 0, 0, 0.87)',
@@ -115,6 +119,10 @@ export const darkTheme = createTheme({
       paper: '#00070D',
       default: '#07121a',
       gradient: 'transparent',
+    },
+    section: {
+      main: '#00070D',
+      default: '#00070D',
     },
     text: {
       primary: '#ffff',
