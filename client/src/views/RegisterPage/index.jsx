@@ -19,13 +19,12 @@ import FormContainer from '../../components/FormContainer';
 import FormFields from '../../components/FormFields';
 import FormButton from '../../components/FormButton';
 import FormTitle from '../../components/FormTitle';
-import FormInput from '../../components/FormInput';
 import FormInputImage from '../../components/FormInputImage';
 import FormSelect from '../../components/FormSelect';
 import FormDate from '../../components/FormDate';
 import { useRegisterUser } from '../../hooks/users/registerUser';
 import { useNavigate } from 'react-router-dom';
-import { Formik, useFormikContext } from 'formik';
+import { Formik } from 'formik';
 import validationSchema from './validation';
 import dayjs from 'dayjs';
 import { getErrorMessage } from './errorMessage';
@@ -40,7 +39,7 @@ const RegisterPage = () => {
   const [errorAlertOpen, setErrorAlertOpen] = useState(false);
   const [errorStatus, setErrorStatus] = useState('');
   const [errorAlertMessage, setErrorAlertMessage] = useState('');
-  const [hasFieldOneErrors, setHasFieldOneErrors] = useState(true);
+  // const [hasFieldOneErrors, setHasFieldOneErrors] = useState(true);
 
   const registerUser = useRegisterUser();
 

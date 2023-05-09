@@ -6,13 +6,32 @@ import imageLight from '../../assets/aboutLight.jpg';
 import { useThemeContext } from '../../context/ThemeContext';
 import imageAboutFlorDark from '../../assets/florDark.png';
 import imageAboutFlorLight from '../../assets/florLight.png';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import MailIcon from '@mui/icons-material/Mail';
+import PresentationLetter from '../../components/PresentationLetter';
+import tecnologiasFront from '../../assets/Tecnologias/Frontend/tecnologiasFront.png';
+import tecnologiasBack from '../../assets/Tecnologias/Backend/tecnologiasBack.png';
 import styled from 'styled-components';
 
 const AboutPage = () => {
   const theme = useThemeContext();
+  const developers = [
+    {
+      name: 'Florencia Medina',
+      linkedin: 'https://www.linkedin.com/in/flormedinav/',
+      github: 'https://github.com/flormedinav',
+      mail: 'mailto:flormedinav7@gmail.com',
+      imageLight: imageAboutFlorLight,
+      imageDark: imageAboutFlorDark,
+    },
+    {
+      name: 'Marcos Hernán Parella',
+      linkedin: 'https://www.linkedin.com/in/marcoshernanparella/',
+      github: 'https://github.com/Markish2000',
+      mail: 'mailto:',
+      imageLight: imageAboutFlorLight,
+      imageDark: imageAboutFlorDark,
+    },
+  ];
+
   return (
     <Box>
       <StartPage
@@ -57,138 +76,9 @@ const AboutPage = () => {
             esperamos en la Grieta del Invocador!
           </Typography>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6} md={6}>
-              <Box
-                sx={{
-                  width: '100%',
-                  // border: '1px solid',
-                  // borderRadius: '20px',
-                  height: 'auto',
-                  overflow: 'hidden',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  mt: '1rem',
-                  padding: '20px',
-                }}
-              >
-                <Box>
-                  <StyledImg
-                    src={
-                      theme.palette.mode === 'light'
-                        ? imageAboutFlorLight
-                        : imageAboutFlorDark
-                    }
-                  />
-                </Box>
-                <Box sx={{ textAlign: 'center' }}>
-                  <Typography variant='h5'>Florencia Medina</Typography>
-                  <Typography variant='subtitle1'>
-                    FullStack Developer
-                  </Typography>
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'space-evenly',
-                      width: '200px',
-                      marginTop: '20px',
-                    }}
-                    theme={theme}
-                  >
-                    <StyledA
-                      href='mailto:eloleros2023@gmail.com'
-                      theme={theme}
-                      rel='noreferrer'
-                    >
-                      <LinkedInIcon sx={{ fontSize: '25px' }} />
-                    </StyledA>
-                    <StyledA
-                      href='https://github.com/Markish2000/e-loleros'
-                      target='_blank'
-                      theme={theme}
-                      rel='noreferrer'
-                    >
-                      <GitHubIcon sx={{ fontSize: '25px' }} />
-                    </StyledA>
-
-                    <StyledA
-                      href='mailto:eloleros2023@gmail.com'
-                      theme={theme}
-                      rel='noreferrer'
-                    >
-                      <MailIcon sx={{ fontSize: '25px' }} />
-                    </StyledA>
-                  </Box>
-                </Box>
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={6} md={6}>
-              <Box
-                sx={{
-                  width: '100%',
-                  // border: '1px solid',
-                  // borderRadius: '20px',
-                  height: 'auto',
-                  overflow: 'hidden',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  mt: '1rem',
-                  padding: '20px',
-                }}
-              >
-                <Box>
-                  <StyledImg
-                    src={
-                      theme.palette.mode === 'light'
-                        ? imageAboutFlorLight
-                        : imageAboutFlorDark
-                    }
-                  />
-                </Box>
-                <Box sx={{ textAlign: 'center' }}>
-                  <Typography variant='h5'>Florencia Medina</Typography>
-                  <Typography variant='subtitle1'>
-                    FullStack Developer
-                  </Typography>
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'space-evenly',
-                      width: '200px',
-                      marginTop: '20px',
-                    }}
-                    theme={theme}
-                  >
-                    <StyledA
-                      href='mailto:eloleros2023@gmail.com'
-                      theme={theme}
-                      rel='noreferrer'
-                    >
-                      <LinkedInIcon sx={{ fontSize: '25px' }} />
-                    </StyledA>
-                    <StyledA
-                      href='https://github.com/Markish2000/e-loleros'
-                      target='_blank'
-                      theme={theme}
-                      rel='noreferrer'
-                    >
-                      <GitHubIcon sx={{ fontSize: '25px' }} />
-                    </StyledA>
-
-                    <StyledA
-                      href='mailto:eloleros2023@gmail.com'
-                      theme={theme}
-                      rel='noreferrer'
-                    >
-                      <MailIcon sx={{ fontSize: '25px' }} />
-                    </StyledA>
-                  </Box>
-                </Box>
-              </Box>
-            </Grid>
+            {developers.map((el) => (
+              <PresentationLetter {...el} />
+            ))}
           </Grid>
         </Box>
       </Container>
@@ -263,7 +153,22 @@ const AboutPage = () => {
                 Query | SweetAlert2 | Cloudinary | Material UI | TailwindCSS |
                 Storybook | Jest.
               </Typography>
-              <Box></Box>
+              <Box
+                sx={{
+                  overflow: 'hidden',
+                  display: 'flex',
+                  justifyContent: {
+                    xs: 'center',
+                    sm: 'center',
+                    md: 'flex-start',
+                  },
+                }}
+              >
+                <StyledImgTechnologies
+                  src={tecnologiasFront}
+                  alt='Tecnologías Frontend'
+                />
+              </Box>
             </Grid>
 
             <Grid item xs={12} sm={6} md={6}>
@@ -277,6 +182,22 @@ const AboutPage = () => {
                 NodeJs | Express | Joi | MercadoPago | Nodemailer | Sequelize |
                 Swagger | Jest | Supertest | JWT | Passport.
               </Typography>
+              <Box
+                sx={{
+                  overflow: 'hidden',
+                  display: 'flex',
+                  justifyContent: {
+                    xs: 'center',
+                    sm: 'center',
+                    md: 'flex-start',
+                  },
+                }}
+              >
+                <StyledImgTechnologies
+                  src={tecnologiasBack}
+                  alt='Tecnologías Backend'
+                />
+              </Box>
             </Grid>
           </Grid>
         </Container>
@@ -285,13 +206,9 @@ const AboutPage = () => {
   );
 };
 
-const StyledA = styled.a`
-  text-decoration: none;
-  color: ${(props) => props.theme.palette.primary.main};
-`;
-
-const StyledImg = styled.img`
-  width: 300px;
+const StyledImgTechnologies = styled.img`
+  margin-top: 2rem;
+  width: 90%;
   // height: 300px;
 `;
 
