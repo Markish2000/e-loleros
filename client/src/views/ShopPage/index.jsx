@@ -48,6 +48,8 @@ const ShopPage = () => {
         page={currentPage}
         handlePageChange={handlePageChange}
         totalPage={totalPage}
+        size='large'
+        show='show'
       />
     </Box>
   );

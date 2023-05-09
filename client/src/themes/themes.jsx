@@ -77,14 +77,23 @@ export const lightTheme = createTheme({
       divider: 'rgba(0, 0, 0, 0.12)',
     },
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
 });
 
 export const darkTheme = createTheme({
+  // typography: {
+  //   fontFamily: 'Khand, sans-serif',
+  // },
   palette: {
     mode: 'dark',
-    typography: {
-      fontFamily: 'Khand, sans-serif',
-    },
     primary: {
       main: '#BF9A56',
       light: '#D9A362',
@@ -155,6 +164,15 @@ export const darkTheme = createTheme({
     },
     divider: {
       divider: 'rgba(255, 255, 255, 0.12)',
+    },
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
     },
   },
 });
