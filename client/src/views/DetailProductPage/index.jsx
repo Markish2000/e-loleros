@@ -1,15 +1,9 @@
 import {
   Box,
-  CardActionArea,
-  CardActions,
-  CardContent,
   CardMedia,
   Container,
   Button,
-  Card,
   Typography,
-  Paper,
-  Pagination,
 } from '@mui/material';
 import Modal from '@mui/material/Modal';
 import React, { useState } from 'react';
@@ -18,7 +12,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import StockComponent from '../../components/StockComponent';
 import CloseIcon from '@mui/icons-material/Close';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import axios from 'axios';
 import Paginated from '../../components/Paginated';
 
@@ -320,21 +313,6 @@ const DetailProductPage = () => {
     </Box>
   );
 };
-
-const ImgMain = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-`;
-
-const Img = styled.img`
-  // width: 200px;
-  height: 100px;
-  object-fit: cover;
-  object-position: center;
-  cursor: pointer;
-`;
 
 const ImgModal = styled.img`
   width: 100%;
