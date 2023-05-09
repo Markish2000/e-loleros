@@ -5,7 +5,6 @@ import {
   useTheme,
   Divider,
   Alert,
-  AlertTitle,
 } from '@mui/material';
 import imageLight from '../../assets/loginLight.jpg';
 import imageDark from '../../assets/loginDark.jpg';
