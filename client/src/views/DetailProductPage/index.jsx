@@ -14,7 +14,7 @@ import {
 import Modal from '@mui/material/Modal';
 import React, { useState } from 'react';
 import { useDetailProducts } from '../../hooks/products/detailProducts';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import StockComponent from '../../components/StockComponent';
 import CloseIcon from '@mui/icons-material/Close';
@@ -29,9 +29,8 @@ const DetailProductPage = () => {
   const [currentImage, setCurrentImage] = useState(mainImage);
   const [currentPage, setCurrentPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
-  const isMd = useMediaQuery((theme) => theme.breakpoints.down('md'));
-  const isSm = useMediaQuery((theme) => theme.breakpoints.down('sm'));
-  console.log('soy med', isMd);
+  const navigate = useNavigate();
+
   const imagesPruebas = [
     'https://rare-gallery.com/mocahbig/1376556-vayne-sentinel-lol-league-of-legends-game-art.jpg',
     'https://i.blogs.es/a4c048/vayne-lol/1366_2000.jpeg',
@@ -62,6 +61,11 @@ const DetailProductPage = () => {
 
   const handleShowModal = () => {
     setShowModal(!showModal);
+  };
+
+  const handleBack = () => {
+    //Vovler una página hacia atrás
+    navigate(-1);
   };
 
   if (query.error) {
@@ -225,79 +229,91 @@ const DetailProductPage = () => {
             </Box>
           )}
         </Box>
-
-        <Box
-          sx={{
-            height: 'auto',
-            width: { md: '450px', lg: '500px' },
-            overflow: 'hidden',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: { xs: '10px', sm: '30px' },
-          }}
-        >
-          <Box>
-            <Typography
-              variant='h3'
-              color='primary'
-              sx={{
-                fontSize: '2.5rem',
-                marginBottom: '1.5rem',
-                mt: { xs: '1.5rem', sm: '0px' },
-              }}
-            >
-              {title}
-            </Typography>
-            <Typography variant='h4' component='p' sx={{ fontSize: '2rem' }}>
-              $ {price}
-            </Typography>
-            <Typography variant='h6' component='p' sx={{ marginTop: '0.5rem' }}>
-              en 12x $ {price % 12}
-            </Typography>
-            <Typography
-              variant='body1'
-              sx={{
-                marginTop: '3rem',
-                marginBottom: '3rem',
-              }}
-            >
-              {detail} Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Amet, consectetur provident vel error necessitatibus sit
-              perspiciatis a cumque quis iste aut dicta ullam officiis quod,
-              esse, quasi ipsum quibusdam ab!
-            </Typography>
-
-            <StockComponent maxStock={stock} />
-          </Box>
+        <Box>
+          <Button
+            variant='text'
+            size='medium'
+            sx={{ ml: { xs: '15px', sm: '30px' } }}
+            onClick={handleBack}
+          >
+            Volver
+          </Button>
           <Box
             sx={{
+              height: 'auto',
+              width: { md: '450px', lg: '500px' },
+              overflow: 'hidden',
               display: 'flex',
-              flexDirection: { xs: 'column', sm: 'colum', md: 'row' },
-              justifyContent: 'space-between',
-              width: '100%',
-              marginTop: '3rem',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              padding: { xs: '10px', sm: '30px' },
             }}
           >
-            <Button
-              variant='outlined'
-              size='medium'
-              color='secondary'
+            <Box>
+              <Typography
+                variant='h3'
+                color='primary'
+                sx={{
+                  fontSize: '2.5rem',
+                  marginBottom: '1.5rem',
+                  mt: { xs: '1.5rem', sm: '0px' },
+                }}
+              >
+                {title}
+              </Typography>
+              <Typography variant='h4' component='p' sx={{ fontSize: '2rem' }}>
+                $ {price}
+              </Typography>
+              <Typography
+                variant='h6'
+                component='p'
+                sx={{ marginTop: '0.5rem' }}
+              >
+                en 12x $ {price % 12}
+              </Typography>
+              <Typography
+                variant='body1'
+                sx={{
+                  marginTop: '3rem',
+                  marginBottom: '3rem',
+                }}
+              >
+                {detail} Lorem, ipsum dolor sit amet consectetur adipisicing
+                elit. Amet, consectetur provident vel error necessitatibus sit
+                perspiciatis a cumque quis iste aut dicta ullam officiis quod,
+                esse, quasi ipsum quibusdam ab!
+              </Typography>
+
+              <StockComponent maxStock={stock} />
+            </Box>
+            <Box
               sx={{
-                mb: { xs: '15px', sm: '15px', md: '0px' },
+                display: 'flex',
+                flexDirection: { xs: 'column', sm: 'colum', md: 'row' },
+                justifyContent: 'space-between',
+                width: '100%',
+                marginTop: '3rem',
               }}
             >
-              AGREGAR AL CARRITO
-            </Button>
-            <Button
-              variant='contained'
-              size='medium'
-              color='secondary'
-              onClick={handleByNow}
-            >
-              COMPRAR AHORA
-            </Button>
+              <Button
+                variant='outlined'
+                size='medium'
+                color='secondary'
+                sx={{
+                  mb: { xs: '15px', sm: '15px', md: '0px' },
+                }}
+              >
+                AGREGAR AL CARRITO
+              </Button>
+              <Button
+                variant='contained'
+                size='medium'
+                color='secondary'
+                onClick={handleByNow}
+              >
+                COMPRAR AHORA
+              </Button>
+            </Box>
           </Box>
         </Box>
       </Container>
