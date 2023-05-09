@@ -6,6 +6,8 @@ import imageLight from '../../assets/aboutLight.jpg';
 import { useThemeContext } from '../../context/ThemeContext';
 import imageAboutFlorDark from '../../assets/florDark.png';
 import imageAboutFlorLight from '../../assets/florLight.png';
+import imageAboutMarcosLight from '../../assets/marcosLight.png';
+import imageAboutMarcosDark from '../../assets/marcosDark.png';
 import PresentationLetter from '../../components/PresentationLetter';
 import tecnologiasFront from '../../assets/Tecnologias/Frontend/tecnologiasFront.png';
 import tecnologiasBack from '../../assets/Tecnologias/Backend/tecnologiasBack.png';
@@ -27,8 +29,8 @@ const AboutPage = () => {
       linkedin: 'https://www.linkedin.com/in/marcoshernanparella/',
       github: 'https://github.com/Markish2000',
       mail: 'mailto:',
-      imageLight: imageAboutFlorLight,
-      imageDark: imageAboutFlorDark,
+      imageLight: imageAboutMarcosLight,
+      imageDark: imageAboutMarcosDark,
     },
   ];
 
