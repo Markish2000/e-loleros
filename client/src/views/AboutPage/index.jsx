@@ -215,3 +215,4 @@ const StyledImgTechnologies = styled.img`
 `;
 
 export default AboutPage;
+//Holis
