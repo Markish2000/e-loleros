@@ -152,18 +152,14 @@ const AboutPage = () => {
               </Typography>
               <Typography variant='body1'>
                 HTML5 | CSS3 | Responsive design | React Js | Axios | React
-                Query | SweetAlert2 | Cloudinary | Material UI | TailwindCSS |
-                Storybook | Jest.
+                Query | Jest | Material UI | TailwindCSS | SweetAlert2 |
+                Cloudinary | Storybook.
               </Typography>
               <Box
                 sx={{
                   overflow: 'hidden',
                   display: 'flex',
-                  justifyContent: {
-                    xs: 'center',
-                    sm: 'center',
-                    md: 'flex-start',
-                  },
+                  justifyContent: 'center',
                 }}
               >
                 <StyledImgTechnologies
@@ -188,11 +184,7 @@ const AboutPage = () => {
                 sx={{
                   overflow: 'hidden',
                   display: 'flex',
-                  justifyContent: {
-                    xs: 'center',
-                    sm: 'center',
-                    md: 'flex-start',
-                  },
+                  justifyContent: 'center',
                 }}
               >
                 <StyledImgTechnologies
@@ -210,9 +202,8 @@ const AboutPage = () => {
 
 const StyledImgTechnologies = styled.img`
   margin-top: 2rem;
-  width: 90%;
+  width: 70%;
   // height: 300px;
 `;
 
 export default AboutPage;
-//Holis
