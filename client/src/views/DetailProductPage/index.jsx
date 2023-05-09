@@ -29,7 +29,8 @@ const DetailProductPage = () => {
   const [currentImage, setCurrentImage] = useState(mainImage);
   const [currentPage, setCurrentPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
-  const isMd = useMediaQuery((theme) => theme.breakpoints.down('lg'));
+  const isMd = useMediaQuery((theme) => theme.breakpoints.down('md'));
+  const isSm = useMediaQuery((theme) => theme.breakpoints.down('sm'));
   console.log('soy med', isMd);
   const imagesPruebas = [
     'https://rare-gallery.com/mocahbig/1376556-vayne-sentinel-lol-league-of-legends-game-art.jpg',
@@ -40,9 +41,13 @@ const DetailProductPage = () => {
     'https://images2.alphacoders.com/720/720032.jpg',
     'https://rare-gallery.com/mocahbig/394969-vayne-spirit-blossom-lol-league-of-legends-game.jpg',
     'https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/b33351bb-a14b-4762-a276-66548d3fdc00/width=450/381970.jpeg',
+    'https://c4.wallpaperflare.com/wallpaper/591/554/367/league-of-legends-riot-games-vayne-league-of-legends-spirit-blossom-blue-hair-hd-wallpaper-preview.jpg',
+    'https://c4.wallpaperflare.com/wallpaper/591/554/367/league-of-legends-riot-games-vayne-league-of-legends-spirit-blossom-blue-hair-hd-wallpaper-preview.jpg',
+    'https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/b33351bb-a14b-4762-a276-66548d3fdc00/width=450/381970.jpeg',
   ];
 
-  const itemsPerPage = isMd ? 3 : 3;
+  const itemsPerPage = 3;
+
   let totalPage = Math.ceil(imagesPruebas.length / itemsPerPage);
   console.log(totalPage);
   console.log(imagesPruebas.length);
@@ -111,9 +116,21 @@ const DetailProductPage = () => {
             overflow: 'hidden',
             display: 'flex',
             flexDirection: 'column',
+            padding: { xs: '10px', sm: '30px', md: '0' },
           }}
         >
-          <ImgMain src={currentImage} onClick={handleShowModal} alt={title} />
+          <CardMedia
+            component='img'
+            src={currentImage}
+            onClick={handleShowModal}
+            alt={title}
+            sx={{
+              width: { xs: '100%', sm: '100%', md: '100%' },
+              height: { xs: '400px', sm: '400px', md: '75vh' },
+              objectFit: 'cover',
+              objectPosition: 'center',
+            }}
+          />
           <Modal
             open={showModal}
             onClose={handleShowModal}
@@ -126,7 +143,7 @@ const DetailProductPage = () => {
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
-                width: '800px',
+                width: { xs: '400px', sm: '600px', md: '800px', lg: '1000px' },
                 overflow: 'hidden',
               }}
             >
@@ -159,7 +176,24 @@ const DetailProductPage = () => {
           >
             {visibleImages &&
               visibleImages.map((img, index) => (
-                <Box>
+                <Box
+                  sx={{
+                    width:
+                      visibleImages.length < 3
+                        ? {
+                            xs: '30%',
+                            sm: '30%',
+                            md: '170px',
+                            lg: '200px',
+                          }
+                        : {
+                            xs: '100%',
+                            sm: '100%',
+                            md: '170px',
+                            lg: '200px',
+                          },
+                  }}
+                >
                   <CardMedia
                     component='img'
                     key={index}
@@ -167,8 +201,9 @@ const DetailProductPage = () => {
                     src={img}
                     onClick={() => setCurrentImage(img)}
                     sx={{
-                      width: { xs: '100px', md: '170px', lg: '200px' },
+                      width: '100%',
                       height: '100px',
+                      width: '100%',
                       objectFit: 'cover',
                       objectPosition: 'center',
                       cursor: 'pointer',
@@ -200,7 +235,7 @@ const DetailProductPage = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '30px',
+            padding: { xs: '10px', sm: '30px' },
           }}
         >
           <Box>
@@ -208,12 +243,14 @@ const DetailProductPage = () => {
               variant='h3'
               color='primary'
               sx={{
+                fontSize: '2.5rem',
                 marginBottom: '1.5rem',
+                mt: { xs: '1.5rem', sm: '0px' },
               }}
             >
               {title}
             </Typography>
-            <Typography variant='h4' component='p'>
+            <Typography variant='h4' component='p' sx={{ fontSize: '2rem' }}>
               $ {price}
             </Typography>
             <Typography variant='h6' component='p' sx={{ marginTop: '0.5rem' }}>
@@ -237,12 +274,20 @@ const DetailProductPage = () => {
           <Box
             sx={{
               display: 'flex',
+              flexDirection: { xs: 'column', sm: 'colum', md: 'row' },
               justifyContent: 'space-between',
               width: '100%',
               marginTop: '3rem',
             }}
           >
-            <Button variant='outlined' size='medium' color='secondary'>
+            <Button
+              variant='outlined'
+              size='medium'
+              color='secondary'
+              sx={{
+                mb: { xs: '15px', sm: '15px', md: '0px' },
+              }}
+            >
               AGREGAR AL CARRITO
             </Button>
             <Button

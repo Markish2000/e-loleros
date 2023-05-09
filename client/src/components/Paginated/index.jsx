@@ -29,7 +29,7 @@ const Paginated = ({
           onChange={handlePageChange}
           color='primary'
           size={size}
-          sx={{marginTop: '20px' }}
+          sx={{ marginTop: '20px' }}
         />
       )}
     </Stack>
