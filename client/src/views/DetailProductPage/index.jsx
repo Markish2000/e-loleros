@@ -1,7 +1,7 @@
 import { Box, CardMedia, Container, Button, Typography } from '@mui/material';
 import Modal from '@mui/material/Modal';
 import React, { useState } from 'react';
-import { useDetailProducts } from '../../hooks/products/detailProducts';
+import { useDetailProducts } from '../../hooks/useProducts/useDetailProducts';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import StockComponent from '../../components/StockComponent';
