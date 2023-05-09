@@ -95,23 +95,23 @@ const NavBar = ({ handleThemeChange }) => {
             <LinkRouter to='shop' value='tienda' />
             <LinkRouter to='champions' value='campeones' />
             <LinkRouter to='about' value='nosotros' />
-            {location.pathname !== '/signIn' &&
-              location.pathname !== '/login' && (
-                <>
-                  <LinkRouter
-                    to='login'
-                    value='Iniciar sesión'
-                    variant='contained'
-                    color='white'
-                  />
-                  <LinkRouter
-                    to='signIn'
-                    value='registrarse'
-                    variant='contained'
-                    color='white'
-                  />
-                </>
-              )}
+            {location.pathname !== '/login' && (
+              <LinkRouter
+                to='login'
+                value='Iniciar sesión'
+                variant='contained'
+                color='white'
+              />
+            )}
+
+            {location.pathname !== '/signIn' && (
+              <LinkRouter
+                to='signIn'
+                value='registrarse'
+                variant='contained'
+                color='white'
+              />
+            )}
 
             <Switch onChange={handleThemeChange} />
           </Box>
