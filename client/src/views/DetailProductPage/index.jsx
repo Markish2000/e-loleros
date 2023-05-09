@@ -1,10 +1,4 @@
-import {
-  Box,
-  CardMedia,
-  Container,
-  Button,
-  Typography,
-} from '@mui/material';
+import { Box, CardMedia, Container, Button, Typography } from '@mui/material';
 import Modal from '@mui/material/Modal';
 import React, { useState } from 'react';
 import { useDetailProducts } from '../../hooks/products/detailProducts';
@@ -233,7 +227,7 @@ const DetailProductPage = () => {
           </Button>
           <Box
             sx={{
-              height: 'auto',
+              height: '90%',
               width: { md: '450px', lg: '500px' },
               overflow: 'hidden',
               display: 'flex',
