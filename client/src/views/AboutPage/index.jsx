@@ -28,7 +28,7 @@ const AboutPage = () => {
       name: 'Marcos Hernán Parella',
       linkedin: 'https://www.linkedin.com/in/marcoshernanparella/',
       github: 'https://github.com/Markish2000',
-      mail: 'mailto:',
+      mail: 'mailto:marcosparella2000@gmail.com',
       imageLight: imageAboutMarcosLight,
       imageDark: imageAboutMarcosDark,
     },
