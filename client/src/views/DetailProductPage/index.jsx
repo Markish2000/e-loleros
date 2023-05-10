@@ -117,7 +117,7 @@ const DetailProductPage = () => {
             alt={title}
             sx={{
               width: { xs: '100%', sm: '100%', md: '100%' },
-              height: { xs: '400px', sm: '400px', md: '75vh' },
+              height: { xs: '400px', sm: '400px', md: '70vh' },
               objectFit: 'cover',
               objectPosition: 'center',
             }}
@@ -135,6 +135,8 @@ const DetailProductPage = () => {
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
                 width: { xs: '400px', sm: '600px', md: '800px', lg: '1000px' },
+                // height: { xs: '100%', sm: '100%', md: '500px', lg: '600px' },
+                maxHeight: { xs: '500px', sm: '500px', md: '600px' },
                 overflow: 'hidden',
               }}
             >
@@ -193,7 +195,7 @@ const DetailProductPage = () => {
                     onClick={() => setCurrentImage(img)}
                     sx={{
                       width: '100%',
-                      height: '100px',
+                      height: '120px',
                       width: '100%',
                       objectFit: 'cover',
                       objectPosition: 'center',
@@ -211,7 +213,7 @@ const DetailProductPage = () => {
                 page={currentPage}
                 handlePageChange={handlePageChange}
                 totalPage={totalPage}
-                size='small'
+                size='medium'
               />
             </Box>
           )}
