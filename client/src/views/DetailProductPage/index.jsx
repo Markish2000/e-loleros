@@ -135,6 +135,8 @@ const DetailProductPage = () => {
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
                 width: { xs: '400px', sm: '600px', md: '800px', lg: '1000px' },
+                // height: { xs: '100%', sm: '100%', md: '500px', lg: '600px' },
+                maxHeight: { xs: '500px', sm: '500px', md: '600px' },
                 overflow: 'hidden',
               }}
             >
