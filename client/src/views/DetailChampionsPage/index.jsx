@@ -1,4 +1,4 @@
-import { Box, CardMedia, Container, Typography } from '@mui/material';
+import { Box, CardMedia, Container, Typography, Button } from '@mui/material';
 import styled from 'styled-components';
 import dataChampion from '../../dataChampions';
 import { useThemeContext } from '../../context/ThemeContext';
@@ -6,6 +6,9 @@ import {
   getDifficultyImage,
   getRoleImage,
 } from '../../helpers/detailChampions';
+import DetailSkillsChampions from '../../components/DetailSkillsChampions';
+import ColumnLanding from '../../components/ColumnLanding';
+import DetailSkinsChampions from '../../components/DetailSkinsChampions';
 
 const DetailChampionsPage = () => {
   const theme = useThemeContext();
@@ -16,9 +19,13 @@ const DetailChampionsPage = () => {
   const imageDifficulty = getDifficultyImage(difficulty);
   const imageRole = getRoleImage(role);
 
+  const teclaSkills = skills.map((skill) => skill.tecla);
+  console.log('soyname', teclaSkills);
+
   return (
     <Box
       sx={{
+        width: '100%',
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
@@ -170,10 +177,19 @@ const DetailChampionsPage = () => {
           </Box>
         </Container>
       </Box>
-
-      <Box>
-        
+      <Box
+        sx={{
+          width: '100%',
+          mt: '30px',
+          backgroundColor: theme.palette.section.main,
+        }}
+      >
+        <DetailSkillsChampions skills={skills} />
       </Box>
+
+      <Container sx={{ mt: '3rem' }}>
+        <DetailSkinsChampions skins={skins} />
+      </Container>
     </Box>
   );
 };

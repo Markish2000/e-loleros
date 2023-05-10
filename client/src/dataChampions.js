@@ -55,6 +55,19 @@ const champion = {
       image:
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Vayne_10.jpg',
     },
+
+    {
+      name: 'Vayne Centinela',
+      image: 'https://i.blogs.es/a4c048/vayne-lol/1366_2000.jpeg',
+    },
+    {
+      name: 'Vayne Centinela',
+      image: 'https://images5.alphacoders.com/123/1237421.jpg',
+    },
+    {
+      name: 'Vayne Centinela',
+      image: 'https://images2.alphacoders.com/720/720032.jpg',
+    },
     {
       name: 'Vayne Centinela',
       image:
