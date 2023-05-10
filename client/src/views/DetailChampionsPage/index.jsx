@@ -7,7 +7,6 @@ import {
   getRoleImage,
 } from '../../helpers/detailChampions';
 import DetailSkillsChampions from '../../components/DetailSkillsChampions';
-import ColumnLanding from '../../components/ColumnLanding';
 import DetailSkinsChampions from '../../components/DetailSkinsChampions';
 
 const DetailChampionsPage = () => {
@@ -32,7 +31,13 @@ const DetailChampionsPage = () => {
         alignItems: 'center',
       }}
     >
-      <BoxGeneral image={image}>
+      <BoxGeneral
+        image={image}
+        sx={{
+          width: '100%',
+          height: { xs: '35vh', sm: '45vh', md: '55vh', lg: '70vh' },
+        }}
+      >
         <BoxGradient
           sx={{
             // background: `radial-gradient(
@@ -40,6 +45,8 @@ const DetailChampionsPage = () => {
             //   rgba(255, 255, 255, 0) 0%,
             //   ${theme.palette.background.default} 100%
             // )`,
+            width: '100%',
+            height: { xs: '36vh', sm: '46vh', md: '56vh', lg: '71vh' },
             background: `linear-gradient(to bottom, rgba(255, 255, 255, 0), ${theme.palette.background.default})`,
             pt: '100px',
           }}
@@ -58,7 +65,7 @@ const DetailChampionsPage = () => {
                   position: 'absolute',
                   top: 0,
                   right: 0,
-                  bottom: 0,
+                  bottom: '-5px',
                   left: 0,
                   background: `linear-gradient(to bottom, rgba(255, 255, 255, 0), ${theme.palette.background.default})`,
                 }}
@@ -78,7 +85,11 @@ const DetailChampionsPage = () => {
       >
         <Typography
           variant='subtitle1'
-          sx={{ mb: '1rem', fontSize: '1.5rem', textTransform: 'uppercase' }}
+          sx={{
+            mb: '1rem',
+            fontSize: { xs: '1.10rem', sm: '1.25rem', md: '1.5rem' },
+            textTransform: 'uppercase',
+          }}
         >
           {frase}
         </Typography>
@@ -87,7 +98,7 @@ const DetailChampionsPage = () => {
           color='primary'
           sx={{
             mb: '1rem',
-            fontSize: '4rem',
+            fontSize: { xs: '3rem', sm: '3.5rem', md: '4rem' },
             textTransform: 'uppercase',
             fontWeight: '600',
           }}
@@ -104,10 +115,11 @@ const DetailChampionsPage = () => {
         >
           <Box
             sx={{
-              width: { xs: '90%', lg: '80%' },
+              width: { xs: '100%', sm: '100%', md: '100%', lg: '80%' },
               border: '1px solid',
               borderColor: theme.palette.divider.divider,
               display: 'flex',
+              flexDirection: { xs: 'column', sm: 'column', md: 'row' },
               justifyContent: 'center',
               alignItems: 'center',
               p: '30px',
@@ -115,7 +127,7 @@ const DetailChampionsPage = () => {
           >
             <Box
               sx={{
-                width: '50%',
+                width: { xs: '100%', sm: '100%', md: '50%' },
                 display: 'flex',
                 justifyContent: 'space-evenly',
               }}
@@ -174,7 +186,8 @@ const DetailChampionsPage = () => {
             </Box>
             <Box
               sx={{
-                width: '50%',
+                width: { xs: '100%', sm: '100%', md: '50%' },
+                mt: { xs: '1rem', sm: '2rem', md: '0px' },
               }}
             >
               <Typography variant='body1'>{history}</Typography>
@@ -200,16 +213,16 @@ const DetailChampionsPage = () => {
 };
 
 const BoxGeneral = styled(Box)`
-  width: 100%;
-  height: 75vh;
+  // width: 100%;
+  // height: 75vh;
   background-image: url(${(props) => props.image});
   background-size: cover;
   background-repeat: no-repeat;
 `;
 
 const BoxGradient = styled(Box)`
-  width: 100%;
-  height: 75vh;
+  // width: 100%;
+  // height: 75vh;
 `;
 
 export default DetailChampionsPage;
