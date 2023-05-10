@@ -1,32 +1,11 @@
-import { Box, Button, CardMedia, Typography } from '@mui/material';
-import { Carousel, Modal } from 'antd';
-import Slider from 'react-slick';
-import styled from 'styled-components';
-import { useThemeContext } from '../../context/ThemeContext';
+import { Box, CardMedia, Typography } from '@mui/material';
 import { useState } from 'react';
-import CloseIcon from '@mui/icons-material/Close';
 import Paginated from '../Paginated';
 
 const DetailSkinsChampions = ({ skins }) => {
-  const theme = useThemeContext();
   const [currentImage, setCurrentImage] = useState(skins[0].image);
   const [currentPage, setCurrentPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
-  const imageSkins = skins.map((skin) => skin.image);
-  // console.log(imageSkins);
-  const imagesPruebas = [
-    'https://rare-gallery.com/mocahbig/1376556-vayne-sentinel-lol-league-of-legends-game-art.jpg',
-    'https://i.blogs.es/a4c048/vayne-lol/1366_2000.jpeg',
-    'https://p4.wallpaperbetter.com/wallpaper/562/284/1024/spirit-blossom-vayne-vayne-league-of-legends-league-of-legends-riot-games-hd-wallpaper-preview.jpg',
-    'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/81a47c79-6cb6-41fa-807d-56eeeaa5a906/dbufjxt-ccdbc232-abe3-4d93-ac85-4230f4062850.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzgxYTQ3Yzc5LTZjYjYtNDFmYS04MDdkLTU2ZWVlYWE1YTkwNlwvZGJ1Zmp4dC1jY2RiYzIzMi1hYmUzLTRkOTMtYWM4NS00MjMwZjQwNjI4NTAuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.386EVZY0mCrxvoq19nAg03OzAu9lsFW_54W5jvtkp4Q',
-    'https://images5.alphacoders.com/123/1237421.jpg',
-    'https://images2.alphacoders.com/720/720032.jpg',
-    'https://rare-gallery.com/mocahbig/394969-vayne-spirit-blossom-lol-league-of-legends-game.jpg',
-    'https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/b33351bb-a14b-4762-a276-66548d3fdc00/width=450/381970.jpeg',
-    'https://c4.wallpaperflare.com/wallpaper/591/554/367/league-of-legends-riot-games-vayne-league-of-legends-spirit-blossom-blue-hair-hd-wallpaper-preview.jpg',
-    'https://c4.wallpaperflare.com/wallpaper/591/554/367/league-of-legends-riot-games-vayne-league-of-legends-spirit-blossom-blue-hair-hd-wallpaper-preview.jpg',
-    'https://image.civitai.com/xG1nkqKTMzGDvpLrqFT7WA/b33351bb-a14b-4762-a276-66548d3fdc00/width=450/381970.jpeg',
-  ];
 
   const itemsPerPage = 3;
 
