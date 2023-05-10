@@ -4,21 +4,25 @@ import HomePage from './views/HomePage';
 import LandingPage from './views/LandingPage';
 import NavBar from './components/NavBar';
 import { ThemeProvider } from '@mui/material/styles';
-import { Box, CssBaseline } from '@mui/material';
-import ShopPage from './views/ShopPage';
-import CampionsPage from './views/ChampionsPage';
+import { CssBaseline } from '@mui/material';
 import { useThemeContext, useThemeToggleContext } from './context/ThemeContext';
 import Footer from './components/Footer';
 import LoginPage from './views/LoginPage';
 import RegisterPage from './views/RegisterPage';
 import AboutPage from './views/AboutPage';
-import DetailProductPage from './views/DetailProductPage';
+import ShopRouter from './routers/shop';
+import Error404Page from './views/Error404Page';
+import ChampionsRouter from './routers/champions';
 
 const App = () => {
   const location = useLocation();
 
   const theme = useThemeContext();
   const handleThemeChange = useThemeToggleContext();
+
+  const isLadingPage = location.pathname !== '/';
+  const isLoginPage = location.pathname !== '/login';
+  const isSignInPage = location.pathname !== '/signIn';
 
   return (
     <>
@@ -32,14 +36,14 @@ const App = () => {
 
         <Routes>
           <Route path='/home' element={<HomePage />} />
-          <Route path='/shop' element={<ShopPage />} />
-          <Route path='/campions' element={<CampionsPage />} />
+          <Route path='/shop/*' element={<ShopRouter />} />
+          <Route path='/champions/*' element={<ChampionsRouter />} />
           <Route path='/login' element={<LoginPage />} />
-          <Route path='/newuser' element={<RegisterPage />} />
+          <Route path='/signIn' element={<RegisterPage />} />
           <Route path='/about' element={<AboutPage />} />
-          <Route path='/detail-product/:id' element={<DetailProductPage />} />
+          <Route path='*' element={<Error404Page />} />
         </Routes>
-        {location.pathname !== '/' && <Footer />}
+        {isLadingPage && isLoginPage && isSignInPage && <Footer />}
       </ThemeProvider>
     </>
   );

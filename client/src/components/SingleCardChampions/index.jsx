@@ -11,8 +11,10 @@ import {
 
 import ButtonComponent from '../Button';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const SingleCardChampions = ({
+  id = 1,
   name,
   image,
   difficulty,
@@ -34,8 +36,9 @@ const SingleCardChampions = ({
       }}
       onClick={() => {}}
     >
-      <CardMedia component='img' image={image} height='300' alt={name} />
-
+      <Link to={`/champions/${id}`}>
+        <CardMedia component='img' image={image} height='300' alt={name} />
+      </Link>
       <StyledCardContent>
         <Typography
           variant='h5'

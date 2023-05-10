@@ -6,8 +6,31 @@ class ChampionsService {
   constructor() {}
 
   //* Obtener todos los campeones.
-  async findAll() {
-    const findAllChampions = await championsModel.findAll({
+  async findAll(query) {
+    const options = {
+      limit: 9,
+      offset: 0,
+    };
+
+    options.where = {};
+
+    if (query.limit) {
+      options.limit = query.limit;
+    }
+
+    if (query.page) {
+      const page = parseInt(query.page);
+      if (isNaN(page) || page < 1) {
+        throw new Error('El número de página es invalido.');
+      }
+      options.offset = (page - 1) * (options.limit || query.limit);
+    }
+
+    const championLimit = options.limit;
+
+    const totalChampions = await championsModel.count(options);
+
+    const findAllChampions = await championsModel.findAll(options, {
       attributes: {
         exclude: ['createdAt', 'updatedAt'],
       },
@@ -15,7 +38,11 @@ class ChampionsService {
     if (findAllChampions.length === 0) {
       throw new Error('La base de datos está vacía.');
     }
-    return findAllChampions;
+    return {
+      champions: findAllChampions,
+      championLimit,
+      totalChampions,
+    };
   }
 
   //* Obtener campeón por name.

@@ -26,23 +26,24 @@ const StockComponent = ({ maxStock }) => {
       <Typography variant='h6' sx={{ marginBottom: '1rem' }}>
         Cantidad: {quantity}
       </Typography>
-      <Button
-        variant='outlined'
-        color='primary'
-        onClick={handleIncrease}
-        disabled={quantity >= maxStock}
-        sx={{ marginRight: '0.75rem' }}
-      >
-        <AddIcon />
-      </Button>
 
       <Button
         variant='outlined'
         color='primary'
         onClick={handleDecrease}
         disabled={quantity <= 0}
+        sx={{ marginRight: '0.75rem' }}
       >
         <RemoveIcon />
+      </Button>
+
+      <Button
+        variant='outlined'
+        color='primary'
+        onClick={handleIncrease}
+        disabled={quantity >= maxStock}
+      >
+        <AddIcon />
       </Button>
     </div>
   );

@@ -9,18 +9,48 @@ import {
   ListItemText,
   Box,
   Switch,
+  useScrollTrigger,
+  useTheme,
+  Button,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import LinkRouter from '../LinkRouter';
 import ButtonComponent from '../Button';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import ButtonTheme from '../ButtonTheme';
-import { useThemeContext, useThemeToggleContext } from '../../context/ThemeContext';
+import { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import {
+  useThemeContext,
+  useThemeToggleContext,
+} from '../../context/ThemeContext';
+import imageLogo from '../../assets/logoBlanco.png';
+import NavBarDrawer from '../NavBarDrawer';
 
 const NavBar = ({ handleThemeChange }) => {
+  const theme = useTheme();
+  const location = useLocation();
   const [open, setOpen] = useState(false);
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 0,
+  });
+
+  const handleDrawerToggle = () => {
+    setOpen(!open);
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 0;
+      setOpen(false);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <>
@@ -28,10 +58,18 @@ const NavBar = ({ handleThemeChange }) => {
         component='nav'
         position='fixed'
         sx={{
-          zIndex: (theme) => theme.zIndex.drawer + 1,
-          backgroundColor: 'transparent',
-          color: 'white',
-          boxShadow: 'none',
+          // background: `linear-gradient(to bottom, rgba(255, 255, 255, 0), ${theme.palette.background.default})`,
+          // background: trigger
+          //   ? 'rgba(255, 255, 255, 0)'
+          //   : `rgba(255, 255, 255, 0)`,
+          background: trigger
+            ? `${theme.palette.nav.main}`
+            : `rgba(255, 255, 255, 0)`,
+          // background: 'transparent',
+          backdropFilter: trigger ? '' : `blur(15px)`,
+          color: trigger ? 'white' : 'black',
+          boxShadow: trigger ? '0px 2px 4px rgba(0, 0, 0, 0.1)' : 'none',
+          transition: 'background-color 0.3s, color 0.3s, box-shadow 0.3s',
         }}
       >
         <Toolbar
@@ -41,12 +79,12 @@ const NavBar = ({ handleThemeChange }) => {
             backgroundColor: 'transparent',
           }}
         >
-          <Typography variant='h5'>E-LOLEROS</Typography>
+          <img src='' alt='' />
 
           <IconButton
-            color='inherit'
+            color='white'
             size='large'
-            onClick={() => setOpen(true)}
+            onClick={handleDrawerToggle}
             sx={{ display: { xs: 'flex', sm: 'flex', md: 'none' } }}
           >
             <MenuIcon />
@@ -55,70 +93,36 @@ const NavBar = ({ handleThemeChange }) => {
           <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }}>
             <LinkRouter to='home' value='inicio' />
             <LinkRouter to='shop' value='tienda' />
-            <LinkRouter to='campions' value='campeones' />
+            <LinkRouter to='champions' value='campeones' />
             <LinkRouter to='about' value='nosotros' />
-            <LinkRouter to='login' value='Iniciar sesión' variant='contained' />
-            <LinkRouter to='newuser' value='registrarse' variant='contained' />
+            {location.pathname !== '/login' && (
+              <LinkRouter
+                to='login'
+                value='Iniciar sesión'
+                variant='contained'
+                color='white'
+              />
+            )}
+
+            {location.pathname !== '/signIn' && (
+              <LinkRouter
+                to='signIn'
+                value='registrarse'
+                variant='contained'
+                color='white'
+              />
+            )}
+
             <Switch onChange={handleThemeChange} />
           </Box>
         </Toolbar>
       </AppBar>
 
-      <Drawer
+      <NavBarDrawer
         open={open}
-        anchor='right'
-        onClose={() => setOpen(false)}
-        sx={{
-          display: { xs: 'block', sm: 'block', md: 'none' },
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '60vw' },
-        }}
-      >
-        <Box sx={{ p: 2 }}>
-          <List>
-            <ButtonTheme />
-            <ListItem
-              button
-              component={Link}
-              to='home'
-              onClick={() => setOpen(false)}
-            >
-              <ListItemText primary='Home' />
-            </ListItem>
-            <ListItem
-              button
-              component={Link}
-              to='shop'
-              onClick={() => setOpen(false)}
-            >
-              <ListItemText primary='Shop' />
-            </ListItem>
-            <ListItem
-              button
-              component={Link}
-              to='about'
-              onClick={() => setOpen(false)}
-            >
-              <ListItemText primary='About' />
-            </ListItem>
-            <ListItem
-              button
-              component={Link}
-              to='login'
-              onClick={() => setOpen(false)}
-            >
-              <ListItemText primary='Contact' />
-            </ListItem>
-            <ListItem
-              button
-              component={Link}
-              to='singin'
-              onClick={() => setOpen(false)}
-            >
-              <ListItemText primary='Contact' />
-            </ListItem>
-          </List>
-        </Box>
-      </Drawer>
+        handleDrawerToggle={handleDrawerToggle}
+        handleThemeChange={handleThemeChange}
+      />
     </>
   );
 };

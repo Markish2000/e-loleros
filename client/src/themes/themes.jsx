@@ -30,9 +30,19 @@ export const lightTheme = createTheme({
       dark: 'rgb(66, 95, 116)',
       contrastText: '#fff',
     },
+    nav: {
+      main: '#C8D3EA',
+      light: '#92A9D5',
+      dark: '#476EB9',
+      contrastText: '#fff',
+    },
     background: {
-      paper: '#ffffff',
+      main: '#ffff',
       default: '#ffff',
+    },
+    section: {
+      main: '#F5F5F5',
+      default: '#F5F5F5',
     },
     text: {
       primary: 'rgba(0, 0, 0, 0.87)',
@@ -67,14 +77,23 @@ export const lightTheme = createTheme({
       divider: 'rgba(0, 0, 0, 0.12)',
     },
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
 });
 
 export const darkTheme = createTheme({
+  // typography: {
+  //   fontFamily: 'Khand, sans-serif',
+  // },
   palette: {
     mode: 'dark',
-    typography: {
-      fontFamily: 'Khand, sans-serif',
-    },
     primary: {
       main: '#BF9A56',
       light: '#D9A362',
@@ -93,6 +112,12 @@ export const darkTheme = createTheme({
       dark: 'rgb(4, 14, 27)',
       contrastText: '#fff',
     },
+    nav: {
+      main: '#00070D',
+      light: 'rgb(56, 67, 82)',
+      dark: 'rgb(4, 14, 27)',
+      // contrastText: '#fff',
+    },
     aux: {
       main: '#ffff',
       primary: '#9C9FA3',
@@ -102,11 +127,16 @@ export const darkTheme = createTheme({
     background: {
       paper: '#00070D',
       default: '#07121a',
+      gradient: 'transparent',
+    },
+    section: {
+      main: '#00070D',
+      default: '#00070D',
     },
     text: {
       primary: '#ffff',
       secondary: 'rgba(255, 255, 255, 0.7)',
-      disabled: 'rgba(255, 255, 255, 0.5)',
+      disabled: 'rgba(255, 255, 255, 0.1)',
     },
     error: {
       main: '#d32f2f',
@@ -134,6 +164,15 @@ export const darkTheme = createTheme({
     },
     divider: {
       divider: 'rgba(255, 255, 255, 0.12)',
+    },
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
     },
   },
 });
