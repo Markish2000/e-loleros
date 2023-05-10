@@ -1,14 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
 import ChampionsPage from '../../views/ChampionsPage';
+import DetailChampionsPage from '../../views/DetailChampionsPage';
 
 const ChampionsRouter = () => {
   return (
     <>
       <Routes>
         <Route path='/' element={<ChampionsPage />} />
-
-        {/* FUTURO DETALLE DEL CAMPEÓN */}
-        {/* <Route path='/:id' element={<DetailChampionsPage />} /> */}
+        <Route path='/:id' element={<DetailChampionsPage />} />
       </Routes>
     </>
   );

@@ -2,9 +2,9 @@ import StartPage from '../../components/StartPage';
 import imageDark from '../../assets/productsStart.jpg';
 import imageLight from '../../assets/shopLight.jpg';
 import Cards from '../../components/Cards';
-import { Pagination, Box } from '@mui/material';
+import { Box } from '@mui/material';
 import { useState } from 'react';
-import { useAllProducts } from '../../hooks/products/allProducts';
+import { useAllProducts } from '../../hooks/useProducts/useAllProducts';
 import { useThemeContext } from '../../context/ThemeContext';
 import Paginated from '../../components/Paginated';
 
@@ -48,6 +48,8 @@ const ShopPage = () => {
         page={currentPage}
         handlePageChange={handlePageChange}
         totalPage={totalPage}
+        size='large'
+        show='show'
       />
     </Box>
   );

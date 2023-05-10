@@ -3,7 +3,7 @@ import imageDark from '../../assets/campionsStart.jpg';
 import imageLight from '../../assets/championsLight.jpeg';
 import { useThemeContext } from '../../context/ThemeContext';
 import { useState } from 'react';
-import { useAllChampions } from '../../hooks/champions/allChampions';
+import { useAllChampions } from '../../hooks/useChampions/useAllChampions';
 import Paginated from '../../components/Paginated';
 import CardsChampions from '../../components/CardsChampions';
 import { Box } from '@mui/material';
@@ -29,7 +29,7 @@ const ChampionsPage = () => {
   const totalPage = query.data?.pages || 1; // Establecer 1 como valor predeterminado si no hay datos disponibles
 
   const data = query.data.data.champions;
-
+  console.log(data);
   return (
     <Box
       sx={{
@@ -48,6 +48,8 @@ const ChampionsPage = () => {
         page={currentPage}
         handlePageChange={handlePageChange}
         totalPage={totalPage}
+        size='large'
+        show='show'
       />
     </Box>
   );

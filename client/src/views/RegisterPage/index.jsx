@@ -12,7 +12,7 @@ import imageLight from '../../assets/registerLight.jpg';
 import imageDark from '../../assets/registerDark.jpg';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { useAllCountries } from '../../hooks/countries';
+import { useAllCountries } from '../../hooks/useCountries';
 import ButtonNetworks from '../../components/ButtonNetworks';
 import FormImage from '../../components/FormImage';
 import FormContainer from '../../components/FormContainer';

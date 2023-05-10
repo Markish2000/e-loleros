@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import data from '../../data.js';
 import CarouselAnt from '../CarouselAnt';
 import { useQueryClient } from '@tanstack/react-query';
-import { useAllProducts } from '../../hooks/products/allProducts';
+import { useAllProducts } from '../../hooks/useProducts/useAllProducts';
 
 const SectionProducts = ({ Component }) => {
   const queryClient = useQueryClient();
