@@ -85,7 +85,12 @@ const DetailChampionsPage = () => {
         <Typography
           variant='h3'
           color='primary'
-          sx={{ mb: '1rem', fontSize: '4rem', textTransform: 'uppercase' }}
+          sx={{
+            mb: '1rem',
+            fontSize: '4rem',
+            textTransform: 'uppercase',
+            fontWeight: '600',
+          }}
         >
           {name}
         </Typography>
@@ -134,7 +139,7 @@ const DetailChampionsPage = () => {
                 <Typography
                   variant='subtitle1'
                   color='primary'
-                  sx={{ mt: '15px' }}
+                  sx={{ mt: '15px', fontWeight: '600' }}
                 >
                   Dificultad
                 </Typography>
@@ -160,7 +165,7 @@ const DetailChampionsPage = () => {
                 <Typography
                   variant='subtitle1'
                   color='primary'
-                  sx={{ mt: '10px' }}
+                  sx={{ mt: '10px', fontWeight: '600' }}
                 >
                   Rol
                 </Typography>
