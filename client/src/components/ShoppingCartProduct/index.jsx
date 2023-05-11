@@ -3,12 +3,21 @@ import styled from 'styled-components';
 import CheckIcon from '@mui/icons-material/Check';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
+import ShoppingCartQuantity from '../ShoppingCartQuantity';
+import { ShoppingCartQuantityBox } from '../ShoppingCartQuantity';
 
-const ShoppingCartProduct = ({ stock, mainImage, name, price }) => {
-  console.log('soy stock', stock);
+const ShoppingCartProduct = ({
+  stock,
+  mainImage,
+  name,
+  price,
+  quantityProduct,
+}) => {
   return (
     <Grid
       item
+      xs={9}
+      sm={8}
       md={6}
       sx={{
         width: '100%',
@@ -41,7 +50,7 @@ const ShoppingCartProduct = ({ stock, mainImage, name, price }) => {
           <Typography
             variant='subtitle1'
             sx={{
-              fontSize: '1.5rem',
+              fontSize: { xs: '1.25rem', sm: '1.5rem' },
             }}
           >
             {name}
@@ -54,6 +63,18 @@ const ShoppingCartProduct = ({ stock, mainImage, name, price }) => {
           >
             $ {price}
           </Typography>
+          <Box
+            sx={{
+              display: { xs: 'flex', sm: 'none' },
+              mt: '1rem',
+              mb: '1.5rem',
+            }}
+          >
+            <ShoppingCartQuantityBox
+              maxStock={stock}
+              quantityProduct={quantityProduct}
+            />
+          </Box>
         </Box>
 
         <Box>
@@ -61,11 +82,15 @@ const ShoppingCartProduct = ({ stock, mainImage, name, price }) => {
             <Box sx={{ display: 'flex' }}>
               <ThumbUpOffAltIcon
                 color='success'
-                sx={{ mr: '0.5rem', pt: '5px' }}
+                sx={{
+                  mr: '0.5rem',
+                  pt: { xs: '0px', sm: '5px' },
+                  pb: { xs: '5px', sm: '0px' },
+                }}
               />
               <Typography
                 sx={{
-                  fontSize: '1.15rem',
+                  fontSize: '0.90rem',
                 }}
               >
                 En stock
@@ -79,7 +104,7 @@ const ShoppingCartProduct = ({ stock, mainImage, name, price }) => {
               />
               <Typography
                 sx={{
-                  fontSize: '1.15rem',
+                  fontSize: '0.75rem',
                 }}
               >
                 Sin stock
@@ -91,9 +116,5 @@ const ShoppingCartProduct = ({ stock, mainImage, name, price }) => {
     </Grid>
   );
 };
-
-// const DividerStyled = styled(Divider)`
-//   border-color: ${({ theme }) => theme.palette.text.disabled};
-// `;
 
 export default ShoppingCartProduct;

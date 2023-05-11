@@ -14,10 +14,14 @@ import styled from 'styled-components';
 const ShoppingCartTable = ({ total, subtotal, shipping }) => {
   const theme = useThemeContext();
   return (
-    <Box>
+    <Box
+      sx={{
+        width: '100%',
+      }}
+    >
       <Container
         sx={{
-          width: '600px',
+          width: { xs: '100%', sm: '550px', md: '600px' },
           height: '300px',
         }}
       >
