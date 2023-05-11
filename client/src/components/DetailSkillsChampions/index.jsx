@@ -20,14 +20,16 @@ const DetailSkillsChampions = ({ skills }) => {
     <Container
       sx={{
         display: 'flex',
-        justifyContent: 'space-between',
+        flexDirection: { xs: 'column', sm: 'colum', md: 'row' },
+        justifyContent: { xs: 'center', sm: 'center', md: 'space-between' },
+        alignItems: { xs: 'center', sm: 'center', md: 'unset' },
         mt: '4rem',
         mb: '4rem',
       }}
     >
       <Box
         sx={{
-          width: '45%',
+          width: { xs: '100%', sm: '90%', md: '47%' },
           pr: '30px',
         }}
       >
@@ -61,7 +63,7 @@ const DetailSkillsChampions = ({ skills }) => {
                 key={index}
                 onClick={(e) => handleIndexSkill(e, index)}
                 sx={{
-                  mr: '10px',
+                  mr: { xs: '2px', sm: '10px' },
                 }}
               >
                 {tecla}
@@ -103,6 +105,7 @@ const DetailSkillsChampions = ({ skills }) => {
             component='p'
             sx={{
               mt: '30px',
+              mb: { xs: '30px', sm: '30px', md: '0px' },
             }}
           >
             {skills[indexSkill].detail}
@@ -112,8 +115,9 @@ const DetailSkillsChampions = ({ skills }) => {
 
       <Box
         sx={{
-          width: '45%',
+          width: { xs: '90%', sm: '85%', md: '47%' },
           position: 'relative',
+          height: '80%',
         }}
       >
         <Box
@@ -125,22 +129,16 @@ const DetailSkillsChampions = ({ skills }) => {
             left: '-10px',
             right: '-10px',
             bottom: '-10px',
-            zIndex: '1',
+            zIndex: '0',
             clipPath: 'polygon(0 0, 100% 0, 100% 80%, 80% 100%, 0 100%)',
           }}
-        />
+        ></Box>
 
         <CardMedia
           component='video'
           src={skills[indexSkill].video}
           autoplay
           controls
-          // sx={{
-          //   border: '1px solid',
-          //   borderColor: theme.palette.divider.divider,
-          //   position: 'relative',
-          //   zIndex: '0',
-          // }}
         />
       </Box>
     </Container>

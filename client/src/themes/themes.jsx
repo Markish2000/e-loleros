@@ -74,7 +74,11 @@ export const lightTheme = createTheme({
       contrastText: '#fff',
     },
     divider: {
-      divider: 'rgba(0, 0, 0, 0.12)',
+      main: '#E5E7EB',
+      divider: '#E5E7EB',
+    },
+    hrcolor: {
+      main: '#E5E7EB',
     },
   },
   breakpoints: {
@@ -163,7 +167,11 @@ export const darkTheme = createTheme({
       contrastText: 'rgba(0, 0, 0, 0.87)',
     },
     divider: {
+      main: 'rgba(255, 255, 255, 0.12)',
       divider: 'rgba(255, 255, 255, 0.12)',
+    },
+    hrcolor: {
+      main: 'rgba(255, 255, 255, 0.1)',
     },
   },
   breakpoints: {
