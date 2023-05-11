@@ -26,7 +26,7 @@ const ShoppingCartPage = () => {
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ahri_15.jpg',
       image:
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ahri_15.jpg',
-      stock: 5,
+      stock: 10,
       availability: true,
     },
     {
@@ -45,7 +45,7 @@ const ShoppingCartPage = () => {
   return (
     <Box
       sx={{
-        height: '100vh',
+        minHeight: '100vh',
         pt: '70px',
         mb: '3rem',
       }}
@@ -56,6 +56,7 @@ const ShoppingCartPage = () => {
           sx={{
             ml: '1rem',
             mb: '1rem',
+            fontSize: { xs: '2.5rem', sm: '3rem' },
           }}
         >
           Carrito
@@ -81,7 +82,7 @@ const ShoppingCartPage = () => {
                 md={12}
                 sx={{
                   width: '100%',
-                  height: '180px',
+                  height: 'auto',
                   mt: '20px',
                   // display: 'flex',
                   // justifyContent: 'space-between',
@@ -92,12 +93,18 @@ const ShoppingCartPage = () => {
                   name={name}
                   mainImage={mainImage}
                   price={price}
+                  quantityProduct={2}
                 />
-
+                {/* <Box
+                  sx={{ display: { xs: 'none', sm: 'flex' }, width: 'auto' }}
+                > */}
                 <ShoppingCartQuantity maxStock={stock} quantityProduct={2} />
+                {/* </Box> */}
 
                 <Grid
                   item
+                  xs={3}
+                  sm={2}
                   md={3}
                   sx={{
                     display: 'flex',
@@ -124,7 +131,7 @@ const ShoppingCartPage = () => {
             mt: '3rem',
             width: '100%',
             display: 'flex',
-            justifyContent: 'flex-end',
+            justifyContent: { xs: 'center', sm: 'flex-end' },
           }}
         >
           <ShoppingCartTable />
