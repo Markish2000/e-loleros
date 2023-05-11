@@ -67,7 +67,8 @@ const ShoppingCartPage = () => {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
+          // alignItems: 'center',
+          // justifyContent: 'center',
         }}
       >
         <Container

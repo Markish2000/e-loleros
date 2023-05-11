@@ -90,7 +90,7 @@ const ShoppingCartProduct = ({
               />
               <Typography
                 sx={{
-                  fontSize: '0.90rem',
+                  fontSize: { xs: '0.90rem', sm: '1.15rem' },
                 }}
               >
                 En stock

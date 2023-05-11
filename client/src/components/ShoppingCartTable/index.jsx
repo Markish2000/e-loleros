@@ -16,7 +16,7 @@ const ShoppingCartTable = ({ total, subtotal, shipping }) => {
   return (
     <Box
       sx={{
-        width: '100%',
+        width: { xs: '100%', sm: 'auto' },
       }}
     >
       <Container
