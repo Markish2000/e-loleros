@@ -7,6 +7,7 @@ import ShoppingCartQuantity from '../ShoppingCartQuantity';
 import { ShoppingCartQuantityBox } from '../ShoppingCartQuantity';
 
 const ShoppingCartProduct = ({
+  id,
   stock,
   mainImage,
   name,
@@ -18,7 +19,8 @@ const ShoppingCartProduct = ({
       item
       xs={9}
       sm={8}
-      md={6}
+      md={8}
+      lg={6}
       sx={{
         width: '100%',
         display: 'flex',
@@ -73,6 +75,7 @@ const ShoppingCartProduct = ({
             <ShoppingCartQuantityBox
               maxStock={stock}
               quantityProduct={quantityProduct}
+              id={id}
             />
           </Box>
         </Box>

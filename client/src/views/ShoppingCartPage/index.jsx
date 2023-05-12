@@ -1,4 +1,12 @@
-import { Box, Container, Typography, Grid, Divider } from '@mui/material';
+import {
+  Box,
+  Container,
+  Typography,
+  Grid,
+  Divider,
+  IconButton,
+  Button,
+} from '@mui/material';
 import ShoppingCartTable from '../../components/ShoppingCartTable';
 import ShoppingCartQuantity from '../../components/ShoppingCartQuantity';
 import ShoppingCartProduct from '../../components/ShoppingCartProduct';
@@ -7,11 +15,18 @@ import { useThemeContext } from '../../context/ThemeContext';
 import CloseIcon from '@mui/icons-material/Close';
 import { useEffect } from 'react';
 import { useTaxtContext } from '../../context/ProductContext';
+import { Link, useNavigate } from 'react-router-dom';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 
 const ShoppingCartPage = () => {
   const theme = useThemeContext();
-  const { products } = useTaxtContext();
-  console.log(products);
+  const { products, cleanProduct } = useTaxtContext();
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    //Vovler una página hacia atrás
+    navigate(-1);
+  };
 
   return (
     <Box
@@ -22,6 +37,13 @@ const ShoppingCartPage = () => {
       }}
     >
       <Container>
+        {products.length !== 0 && (
+          <Button size='small' onClick={handleBack} sx={{ mb: '1rem' }}>
+            <KeyboardArrowLeftIcon sx={{ p: '2px' }} />
+            Seguir comprando
+          </Button>
+        )}
+
         <Typography
           variant='h3'
           sx={{
@@ -37,9 +59,9 @@ const ShoppingCartPage = () => {
       <Container
         sx={{
           display: 'flex',
-          flexDirection: 'column',
+          flexDirection: { xs: 'column', md: 'row', lg: 'row' },
           // alignItems: 'center',
-          // justifyContent: 'center',
+          justifyContent: 'space-between',
         }}
       >
         <Container
@@ -48,11 +70,10 @@ const ShoppingCartPage = () => {
           }}
         >
           {products.length !== 0 ? (
-            products.map(({ stock, name, mainImage, price, quantity }) => (
-              <>
+            products.map(({ id, stock, name, mainImage, price, quantity }) => (
+              <Box key={id}>
                 <Grid
                   container
-                  md={12}
                   sx={{
                     width: '100%',
                     height: 'auto',
@@ -67,29 +88,32 @@ const ShoppingCartPage = () => {
                     mainImage={mainImage}
                     price={price}
                     quantityProduct={quantity}
+                    id={id}
                   />
-                  {/* <Box
-                  sx={{ display: { xs: 'none', sm: 'flex' }, width: 'auto' }}
-                > */}
+
                   <ShoppingCartQuantity
                     maxStock={stock}
                     quantityProduct={quantity}
+                    id={id}
                   />
-                  {/* </Box> */}
 
                   <Grid
                     item
                     xs={3}
                     sm={2}
-                    md={3}
+                    md={2}
+                    lg={3}
                     sx={{
                       display: 'flex',
                       justifyContent: 'flex-end',
                     }}
                   >
-                    <Box>
-                      <StyledIcon theme={theme} />
-                    </Box>
+                    <StyledIcon
+                      theme={theme}
+                      onClick={() => {
+                        cleanProduct(id);
+                      }}
+                    />
                   </Grid>
                 </Grid>
                 <DividerStyled
@@ -98,18 +122,29 @@ const ShoppingCartPage = () => {
                     mt: '20px',
                   }}
                 />
-              </>
+              </Box>
             ))
           ) : (
-            <Box>
+            <Box sx={{ mt: '20px' }}>
               <Typography
                 variant='subtitle1'
                 sx={{
-                  fontSize: '1rem',
+                  fontSize: '1.5rem',
                 }}
               >
-                No se agregaron productos 😓
+                Todavía no se agregaron productos 😓
               </Typography>
+              <Link to='/shop'>
+                <Button
+                  variant='contained'
+                  size='large'
+                  sx={{
+                    mt: '1rem',
+                  }}
+                >
+                  Ir a tienda
+                </Button>
+              </Link>
             </Box>
           )}
           {/* Aqui se mapea el box de abajo */}
@@ -118,13 +153,13 @@ const ShoppingCartPage = () => {
         {products.length !== 0 && (
           <Box
             sx={{
-              mt: '3rem',
+              mt: { xs: '3rem', md: '20px' },
               width: '100%',
               display: 'flex',
               justifyContent: { xs: 'center', sm: 'flex-end' },
             }}
           >
-            <ShoppingCartTable />
+            <ShoppingCartTable products={products} />
           </Box>
         )}
       </Container>

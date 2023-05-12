@@ -1,6 +1,17 @@
 import { Typography, TextField, MenuItem, Grid, Box } from '@mui/material';
+import { useTaxtContext } from '../../context/ProductContext';
+import { useState } from 'react';
 
-const ShoppingCartQuantity = ({ maxStock, quantityProduct }) => {
+const ShoppingCartQuantity = ({ maxStock, quantityProduct, id }) => {
+  const { updateProductQuantity } = useTaxtContext();
+  const [selectedValue, setSelectedValue] = useState(quantityProduct);
+
+  const handleSelectChange = (event) => {
+    const newValue = event.target.value;
+    setSelectedValue(newValue);
+    updateProductQuantity(id, newValue);
+  };
+
   const createStockArray = (stock) => {
     const stockArray = [];
     for (let i = 1; i <= stock; i++) {
@@ -15,7 +26,8 @@ const ShoppingCartQuantity = ({ maxStock, quantityProduct }) => {
     <Grid
       item
       sm={2}
-      md={3}
+      md={2}
+      lg={3}
       sx={{
         display: { xs: 'none', sm: 'flex' },
         justifyContent: 'center',
@@ -26,7 +38,8 @@ const ShoppingCartQuantity = ({ maxStock, quantityProduct }) => {
         name='quantity'
         select
         fullWidth
-        defaultValue={quantityProduct}
+        value={selectedValue}
+        onChange={handleSelectChange}
         sx={{ width: '70px' }}
       >
         {result.map((option) => (
@@ -39,7 +52,16 @@ const ShoppingCartQuantity = ({ maxStock, quantityProduct }) => {
   );
 };
 
-export const ShoppingCartQuantityBox = ({ maxStock, quantityProduct }) => {
+export const ShoppingCartQuantityBox = ({ maxStock, quantityProduct, id }) => {
+  const { updateProductQuantity } = useTaxtContext();
+  const [selectedValue, setSelectedValue] = useState(quantityProduct);
+
+  const handleSelectChange = (event) => {
+    const newValue = event.target.value;
+    setSelectedValue(newValue);
+    updateProductQuantity(id, newValue);
+  };
+
   const createStockArray = (stock) => {
     const stockArray = [];
     for (let i = 1; i <= stock; i++) {
@@ -51,9 +73,13 @@ export const ShoppingCartQuantityBox = ({ maxStock, quantityProduct }) => {
   const result = createStockArray(maxStock);
 
   return (
-    <Box
+    <Grid
+      item
+      sm={2}
+      md={2}
+      lg={3}
       sx={{
-        display: 'flex',
+        display: { xs: 'none', sm: 'flex' },
         justifyContent: 'center',
       }}
     >
@@ -62,7 +88,8 @@ export const ShoppingCartQuantityBox = ({ maxStock, quantityProduct }) => {
         name='quantity'
         select
         fullWidth
-        defaultValue={quantityProduct}
+        value={selectedValue}
+        onChange={handleSelectChange}
         sx={{ width: '70px' }}
       >
         {result.map((option) => (
@@ -71,7 +98,7 @@ export const ShoppingCartQuantityBox = ({ maxStock, quantityProduct }) => {
           </MenuItem>
         ))}
       </TextField>
-    </Box>
+    </Grid>
   );
 };
 
