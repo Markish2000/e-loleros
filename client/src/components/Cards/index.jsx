@@ -10,7 +10,7 @@ const Cards = ({ data }) => {
       <Grid container spacing={{ xs: 2, sm: 2, md: 4, lg: 3 }}>
         {data.length !== 0
           ? data.map((el) => (
-              <Grid item key={el.id} xs={12} sm={12} md={6} lg={4}>
+              <Grid item key={el.id} xs={12} sm={12} md={4} lg={3}>
                 <SingleCard {...el} />
               </Grid>
             ))

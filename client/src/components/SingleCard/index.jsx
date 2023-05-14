@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Button,
@@ -11,13 +11,13 @@ import {
   IconButton,
   Paper,
 } from '@mui/material';
-
-import ButtonComponent from '../Button';
 import styled from 'styled-components';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import { Link } from 'react-router-dom';
 import { useTaxtContext } from '../../context/ProductContext';
 import { useThemeContext } from '../../context/ThemeContext';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 
 const SingleCard = ({
   id,
@@ -29,8 +29,47 @@ const SingleCard = ({
   marginRight,
   marginLeft,
 }) => {
-  const { addProduct } = useTaxtContext();
   const theme = useThemeContext();
+  const { addProduct, products, cleanProduct } = useTaxtContext();
+  const [quantity, setQuantity] = useState(0);
+  const [showIcon, setShowIcon] = useState(quantity === 0);
+
+  useEffect(() => {
+    const productExists = products.some((el) => el.id === id);
+
+    if (productExists) {
+      const product = products.find((el) => el.id === id);
+      setQuantity(product.quantity);
+      setShowIcon(product.quantity === 0);
+    }
+  }, []);
+
+  const handleShowIcon = () => {
+    setQuantity(quantity + 1);
+    addProduct({ id, title, mainImage, price, stock }, quantity + 1);
+    setShowIcon(!showIcon);
+  };
+
+  const handleIncrease = () => {
+    if (quantity < stock) {
+      setQuantity(quantity + 1);
+      addProduct({ id, title, mainImage, price, stock }, quantity + 1);
+      setShowIcon(false);
+    }
+  };
+
+  const handleDecrease = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+      addProduct({ id, title, mainImage, price, stock }, quantity - 1);
+    }
+    if (quantity === 1) {
+      setQuantity(quantity - 1);
+      cleanProduct(id);
+      setShowIcon(true);
+    }
+  };
+
   return (
     <StyledCard
       elevation={2}
@@ -53,23 +92,23 @@ const SingleCard = ({
         sx={{
           overflow: 'hidden',
           p: '16px',
-          // width: { xs: '300px', sm: '50%', md: 'auto' },
         }}
       >
-        <CardMedia
-          component='img'
-          image={mainImage}
-          alt={title}
-          title={title}
-          loading='lazy'
-          sx={{
-            // width: { xs: '180px', sm: '180px', md: '100%' },
-            height: { xs: '188px', sm: '188px', md: '300px' },
-            border: '1px solid',
-            borderColor: theme.palette.hrcolor.main,
-            borderRadius: '10px',
-          }}
-        />
+        <Link to={`/shop/${id}`}>
+          <CardMedia
+            component='img'
+            image={mainImage}
+            alt={title}
+            title={title}
+            loading='lazy'
+            sx={{
+              height: { xs: '188px', sm: '188px', md: '300px' },
+              border: '1px solid',
+              borderColor: theme.palette.hrcolor.main,
+              borderRadius: '10px',
+            }}
+          />
+        </Link>
       </StyledCardMediaContainer>
       <Box
         sx={{
@@ -85,7 +124,6 @@ const SingleCard = ({
             sx={{
               display: 'flex',
               flexDirection: { xs: 'column', sm: 'column', md: 'column' },
-              // width: { xs: '300px', sm: '50%', md: 'auto' },
             }}
           >
             <Box
@@ -116,6 +154,18 @@ const SingleCard = ({
               >
                 Categoría
               </Typography>
+              <Typography
+                variant='subtitle1'
+                // color='secondary'
+                sx={{
+                  fontSize: { xs: '1.15rem', md: '1.25rem' },
+                  color: theme.palette.text.primary,
+                  display: { xs: 'flex', sm: 'none' },
+                  mr: '0.75rem',
+                }}
+              >
+                $ {price}
+              </Typography>
             </Box>
           </Box>
         </StyledLink>
@@ -123,8 +173,12 @@ const SingleCard = ({
           sx={{
             width: '100%',
             display: 'flex',
-            flexDirection: { xs: 'column', md: 'row' },
-            justifyContent: { xs: 'unset', md: 'space-between' },
+            flexDirection: { xs: 'column', sm: 'row', md: 'row' },
+            justifyContent: {
+              xs: 'space-between',
+              sm: 'space-between',
+              md: 'space-between',
+            },
             alignItems: 'flex-end',
             p: '16px',
             pt: { xs: '16px', sm: '32px', md: '0px' },
@@ -136,22 +190,49 @@ const SingleCard = ({
             sx={{
               fontSize: { xs: '1.15rem', md: '1.25rem' },
               color: theme.palette.text.primary,
-              order: { xs: '1', md: '0' },
+              display: { xs: 'none', sm: 'flex' },
+              mr: '0.75rem',
             }}
           >
             $ {price}
           </Typography>
 
-          <IconButton
-            size='medium'
-            color='secondary'
-            onClick={() =>
-              addProduct({ id, title, mainImage, price, stock }, 1)
-            }
-            // sx={{ backgroundColor: theme.palette.hrcolor.secondary }}
-          >
-            <LocalGroceryStoreIcon />
-          </IconButton>
+          {showIcon ? (
+            <IconButton
+              size='medium'
+              color='secondary'
+              onClick={handleShowIcon}
+            >
+              <LocalGroceryStoreIcon />
+            </IconButton>
+          ) : (
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'row',
+              }}
+            >
+              <IconButton
+                onClick={handleDecrease}
+                disabled={quantity <= 0}
+                sx={{ marginRight: '0.75rem' }}
+                color='secondary'
+              >
+                <RemoveIcon />
+              </IconButton>
+              <Typography variant='body1' sx={{ pt: '7px' }}>
+                {quantity}
+              </Typography>
+              <IconButton
+                onClick={handleIncrease}
+                disabled={quantity >= stock}
+                color='secondary'
+                sx={{ ml: '0.75rem' }}
+              >
+                <AddIcon />
+              </IconButton>
+            </Box>
+          )}
         </Box>
       </Box>
     </StyledCard>

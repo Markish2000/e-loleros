@@ -34,12 +34,12 @@ export const ProductContextProvider = ({ children }) => {
   };
 
   const addProduct = (product, quantitySelect) => {
-    console.log('holis', product, quantitySelect);
     if (exists(product)) {
       const existsProduct = products.find(
         (element) => element.id === product.id
       );
       // if (existsProduct.quantity + parseInt(quantitySelect)) {
+      // existsProduct.quantity += parseInt(quantitySelect);
       existsProduct.quantity = parseInt(quantitySelect);
       // }
       const listNoRepeat = products.filter(

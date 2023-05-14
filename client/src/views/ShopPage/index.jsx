@@ -47,21 +47,21 @@ const ShopPage = () => {
         sx={{
           width: '100%',
           display: 'flex',
-          flexDirection: 'row',
+          flexDirection: 'column',
           justifyContent: 'center',
-          pl: { xs: '0px', sm: '0px', md: '30px' },
         }}
       >
-        <Box>
-          <Box
-            sx={{
-              display: { xs: 'none', sm: 'none', md: 'flex' },
-              width: { md: '320px', lg: '320px' },
-              height: '100%',
-              border: '1px solid',
-              borderColor: theme.palette.hrcolor.main,
-            }}
-          ></Box>
+        <Box
+          sx={{
+            display: { xs: 'none', sm: 'none', md: 'flex' },
+            width: '100%',
+            height: '70px',
+            border: '1px solid',
+            borderColor: theme.palette.hrcolor.main,
+            mb: '2rem',
+          }}
+        >
+          <Container></Container>
         </Box>
 
         <Box>
