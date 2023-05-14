@@ -36,7 +36,13 @@ const PresentationLetter = ({
             src={theme.palette.mode === 'light' ? imageLight : imageDark}
           />
         </Box>
-        <Box sx={{ textAlign: 'center' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
           <Typography variant='h5'>{name}</Typography>
           <Typography variant='subtitle1'>Full Stack Web Developer</Typography>
           <Box
