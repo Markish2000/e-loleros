@@ -22,7 +22,7 @@ import FormTitle from '../../components/FormTitle';
 import FormInputImage from '../../components/FormInputImage';
 import FormSelect from '../../components/FormSelect';
 import FormDate from '../../components/FormDate';
-import { useRegisterUser } from '../../hooks/users/registerUser';
+import { useRegisterUser } from '../../hooks/useUsers/useRegisterUser';
 import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import validationSchema from './validation';

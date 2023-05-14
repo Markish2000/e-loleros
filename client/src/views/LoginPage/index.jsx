@@ -18,7 +18,7 @@ import FormTitle from '../../components/FormTitle';
 import FormButton from '../../components/FormButton';
 import { Formik } from 'formik';
 import validationSchema from './validation';
-import { useLoginUser } from '../../hooks/users/loginUser';
+import { useLoginUser } from '../../hooks/useUsers/useLoginUser';
 import { useState } from 'react';
 
 const LoginPage = () => {

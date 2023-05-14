@@ -8,8 +8,10 @@ import StockComponent from '../../components/StockComponent';
 import CloseIcon from '@mui/icons-material/Close';
 import axios from 'axios';
 import Paginated from '../../components/Paginated';
+import { useThemeContext } from '../../context/ThemeContext';
 
 const DetailProductPage = () => {
+  const theme = useThemeContext();
   const { id } = useParams();
   const query = useDetailProducts(id);
   const { title, detail, images, mainImage, price, stock } = query.data;
@@ -51,7 +53,6 @@ const DetailProductPage = () => {
   };
 
   const handleBack = () => {
-    //Vovler una página hacia atrás
     navigate(-1);
   };
 
@@ -246,6 +247,7 @@ const DetailProductPage = () => {
                   fontSize: '2.5rem',
                   marginBottom: '1.5rem',
                   mt: { xs: '1.5rem', sm: '0px' },
+                  fontWeight: '600',
                 }}
               >
                 {title}
@@ -287,9 +289,13 @@ const DetailProductPage = () => {
               <Button
                 variant='outlined'
                 size='medium'
-                color='secondary'
+                color={theme.palette.mode === 'light' ? 'primary' : 'secondary'}
                 sx={{
-                  mb: { xs: '15px', sm: '15px', md: '0px' },
+                  mb: {
+                    xs: '15px',
+                    sm: '15px',
+                    md: '0px',
+                  },
                 }}
               >
                 AGREGAR AL CARRITO
@@ -297,7 +303,7 @@ const DetailProductPage = () => {
               <Button
                 variant='contained'
                 size='medium'
-                color='secondary'
+                color={theme.palette.mode === 'light' ? 'secondary' : 'primary'}
                 onClick={handleByNow}
               >
                 COMPRAR AHORA

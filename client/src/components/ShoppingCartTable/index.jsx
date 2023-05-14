@@ -11,18 +11,24 @@ import React from 'react';
 import { useThemeContext } from '../../context/ThemeContext';
 import styled from 'styled-components';
 
-const ShoppingCartTable = ({ total, subtotal, shipping }) => {
+const ShoppingCartTable = ({ products }) => {
   const theme = useThemeContext();
+  const subTotal = products.reduce(
+    (accumulator, el) => accumulator + el.price * el.quantity,
+    0
+  );
+  const shipping = 50;
+  const total = subTotal + shipping;
+
   return (
     <Box
       sx={{
-        width: '100%',
+        width: { xs: '100%', sm: 'auto' },
       }}
     >
       <Container
         sx={{
-          width: { xs: '100%', sm: '550px', md: '600px' },
-          height: '300px',
+          width: { xs: '100%', sm: '550px', md: '450px', lg: '550px' },
         }}
       >
         <Box
@@ -40,7 +46,7 @@ const ShoppingCartTable = ({ total, subtotal, shipping }) => {
             }}
           >
             <Typography>Subtotal</Typography>
-            <Typography>$500</Typography>
+            <Typography>$ {subTotal}</Typography>
           </Box>
           <DividerStyled theme={theme} />
           <Box
@@ -51,7 +57,7 @@ const ShoppingCartTable = ({ total, subtotal, shipping }) => {
             }}
           >
             <Typography>Envío</Typography>
-            <Typography>$50</Typography>
+            <Typography>$ {shipping}</Typography>
           </Box>
           <DividerStyled theme={theme} />
           <Box
@@ -73,7 +79,7 @@ const ShoppingCartTable = ({ total, subtotal, shipping }) => {
                 fontSize: '1.5rem',
               }}
             >
-              $550
+              $ {total}
             </Typography>
           </Box>
         </Box>

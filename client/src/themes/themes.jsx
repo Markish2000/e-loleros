@@ -7,23 +7,23 @@ export const lightTheme = createTheme({
       fontFamily: 'Khand, sans-serif',
     },
     primary: {
-      main: '#030640',
+      main: '#141E37',
       light: 'rgb(53, 55, 102)',
       dark: 'rgb(2, 4, 44)',
       contrastText: '#fff',
     },
-    secondary: {
-      main: '#1445A6',
-      light: 'rgb(67, 106, 183)',
-      dark: 'rgb(14, 48, 116)',
-      contrastText: '#fff',
-    },
     // secondary: {
-    //   main: '#BF9A56',
-    //   light: '#D9A362',
-    //   dark: '#8C7446',
+    //   main: '#32C8FF',
+    //   light: 'rgb(67, 106, 183)',
+    //   dark: 'rgb(14, 48, 116)',
     //   contrastText: '#fff',
     // },
+    secondary: {
+      main: '#BF9A56',
+      light: '#D9A362',
+      dark: '#8C7446',
+      contrastText: '#fff',
+    },
     third: {
       main: '#5f89a6',
       light: 'rgb(127, 160, 183)',
@@ -42,12 +42,12 @@ export const lightTheme = createTheme({
     },
     section: {
       main: '#F5F5F5',
-      default: '#F5F5F5',
+      secondary: '#F7F7F7',
     },
     text: {
-      primary: 'rgba(0, 0, 0, 0.87)',
-      secondary: 'rgba(0, 0, 0, 0.6)',
-      disabled: 'rgba(0, 0, 0, 0.38)',
+      primary: 'rgba(0, 0, 0)',
+      secondary: 'rgba(0, 0, 0, 0.8)',
+      disabled: 'rgba(0, 0, 0, 0.6)',
     },
     error: {
       main: '#d32f2f',
@@ -74,11 +74,14 @@ export const lightTheme = createTheme({
       contrastText: '#fff',
     },
     divider: {
-      main: '#E5E7EB',
-      divider: '#E5E7EB',
+      main: '#BFBFBF',
+      divider: '#BFBFBF',
     },
     hrcolor: {
-      main: '#E5E7EB',
+      // main: '#E5E7EB',
+      // main: '#BFBFBF',
+      main: '#CBD1D9',
+      secondary: '#E5E7EB',
     },
   },
   breakpoints: {
@@ -135,7 +138,7 @@ export const darkTheme = createTheme({
     },
     section: {
       main: '#00070D',
-      default: '#00070D',
+      secondary: '#00070D',
     },
     text: {
       primary: '#ffff',
@@ -172,6 +175,7 @@ export const darkTheme = createTheme({
     },
     hrcolor: {
       main: 'rgba(255, 255, 255, 0.1)',
+      secondary: 'rgba(255, 255, 255, 0.1)',
     },
   },
   breakpoints: {

@@ -19,7 +19,6 @@ const DetailChampionsPage = () => {
   const imageRole = getRoleImage(role);
 
   const teclaSkills = skills.map((skill) => skill.tecla);
-  console.log('soyname', teclaSkills);
 
   return (
     <Box

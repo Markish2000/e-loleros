@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import LineLoading from './components/LineLoading';
 import ThemeContextProvider from './context/ThemeContext';
+import ProductContextProvider from './context/ProductContext';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,8 +35,10 @@ root.render(
       <BrowserRouter>
         <React.StrictMode>
           <ThemeContextProvider>
-            <App />
-          </ThemeContextProvider>
+            <ProductContextProvider>
+              <App />
+            </ProductContextProvider>          </ThemeContextProvider>
+
         </React.StrictMode>
       </BrowserRouter>
     </QueryClientProvider>

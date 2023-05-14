@@ -11,7 +11,6 @@ const getAllProducts = async ({ queryKey }) => {
   });
 
   return response.data;
-  // throw new Error('Holis');
 };
 
 export const useAllProducts = (currentPage) => {

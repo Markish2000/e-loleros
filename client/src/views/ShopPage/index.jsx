@@ -2,7 +2,7 @@ import StartPage from '../../components/StartPage';
 import imageDark from '../../assets/productsStart.jpg';
 import imageLight from '../../assets/shopLight.jpg';
 import Cards from '../../components/Cards';
-import { Box } from '@mui/material';
+import { Box, Typography, Container } from '@mui/material';
 import { useState } from 'react';
 import { useAllProducts } from '../../hooks/useProducts/useAllProducts';
 import { useThemeContext } from '../../context/ThemeContext';
@@ -43,7 +43,31 @@ const ShopPage = () => {
         title='productos'
         text={text}
       />
-      <Cards data={data} />
+      <Box
+        sx={{
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+        }}
+      >
+        <Box
+          sx={{
+            display: { xs: 'none', sm: 'none', md: 'flex' },
+            width: '100%',
+            height: '70px',
+            border: '1px solid',
+            borderColor: theme.palette.hrcolor.main,
+            mb: '2rem',
+          }}
+        >
+          <Container></Container>
+        </Box>
+
+        <Box>
+          <Cards data={data} />
+        </Box>
+      </Box>
       <Paginated
         page={currentPage}
         handlePageChange={handlePageChange}
