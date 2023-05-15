@@ -60,7 +60,9 @@ const NavBar = ({ handleThemeChange }) => {
     if (products.length !== 0) {
       setQuantity(products.length);
     }
-    setQuantity(0);
+    if (products.length === 0) {
+      setQuantity(0);
+    }
   }, [products]);
 
   return (
@@ -102,6 +104,27 @@ const NavBar = ({ handleThemeChange }) => {
               >
                 <ShoppingCartIcon />
               </IconButton>
+              {quantity !== 0 && (
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: { xs: '0.5rem', sm: '0.7rem', md: '0.5rem' },
+                    right: { xs: '4.2rem', sm: '4.7rem', md: '5.5rem' },
+                    backgroundColor: theme.palette.primary.main,
+                    color: 'white',
+                    borderRadius: '50%',
+                    width: '1.5rem',
+                    height: '1.5rem',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    fontSize: '0.875rem',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  {quantity}
+                </Box>
+              )}
             </Link>
 
             <IconButton color='white' size='large' onClick={handleDrawerToggle}>
