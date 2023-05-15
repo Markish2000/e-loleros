@@ -11,7 +11,7 @@ const LinkRouter = ({ to, value, variant, color }) => {
       variant={variant}
       component={Link}
       to={`/${to}`}
-      sx={{ color: buttonColor, marginRight: '10px' }}
+      sx={{ color: buttonColor, marginRight: '10px', mt: '5px', mb: '5px' }}
     >
       {/* <Typography variant='h4' color='text.primary' sx={{ color: buttonColor }}> */}
       {value ? value : to}

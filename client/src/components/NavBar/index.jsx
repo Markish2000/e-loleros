@@ -1,38 +1,32 @@
 import {
   AppBar,
   Toolbar,
-  Typography,
   IconButton,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
   Box,
   Switch,
   useScrollTrigger,
   useTheme,
-  Button,
+  Typography,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import LinkRouter from '../LinkRouter';
 import ButtonComponent from '../Button';
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import {
-  useThemeContext,
-  useThemeToggleContext,
-} from '../../context/ThemeContext';
-import imageLogo from '../../assets/logoBlanco.png';
+import { Link, useLocation } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import NavBarDrawer from '../NavBarDrawer';
 import ShoppingCartDrawer from '../ShoppingCartDrawer';
+import { useTaxtContext } from '../../context/ProductContext';
 
 const NavBar = ({ handleThemeChange }) => {
   const theme = useTheme();
   const location = useLocation();
+  const { products } = useTaxtContext();
   const [open, setOpen] = useState(false);
   const [openShoppingCartDrawer, setOpenShoppingCartDrawer] = useState(false);
+  const [quantity, setQuantity] = useState(0);
+
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
@@ -47,6 +41,9 @@ const NavBar = ({ handleThemeChange }) => {
   };
 
   useEffect(() => {
+    if (products.length !== 0) {
+      setQuantity(products.length);
+    }
     const handleScroll = () => {
       const isScrolled = window.scrollY > 0;
       setOpen(false);
@@ -58,6 +55,13 @@ const NavBar = ({ handleThemeChange }) => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    if (products.length !== 0) {
+      setQuantity(products.length);
+    }
+    setQuantity(0);
+  }, [products]);
 
   return (
     <>
@@ -138,6 +142,27 @@ const NavBar = ({ handleThemeChange }) => {
               >
                 <ShoppingCartIcon />
               </IconButton>
+              {quantity !== 0 && (
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: '0.5rem',
+                    right: '5.5rem',
+                    backgroundColor: theme.palette.primary.main,
+                    color: 'white',
+                    borderRadius: '50%',
+                    width: '1.5rem',
+                    height: '1.5rem',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    fontSize: '0.875rem',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  {quantity}
+                </Box>
+              )}
             </Link>
 
             <Switch onChange={handleThemeChange} />
