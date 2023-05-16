@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { TextField } from '@mui/material';
 import FormButton from '../../components/FormButton';
 import { useNavigate } from 'react-router-dom';
 import EditBase from '../../components/EditBase';
@@ -8,14 +7,16 @@ import validationSchema from './validate';
 import AlertErrorEdit from '../../components/AlertErrorEdit';
 import Swal from 'sweetalert2';
 import { useUpdateUser } from '../../hooks/useUsers/useUpdateUser';
+import FormSelect from '../../components/FormSelect';
+import { genreOptions } from './formFields';
 
-const EditNickNamePage = () => {
+const EditGenrePage = () => {
   const [errorAlertOpen, setErrorAlertOpen] = useState(false);
   const navigate = useNavigate();
   const updateUser = useUpdateUser();
   const user = JSON.parse(localStorage.getItem('user'));
   const initialValues = {
-    nickName: '',
+    genre: '',
   };
 
   const handleSubmit = (values) => {
@@ -57,26 +58,22 @@ const EditNickNamePage = () => {
       }) => (
         <EditBase>
           <form onSubmit={handleSubmit}>
-            <TextField
-              name='nickName'
-              label='Usuario'
-              variant='outlined'
-              fullWidth
-              margin='normal'
-              value={values.nickName}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={touched.nickName && Boolean(errors.nickName)}
-              helperText={touched.nickName && errors.nickName}
+            <FormSelect
+              data={genreOptions}
+              name='genre'
+              label='Género'
+              values={values}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              errors={errors}
+              touched={touched}
             />
             <FormButton
               text='Cambiar'
               isValid={isValid}
               isSubmitting={isSubmitting}
             />
-            {errorAlertOpen && (
-              <AlertErrorEdit text='El nombre de usuario ya existe' />
-            )}
+            {errorAlertOpen && <AlertErrorEdit />}
           </form>
         </EditBase>
       )}
@@ -84,4 +81,4 @@ const EditNickNamePage = () => {
   );
 };
 
-export default EditNickNamePage;
+export default EditGenrePage;

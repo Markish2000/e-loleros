@@ -6,6 +6,8 @@ import EditPasswordPage from '../../views/EditPasswordPage';
 import EditEmailPage from '../../views/EditEmailPage';
 import EditDateOfBirthPage from '../../views/EditDateOfBirthPage';
 import EditNickNamePage from '../../views/EditNickNamePage';
+import EditGenrePage from '../../views/EditGenrePage';
+import EditNationalityPage from '../../views/EditNationalityPage';
 
 const DashboardUserRouter = () => {
   return (
@@ -16,8 +18,8 @@ const DashboardUserRouter = () => {
         <Route path='/edit-nickName' element={<EditNickNamePage />} />
         <Route path='/edit-email' element={<EditEmailPage />} />
         <Route path='/edit-dateOfBirth' element={<EditDateOfBirthPage />} />
-        <Route path='/edit-genre' element={<DetailChampionsPage />} />
-        <Route path='/edit-nationality' element={<DetailChampionsPage />} />
+        <Route path='/edit-genre' element={<EditGenrePage />} />
+        <Route path='/edit-nationality' element={<EditNationalityPage />} />
         <Route path='/edit-password' element={<EditPasswordPage />} />
       </Routes>
     </>
