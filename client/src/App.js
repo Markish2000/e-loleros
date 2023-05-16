@@ -14,6 +14,8 @@ import ShopRouter from './routers/shop';
 import Error404Page from './views/Error404Page';
 import ChampionsRouter from './routers/champions';
 import ShoppingCartPage from './views/ShoppingCartPage';
+import DashboardUserPage from './views/DashboardUserPage';
+import DashboardUserRouter from './routers/dashboardUser';
 
 const App = () => {
   const location = useLocation();
@@ -43,6 +45,7 @@ const App = () => {
           <Route path='/signIn' element={<RegisterPage />} />
           <Route path='/about' element={<AboutPage />} />
           <Route path='/shoppingCart' element={<ShoppingCartPage />} />
+          <Route path='/profile/*' element={<DashboardUserRouter />} />
           <Route path='*' element={<Error404Page />} />
         </Routes>
         {isLadingPage && isLoginPage && isSignInPage && <Footer />}

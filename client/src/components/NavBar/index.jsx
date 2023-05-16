@@ -7,6 +7,7 @@ import {
   useScrollTrigger,
   useTheme,
   Typography,
+  Button,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import LinkRouter from '../LinkRouter';
@@ -18,12 +19,18 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import NavBarDrawer from '../NavBarDrawer';
 import ShoppingCartDrawer from '../ShoppingCartDrawer';
 import { useTaxtContext } from '../../context/ProductContext';
+import { useUserContext } from '../../context/UserContext';
+import MenuUsers from '../MenuUsers';
+import { useMenuContext } from '../../context/MenuContext';
 
 const NavBar = ({ handleThemeChange }) => {
   const theme = useTheme();
   const location = useLocation();
   const { products } = useTaxtContext();
+  const { user } = useUserContext();
+  // const { showMenu, setShowMenu } = useMenuContext();
   const [open, setOpen] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const [openShoppingCartDrawer, setOpenShoppingCartDrawer] = useState(false);
   const [quantity, setQuantity] = useState(0);
 
@@ -34,6 +41,7 @@ const NavBar = ({ handleThemeChange }) => {
 
   const handleDrawerToggle = () => {
     setOpen(!open);
+    setShowMenu(false);
   };
 
   const handleShoppingCartToggle = () => {
@@ -41,9 +49,12 @@ const NavBar = ({ handleThemeChange }) => {
   };
 
   useEffect(() => {
-    if (products.length !== 0) {
+    if (products && products.length !== 0) {
       setQuantity(products.length);
+    } else {
+      setQuantity(0);
     }
+
     const handleScroll = () => {
       const isScrolled = window.scrollY > 0;
       setOpen(false);
@@ -54,16 +65,15 @@ const NavBar = ({ handleThemeChange }) => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [products]);
 
   useEffect(() => {
-    if (products.length !== 0) {
-      setQuantity(products.length);
+    if (user && Object.keys(user).length !== 0) {
+      setShowMenu(true);
+    } else {
+      setShowMenu(false);
     }
-    if (products.length === 0) {
-      setQuantity(0);
-    }
-  }, [products]);
+  }, [user]);
 
   return (
     <>
@@ -138,22 +148,28 @@ const NavBar = ({ handleThemeChange }) => {
             <LinkRouter to='champions' value='campeones' />
             <LinkRouter to='about' value='nosotros' />
 
-            {location.pathname !== '/login' && (
-              <LinkRouter
-                to='login'
-                value='Iniciar sesión'
-                variant='contained'
-                color='white'
-              />
-            )}
+            {showMenu ? (
+              <MenuUsers />
+            ) : (
+              <>
+                {location.pathname !== '/login' && (
+                  <LinkRouter
+                    to='login'
+                    value='Iniciar sesión'
+                    variant='contained'
+                    color='white'
+                  />
+                )}
 
-            {location.pathname !== '/signIn' && (
-              <LinkRouter
-                to='signIn'
-                value='registrarse'
-                variant='contained'
-                color='white'
-              />
+                {location.pathname !== '/signIn' && (
+                  <LinkRouter
+                    to='signIn'
+                    value='registrarse'
+                    variant='contained'
+                    color='white'
+                  />
+                )}
+              </>
             )}
 
             <Link to='/shoppingCart'>
