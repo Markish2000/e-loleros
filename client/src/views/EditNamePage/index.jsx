@@ -15,7 +15,6 @@ import Swal from 'sweetalert2';
 const EditNamePage = () => {
   const navigate = useNavigate();
   const [errorAlertOpen, setErrorAlertOpen] = useState(false);
-  // const { user } = useUserContext();
   const user = JSON.parse(localStorage.getItem('user'));
   const theme = useThemeContext();
   const updateUser = useUpdateUser();
@@ -29,22 +28,20 @@ const EditNamePage = () => {
       { nickNameUser: user.nickName, formData: values },
       {
         onSuccess: () => {
-          navigate('/profile');
           Swal.fire({
             icon: 'success',
-            title: 'Cambios realizados con éxitos',
+            title: 'Cambios realizados con éxito',
             showConfirmButton: false,
             timer: 2000,
+          }).then(() => {
+            navigate('/profile');
           });
-          return;
         },
         onError: () => {
           setErrorAlertOpen(true);
-          console.log('algo salio mal');
         },
       }
     );
-    console.log('me estoy enviando');
   };
 
   return (
@@ -73,7 +70,7 @@ const EditNamePage = () => {
           <StartDashboard />
 
           <FormFields>
-            <FormTitle text='Hey, ahora de cambiar datos' />
+            <FormTitle text='Hey, hora de cambiar datos' />
             <form onSubmit={handleSubmit}>
               <TextField
                 name='firstName'
@@ -116,7 +113,7 @@ const EditNamePage = () => {
                     borderColor: theme.palette.error.main,
                   }}
                 >
-                  Error modificar los datos
+                  Error al cambiar los datos
                 </Alert>
               )}
             </form>

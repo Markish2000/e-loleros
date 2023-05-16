@@ -19,9 +19,9 @@ export default function MenuUsers() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const theme = useThemeContext();
   const navigate = useNavigate();
-  const { user } = useUserContext();
+  // const { user } = useUserContext();
   const open = Boolean(anchorEl);
-  const { firstName } = JSON.parse(localStorage.getItem('user'));
+  const user = JSON.parse(localStorage.getItem('user'));
   const [userLocal, setUserLocal] = React.useState();
 
   React.useEffect(() => {
@@ -57,7 +57,7 @@ export default function MenuUsers() {
             aria-expanded={open ? 'true' : undefined}
           >
             {/* Bienvenid@ {user?.firstName} */}
-            Bienvenid@ {firstName}
+            Bienvenid@ {user?.firstName}
           </Button>
         </Tooltip>
       </Box>

@@ -3,6 +3,7 @@ import DetailChampionsPage from '../../views/DetailChampionsPage';
 import DashboardUserPage from '../../views/DashboardUserPage';
 import EditNamePage from '../../views/EditNamePage';
 import EditPasswordPage from '../../views/EditPasswordPage';
+import EditEmailPage from '../../views/EditEmailPage';
 
 const DashboardUserRouter = () => {
   return (
@@ -11,7 +12,7 @@ const DashboardUserRouter = () => {
         <Route path='/' element={<DashboardUserPage />} />
         <Route path='/edit-name' element={<EditNamePage />} />
         <Route path='/edit-nickName' element={<DetailChampionsPage />} />
-        <Route path='/edit-email' element={<DetailChampionsPage />} />
+        <Route path='/edit-email' element={<EditEmailPage />} />
         <Route path='/edit-dateOfBirth' element={<DetailChampionsPage />} />
         <Route path='/edit-genre' element={<DetailChampionsPage />} />
         <Route path='/edit-nationality' element={<DetailChampionsPage />} />

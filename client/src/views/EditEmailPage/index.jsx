@@ -1,5 +1,5 @@
-import { TextField } from '@mui/material';
 import React, { useState } from 'react';
+import { TextField } from '@mui/material';
 import FormButton from '../../components/FormButton';
 import { useNavigate } from 'react-router-dom';
 import EditBase from '../../components/EditBase';
@@ -9,33 +9,18 @@ import AlertErrorEdit from '../../components/AlertErrorEdit';
 import Swal from 'sweetalert2';
 import { useUpdateUser } from '../../hooks/useUsers/useUpdateUser';
 
-const EditPasswordPage = () => {
+const EditEmailPage = () => {
   const [errorAlertOpen, setErrorAlertOpen] = useState(false);
   const navigate = useNavigate();
   const updateUser = useUpdateUser();
   const user = JSON.parse(localStorage.getItem('user'));
   const initialValues = {
-    password: '',
-    repeatPassword: '',
+    email: '',
   };
 
-  const passwordFields = [
-    {
-      field: 'password',
-      label: 'Contraseña',
-    },
-    {
-      field: 'repeatPassword',
-      label: 'Repetir contraseña',
-    },
-  ];
-
   const handleSubmit = (values) => {
-    let newValues = { ...values };
-    delete newValues.repeatPassword;
-
     updateUser.mutate(
-      { nickNameUser: user.nickName, formData: newValues },
+      { nickNameUser: user.nickName, formData: values },
       {
         onSuccess: () => {
           Swal.fire({
@@ -72,27 +57,24 @@ const EditPasswordPage = () => {
       }) => (
         <EditBase>
           <form onSubmit={handleSubmit}>
-            {passwordFields.map(({ field, label }) => (
-              <TextField
-                name={field}
-                label={label}
-                type='password'
-                variant='outlined'
-                fullWidth
-                margin='normal'
-                value={values[field]}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                error={touched[field] && Boolean(errors[field])}
-                helperText={touched[field] && errors[field]}
-              />
-            ))}
+            <TextField
+              name='email'
+              label='Email'
+              variant='outlined'
+              fullWidth
+              margin='normal'
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={touched.email && Boolean(errors.email)}
+              helperText={touched.email && errors.email}
+            />
             <FormButton
               text='Cambiar'
               isValid={isValid}
               isSubmitting={isSubmitting}
             />
-            {errorAlertOpen && <AlertErrorEdit />}
+            {errorAlertOpen && <AlertErrorEdit text='El correo ya existe' />}
           </form>
         </EditBase>
       )}
@@ -100,4 +82,4 @@ const EditPasswordPage = () => {
   );
 };
 
-export default EditPasswordPage;
+export default EditEmailPage;
