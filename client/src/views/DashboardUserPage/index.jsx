@@ -6,7 +6,7 @@ import {
   IconButton,
   Typography,
 } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useThemeContext } from '../../context/ThemeContext';
 import { useUserContext } from '../../context/UserContext';
@@ -17,27 +17,43 @@ import { Link } from 'react-router-dom';
 
 const DashboardUserPage = () => {
   const theme = useThemeContext();
-  const { user } = useUserContext();
-  const {
-    firstName,
-    lastName,
-    nickName,
-    dateOfBirth,
-    email,
-    nationality,
-    genre,
-    image,
-  } = user;
+  // const { user } = useUserContext();
+  // const {
+  //   firstName,
+  //   lastName,
+  //   nickName,
+  //   dateOfBirth,
+  //   email,
+  //   nationality,
+  //   genre,
+  //   image,
+  // } = user;
+  const [user, setUser] = useState({
+    id: '',
+    firstName: '',
+    lastName: '',
+    nickName: '',
+    email: '',
+    genre: '',
+    nationality: '',
+    dateOfBirth: '',
+    image: '',
+  });
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem('user'));
+    setUser(userData);
+  }, []);
 
   const infoUser = [
     {
       property: 'Usuario',
-      value: nickName,
+      value: user.nickName,
       to: '/profile/edit-nickName',
     },
     {
       property: 'Email',
-      value: email,
+      value: user.email,
       to: '/profile/edit-email',
     },
     {
@@ -47,17 +63,17 @@ const DashboardUserPage = () => {
     },
     {
       property: 'Género',
-      value: genre,
+      value: user.genre,
       to: '/profile/edit-genre',
     },
     {
       property: 'País',
-      value: nationality,
+      value: user.nationality,
       to: '/profile/edit-nationality',
     },
     {
       property: 'Fecha de cumpleaños',
-      value: dateOfBirth,
+      value: user.dateOfBirth,
       to: '/profile/edit-dateOfBirth',
     },
   ];
@@ -65,9 +81,9 @@ const DashboardUserPage = () => {
   return (
     <Box
       sx={{
-        height: '100vh',
+        height: { xs: '100%', md: '100vh' },
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: { xs: 'column', md: 'row' },
       }}
     >
       <StartDashboard />
@@ -76,21 +92,11 @@ const DashboardUserPage = () => {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          // alignItems: 'center',
           padding: '5%',
           width: { xs: '100%', sm: '100%', md: '50%', lg: '35%' },
+          mb: { xs: '2rem', md: '0' },
         }}
       >
-        {/* <Typography
-          variant='h4'
-          sx={{
-            fontSize: { xs: '1.75rem', sm: '1.75rem', md: '1.75rem' },
-            marginBottom: '0.75rem',
-            mt: { xs: '1rem', sm: '1rem', md: '0' },
-          }}
-        >
-          Hey, invocador
-        </Typography> */}
         <Box
           sx={{
             display: 'flex',
@@ -151,7 +157,7 @@ const DashboardUserPage = () => {
                     fontWeight: '600',
                   }}
                 >
-                  {firstName} {lastName}
+                  {user.firstName} {user.lastName}
                 </Typography>
                 <Link to='/profile/edit-name'>
                   <IconButton sx={{ height: '40px', width: '40px' }}>

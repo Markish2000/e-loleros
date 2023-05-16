@@ -19,20 +19,17 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import NavBarDrawer from '../NavBarDrawer';
 import ShoppingCartDrawer from '../ShoppingCartDrawer';
 import { useTaxtContext } from '../../context/ProductContext';
-import { useUserContext } from '../../context/UserContext';
 import MenuUsers from '../MenuUsers';
-import { useMenuContext } from '../../context/MenuContext';
 
 const NavBar = ({ handleThemeChange }) => {
   const theme = useTheme();
   const location = useLocation();
   const { products } = useTaxtContext();
-  const { user } = useUserContext();
-  // const { showMenu, setShowMenu } = useMenuContext();
   const [open, setOpen] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [openShoppingCartDrawer, setOpenShoppingCartDrawer] = useState(false);
   const [quantity, setQuantity] = useState(0);
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const trigger = useScrollTrigger({
     disableHysteresis: true,

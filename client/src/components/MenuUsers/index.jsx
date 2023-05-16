@@ -11,20 +11,28 @@ import Tooltip from '@mui/material/Tooltip';
 import Logout from '@mui/icons-material/Logout';
 import { useUserContext } from '../../context/UserContext';
 import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useThemeContext } from '../../context/ThemeContext';
 
 export default function MenuUsers() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const theme = useThemeContext();
+  const navigate = useNavigate();
   const { user } = useUserContext();
   const open = Boolean(anchorEl);
+  const { firstName } = JSON.parse(localStorage.getItem('user'));
+  const [userLocal, setUserLocal] = React.useState();
+
+  React.useEffect(() => {
+    const userData = localStorage.getItem('user');
+    setUserLocal(userData);
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
-    
+    navigate('/home');
   };
 
   const handleClick = (event) => {
@@ -48,7 +56,8 @@ export default function MenuUsers() {
             aria-haspopup='true'
             aria-expanded={open ? 'true' : undefined}
           >
-            Bienvenid@ {user?.firstName}
+            {/* Bienvenid@ {user?.firstName} */}
+            Bienvenid@ {firstName}
           </Button>
         </Tooltip>
       </Box>
