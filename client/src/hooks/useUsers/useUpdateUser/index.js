@@ -12,7 +12,7 @@ const updateUser = async ({ nickNameUser, formData }) => {
     },
   });
   // localStorage.setItem('token', response.data.token);
-
+  console.log(response.data.data);
   // tokenDecode();
   const updateUser = {
     ...response.data.data,
