@@ -42,12 +42,13 @@ export const lightTheme = createTheme({
     },
     section: {
       main: '#F5F5F5',
-      secondary: '#F7F7F7',
+      secondary: '#141E37',
     },
     text: {
       primary: 'rgba(0, 0, 0)',
       secondary: 'rgba(0, 0, 0, 0.8)',
       disabled: 'rgba(0, 0, 0, 0.6)',
+      default: '#ffff',
     },
     error: {
       main: '#d32f2f',
@@ -144,6 +145,7 @@ export const darkTheme = createTheme({
       primary: '#ffff',
       secondary: 'rgba(255, 255, 255, 0.7)',
       disabled: 'rgba(255, 255, 255, 0.1)',
+      default: '#ffff',
     },
     error: {
       main: '#d32f2f',

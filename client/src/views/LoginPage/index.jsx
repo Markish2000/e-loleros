@@ -20,11 +20,13 @@ import { Formik } from 'formik';
 import validationSchema from './validation';
 import { useLoginUser } from '../../hooks/useUsers/useLoginUser';
 import { useState } from 'react';
+import { useMenuContext } from '../../context/MenuContext';
 
 const LoginPage = () => {
   const theme = useTheme();
   const navigate = useNavigate();
   const loginUser = useLoginUser();
+  // const { setShowMenu } = useMenuContext();
   const [errorAlertOpen, setErrorAlertOpen] = useState(false);
   const initialValues = {
     email: '',

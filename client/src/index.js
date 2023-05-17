@@ -8,6 +8,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import LineLoading from './components/LineLoading';
 import ThemeContextProvider from './context/ThemeContext';
 import ProductContextProvider from './context/ProductContext';
+import UserContextProvider from './context/UserContext';
+import MenuContextProvider from './context/MenuContext';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,9 +38,13 @@ root.render(
         <React.StrictMode>
           <ThemeContextProvider>
             <ProductContextProvider>
-              <App />
-            </ProductContextProvider>          </ThemeContextProvider>
-
+              <UserContextProvider>
+                <MenuContextProvider>
+                  <App />
+                </MenuContextProvider>
+              </UserContextProvider>
+            </ProductContextProvider>
+          </ThemeContextProvider>
         </React.StrictMode>
       </BrowserRouter>
     </QueryClientProvider>

@@ -2,8 +2,10 @@ import { Box } from '@mui/material';
 import React from 'react';
 import styled from 'styled-components';
 import { useThemeContext } from '../../context/ThemeContext';
+import imageDark from '../../assets/Portadas/profileDark1.jpg';
+import imageLight from '../../assets/Portadas/profileLight2.jpg';
 
-const FormImage = ({ imageLight, imageDark }) => {
+const StartDashboard = () => {
   const themeContext = useThemeContext();
   return (
     <BoxImg
@@ -22,4 +24,4 @@ const BoxImg = styled(Box)`
   background-position: center;
 `;
 
-export default FormImage;
+export default StartDashboard;

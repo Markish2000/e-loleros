@@ -1,6 +1,6 @@
 import { Box, CardMedia, Container, Button, Typography } from '@mui/material';
 import Modal from '@mui/material/Modal';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDetailProducts } from '../../hooks/useProducts/useDetailProducts';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -9,15 +9,18 @@ import CloseIcon from '@mui/icons-material/Close';
 import axios from 'axios';
 import Paginated from '../../components/Paginated';
 import { useThemeContext } from '../../context/ThemeContext';
+import { useTaxtContext } from '../../context/ProductContext';
 
 const DetailProductPage = () => {
   const theme = useThemeContext();
+
   const { id } = useParams();
   const query = useDetailProducts(id);
   const { title, detail, images, mainImage, price, stock } = query.data;
   const [currentImage, setCurrentImage] = useState(mainImage);
   const [currentPage, setCurrentPage] = useState(1);
   const [showModal, setShowModal] = useState(false);
+  const [quantity, setQuantity] = useState(0);
   const navigate = useNavigate();
 
   const imagesPruebas = [
@@ -37,8 +40,7 @@ const DetailProductPage = () => {
   const itemsPerPage = 3;
 
   let totalPage = Math.ceil(imagesPruebas.length / itemsPerPage);
-  console.log(totalPage);
-  console.log(imagesPruebas.length);
+
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = Math.min(startIndex + itemsPerPage, imagesPruebas.length);
 
@@ -275,7 +277,7 @@ const DetailProductPage = () => {
                 esse, quasi ipsum quibusdam ab!
               </Typography>
 
-              <StockComponent maxStock={stock} />
+              <StockComponent maxStock={stock} id={id} />
             </Box>
             <Box
               sx={{

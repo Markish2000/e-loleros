@@ -1,16 +1,12 @@
 import {
   AppBar,
   Toolbar,
-  Typography,
   IconButton,
-  Drawer,
-  List,
-  ListItem,
-  ListItemText,
   Box,
   Switch,
   useScrollTrigger,
   useTheme,
+  Typography,
   Button,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -18,21 +14,23 @@ import LinkRouter from '../LinkRouter';
 import ButtonComponent from '../Button';
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import {
-  useThemeContext,
-  useThemeToggleContext,
-} from '../../context/ThemeContext';
-import imageLogo from '../../assets/logoBlanco.png';
+import { Link, useLocation } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import NavBarDrawer from '../NavBarDrawer';
 import ShoppingCartDrawer from '../ShoppingCartDrawer';
+import { useTaxtContext } from '../../context/ProductContext';
+import MenuUsers from '../MenuUsers';
 
 const NavBar = ({ handleThemeChange }) => {
   const theme = useTheme();
   const location = useLocation();
+  const { products } = useTaxtContext();
   const [open, setOpen] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
   const [openShoppingCartDrawer, setOpenShoppingCartDrawer] = useState(false);
+  const [quantity, setQuantity] = useState(0);
+  const user = JSON.parse(localStorage.getItem('user'));
+
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
@@ -40,6 +38,7 @@ const NavBar = ({ handleThemeChange }) => {
 
   const handleDrawerToggle = () => {
     setOpen(!open);
+    setShowMenu(false);
   };
 
   const handleShoppingCartToggle = () => {
@@ -47,6 +46,12 @@ const NavBar = ({ handleThemeChange }) => {
   };
 
   useEffect(() => {
+    if (products && products.length !== 0) {
+      setQuantity(products.length);
+    } else {
+      setQuantity(0);
+    }
+
     const handleScroll = () => {
       const isScrolled = window.scrollY > 0;
       setOpen(false);
@@ -57,7 +62,15 @@ const NavBar = ({ handleThemeChange }) => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [products]);
+
+  useEffect(() => {
+    if (user && Object.keys(user).length !== 0) {
+      setShowMenu(true);
+    } else {
+      setShowMenu(false);
+    }
+  }, [user]);
 
   return (
     <>
@@ -98,6 +111,27 @@ const NavBar = ({ handleThemeChange }) => {
               >
                 <ShoppingCartIcon />
               </IconButton>
+              {quantity !== 0 && (
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: { xs: '0.5rem', sm: '0.7rem', md: '0.5rem' },
+                    right: { xs: '4.2rem', sm: '4.7rem', md: '5.5rem' },
+                    backgroundColor: theme.palette.primary.main,
+                    color: 'white',
+                    borderRadius: '50%',
+                    width: '1.5rem',
+                    height: '1.5rem',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    fontSize: '0.875rem',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  {quantity}
+                </Box>
+              )}
             </Link>
 
             <IconButton color='white' size='large' onClick={handleDrawerToggle}>
@@ -111,22 +145,28 @@ const NavBar = ({ handleThemeChange }) => {
             <LinkRouter to='champions' value='campeones' />
             <LinkRouter to='about' value='nosotros' />
 
-            {location.pathname !== '/login' && (
-              <LinkRouter
-                to='login'
-                value='Iniciar sesión'
-                variant='contained'
-                color='white'
-              />
-            )}
+            {showMenu ? (
+              <MenuUsers />
+            ) : (
+              <>
+                {location.pathname !== '/login' && (
+                  <LinkRouter
+                    to='login'
+                    value='Iniciar sesión'
+                    variant='contained'
+                    color='white'
+                  />
+                )}
 
-            {location.pathname !== '/signIn' && (
-              <LinkRouter
-                to='signIn'
-                value='registrarse'
-                variant='contained'
-                color='white'
-              />
+                {location.pathname !== '/signIn' && (
+                  <LinkRouter
+                    to='signIn'
+                    value='registrarse'
+                    variant='contained'
+                    color='white'
+                  />
+                )}
+              </>
             )}
 
             <Link to='/shoppingCart'>
@@ -138,6 +178,27 @@ const NavBar = ({ handleThemeChange }) => {
               >
                 <ShoppingCartIcon />
               </IconButton>
+              {quantity !== 0 && (
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: '0.5rem',
+                    right: '5.5rem',
+                    backgroundColor: theme.palette.primary.main,
+                    color: 'white',
+                    borderRadius: '50%',
+                    width: '1.5rem',
+                    height: '1.5rem',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    fontSize: '0.875rem',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  {quantity}
+                </Box>
+              )}
             </Link>
 
             <Switch onChange={handleThemeChange} />
