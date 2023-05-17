@@ -263,6 +263,7 @@ const RegisterPage = () => {
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
+                      mt: '1rem',
                     }}
                   >
                     <CircularProgress />

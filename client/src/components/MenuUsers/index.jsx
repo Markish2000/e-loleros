@@ -22,6 +22,8 @@ export default function MenuUsers() {
   const open = Boolean(anchorEl);
   const user = JSON.parse(localStorage.getItem('user'));
 
+  const firstName = user?.firstName.split(' ')[0];
+
   const handleLogout = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('token');
@@ -43,15 +45,24 @@ export default function MenuUsers() {
         <Tooltip title='Account settings'>
           <Button
             onClick={handleClick}
-            size='small'
-            variant='outlined'
-            sx={{ mr: 2, fontWeight: '600' }}
+            size='medium'
+            // variant='outlined'
+            sx={{
+              mr: '0.5rem',
+              textTransform: 'none',
+              color: 'white',
+            }}
             aria-controls={open ? 'account-menu' : undefined}
             aria-haspopup='true'
             aria-expanded={open ? 'true' : undefined}
-            color={theme.palette.mode === 'light' ? 'secondary' : 'primary'}
+            // color={theme.palette.mode === 'light' ? 'secondary' : 'primary'}
           >
-            Bienvenid@ {user?.firstName}
+            Hey! {firstName}
+            <Avatar
+              src={user?.image}
+              alt='Avatar'
+              sx={{ ml: '1rem', border: '1px solid', borderColor: '#BF9A56' }}
+            />
           </Button>
         </Tooltip>
       </Box>

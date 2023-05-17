@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useAllChampions } from '../../hooks/useChampions/useAllChampions';
 import Paginated from '../../components/Paginated';
 import CardsChampions from '../../components/CardsChampions';
-import { Box } from '@mui/material';
+import { Box, Container } from '@mui/material';
 
 const ChampionsPage = () => {
   const text =
@@ -43,6 +43,19 @@ const ChampionsPage = () => {
         title='campeones'
         text={text}
       />
+      <Box
+        sx={{
+          display: { xs: 'none', sm: 'none', md: 'flex' },
+          width: '100%',
+          height: '70px',
+          border: '1px solid',
+          borderColor: theme.palette.hrcolor.main,
+          mb: '2rem',
+        }}
+      >
+        <Container></Container>
+      </Box>
+
       <CardsChampions data={data} />
       <Paginated
         page={currentPage}

@@ -32,7 +32,7 @@ export const lightTheme = createTheme({
     },
     nav: {
       main: '#141E37',
-      light: 'rgba(20, 30, 55, 0.4)',
+      light: 'rgba(20, 30, 55, 0.5)',
       dark: 'rgb(2, 4, 44)',
       contrastText: '#fff',
     },
@@ -83,7 +83,7 @@ export const lightTheme = createTheme({
       // main: '#BFBFBF',
       main: '#CBD1D9',
       secondary: '#E5E7EB',
-    },
+    }
   },
   breakpoints: {
     values: {
