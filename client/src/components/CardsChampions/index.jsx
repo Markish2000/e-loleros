@@ -6,7 +6,7 @@ import SingleCardChampions from '../SingleCardChampions/index.jsx';
 const CardsChampions = ({ data }) => {
   return (
     <Container>
-      <Grid container spacing={{ xs: 3, sm: 3, md: 3, lg: 2 }}>
+      <Grid container spacing={{ xs: 3, sm: 3, md: 4, lg: 3 }}>
         {data.length !== 0
           ? data.map((el) => (
               <Grid item key={el.id} xs={12} sm={12} md={4} lg={3}>
