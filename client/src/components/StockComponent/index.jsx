@@ -4,13 +4,17 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { useTaxtContext } from '../../context/ProductContext';
 
-const StockComponent = ({ maxStock, id }) => {
+const StockComponent = ({ maxStock, id, data }) => {
   const [quantity, setQuantity] = useState(0);
   const [product, setProduct] = useState({});
   const { addProduct, products, cleanProduct } = useTaxtContext();
 
   useEffect(() => {
     const productExists = products.some((el) => el.id === parseInt(id));
+
+    if (!productExists) {
+      setProduct(data);
+    }
 
     if (productExists) {
       const product = products.find((el) => el.id === parseInt(id));

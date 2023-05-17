@@ -3,17 +3,13 @@ import instance from '../../../config';
 import tokenDecode from '../../../helpers/tokenDecode';
 
 const loginUser = async (formData) => {
-  try {
-    const response = await instance.post('/login', formData);
+  const response = await instance.post('/login', formData);
 
-    localStorage.setItem('token', response.data.token);
+  localStorage.setItem('token', response.data.token);
 
-    tokenDecode();
+  tokenDecode();
 
-    return 'Acceso correcto';
-  } catch (error) {
-    console.log(error.message);
-  }
+  return 'Acceso correcto';
 };
 
 export const useLoginUser = () => {

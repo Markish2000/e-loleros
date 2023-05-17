@@ -133,8 +133,8 @@ const NavBar = ({ handleThemeChange }) => {
                 <Box
                   sx={{
                     position: 'absolute',
-                    top: { xs: '0.5rem', sm: '0.7rem', md: '0.5rem' },
-                    right: { xs: '4.2rem', sm: '4.7rem', md: '5.5rem' },
+                    top: { xs: '0.3rem', sm: '0.5rem', md: '0.5rem' },
+                    right: { xs: '3.8rem', sm: '4.2rem', md: '4.5rem' },
                     backgroundColor: theme.palette.primary.main,
                     color: 'white',
                     borderRadius: '50%',
@@ -226,7 +226,7 @@ const NavBar = ({ handleThemeChange }) => {
                   sx={{
                     position: 'absolute',
                     top: '0.5rem',
-                    right: '5.5rem',
+                    right: '4.5rem',
                     backgroundColor: theme.palette.primary.main,
                     color: 'white',
                     borderRadius: '50%',
