@@ -92,7 +92,7 @@ export default function MenuUsers() {
       >
         <LinkStyled to='/profile' theme={theme}>
           <MenuItem onClick={handleClose} sx={{ mb: '10px' }}>
-            <Avatar src={user.image} alt='Avatar' />
+            <Avatar src={user?.image} alt='Avatar' />
             Perfil
           </MenuItem>
         </LinkStyled>

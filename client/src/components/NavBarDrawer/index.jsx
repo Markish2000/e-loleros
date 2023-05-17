@@ -7,10 +7,20 @@ import {
   Button,
   List,
 } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const NavBarDrawer = ({ open, handleDrawerToggle, handleThemeChange }) => {
+  const [showMenu, setShowMenu] = useState(false);
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  useEffect(() => {
+    if (user && Object.keys(user).length !== 0) {
+      setShowMenu(true);
+    } else {
+      setShowMenu(false);
+    }
+  }, [user]);
   return (
     <Drawer
       open={open}
@@ -40,15 +50,23 @@ const NavBarDrawer = ({ open, handleDrawerToggle, handleThemeChange }) => {
           <ListItem button component={Link} to='about'>
             <ListItemText primary='Nosotros' />
           </ListItem>
-
-          <ListItem button component={Link} to='login'>
-            <Button variant='contained'>Iniciar sesión</Button>
-          </ListItem>
-
-          <ListItem button component={Link} to='signIn'>
-            <Button variant='contained'>Registrarse</Button>
-          </ListItem>
         </List>
+
+        {!showMenu && (
+          <Box sx={{ width: { xs: '100%', sm: '250px', md: '' } }}>
+            <ListItem button component={Link} to='login'>
+              <Button variant='contained' sx={{ width: '100%' }}>
+                Iniciar sesión
+              </Button>
+            </ListItem>
+
+            <ListItem button component={Link} to='signIn'>
+              <Button variant='contained' sx={{ width: '100%' }}>
+                Registrarse
+              </Button>
+            </ListItem>
+          </Box>
+        )}
       </Box>
     </Drawer>
   );
