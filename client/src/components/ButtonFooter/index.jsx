@@ -1,14 +1,16 @@
-import { Button } from '@mui/material';
+import { Button, useTheme } from '@mui/material';
 
 const ButtonFooter = ({ text, mr }) => {
+  const theme = useTheme();
+
   return (
     <Button
-      variant='outlined'
-      color='primary'
+      variant='text'
+      color={theme.palette.mode === 'light' ? 'secondary' : 'primary'}
       sx={{
+        // width: '100%',
         fontSize: '0.75rem',
-        marginRight: { xs: '0px', sm: '0px', md: mr },
-        marginTop: { xs: '10px', sm: '10px', md: '0px' },
+        marginTop: '10px',
       }}
     >
       {text}

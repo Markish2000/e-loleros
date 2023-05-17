@@ -8,6 +8,7 @@ import {
   useTheme,
   Typography,
   Button,
+  CardMedia,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import LinkRouter from '../LinkRouter';
@@ -20,10 +21,12 @@ import NavBarDrawer from '../NavBarDrawer';
 import ShoppingCartDrawer from '../ShoppingCartDrawer';
 import { useTaxtContext } from '../../context/ProductContext';
 import MenuUsers from '../MenuUsers';
+import imageLogo from '../../assets/logoBlanco.png';
 
 const NavBar = ({ handleThemeChange }) => {
   const theme = useTheme();
   const location = useLocation();
+  const currentPath = location.pathname;
   const { products } = useTaxtContext();
   const [open, setOpen] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
@@ -84,7 +87,7 @@ const NavBar = ({ handleThemeChange }) => {
           //   : `rgba(255, 255, 255, 0)`,
           background: trigger
             ? `${theme.palette.nav.main}`
-            : `rgba(255, 255, 255, 0)`,
+            : `${theme.palette.nav.light}`,
           // background: 'transparent',
           backdropFilter: trigger ? '' : `blur(15px)`,
           color: trigger ? 'white' : 'black',
@@ -99,18 +102,29 @@ const NavBar = ({ handleThemeChange }) => {
             backgroundColor: 'transparent',
           }}
         >
-          <img src='' alt='' />
+          <CardMedia
+            component='img'
+            src={imageLogo}
+            alt='Logo'
+            sx={{ width: '70px' }}
+          />
 
           <Box sx={{ display: { xs: 'flex', sm: 'flex', md: 'none' } }}>
+            {showMenu && <MenuUsers />}
             <Link to='/shoppingCart'>
-              <IconButton
-                color='white'
-                size='large'
-                // onClick={handleDrawerToggle}
-                sx={{ mr: '0.5rem' }}
+              <Button
+                variant='outlined'
+                color={theme.palette.mode === 'light' ? 'secondary' : 'primary'}
+                sx={{
+                  color: 'white',
+                  marginRight: '10px',
+                  mt: '5px',
+                  mb: '5px',
+                }}
               >
-                <ShoppingCartIcon />
-              </IconButton>
+                {/* Carrito */}
+                <ShoppingCartIcon sx={{ color: 'white', width: '22px' }} />
+              </Button>
               {quantity !== 0 && (
                 <Box
                   sx={{
@@ -135,15 +149,15 @@ const NavBar = ({ handleThemeChange }) => {
             </Link>
 
             <IconButton color='white' size='large' onClick={handleDrawerToggle}>
-              <MenuIcon />
+              <MenuIcon sx={{ color: 'white' }} />
             </IconButton>
           </Box>
 
           <Box sx={{ display: { xs: 'none', sm: 'none', md: 'flex' } }}>
-            <LinkRouter to='home' value='inicio' />
-            <LinkRouter to='shop' value='tienda' />
-            <LinkRouter to='champions' value='campeones' />
-            <LinkRouter to='about' value='nosotros' />
+            <LinkRouter to='home' value='inicio' colorText='white' />
+            <LinkRouter to='shop' value='tienda' colorText='white' />
+            <LinkRouter to='champions' value='campeones' colorText='white' />
+            <LinkRouter to='about' value='nosotros' colorText='white' />
 
             {showMenu ? (
               <MenuUsers />
@@ -154,7 +168,10 @@ const NavBar = ({ handleThemeChange }) => {
                     to='login'
                     value='Iniciar sesión'
                     variant='contained'
-                    color='white'
+                    colorText='white'
+                    color={
+                      theme.palette.mode === 'light' ? 'secondary' : 'primary'
+                    }
                   />
                 )}
 
@@ -163,21 +180,28 @@ const NavBar = ({ handleThemeChange }) => {
                     to='signIn'
                     value='registrarse'
                     variant='contained'
-                    color='white'
+                    colorText='white'
+                    color={
+                      theme.palette.mode === 'light' ? 'secondary' : 'primary'
+                    }
                   />
                 )}
               </>
             )}
-
             <Link to='/shoppingCart'>
-              <IconButton
-                color='white'
-                size='large'
-                // onClick={handleDrawerToggle}
-                sx={{ mr: '0.5rem' }}
+              <Button
+                variant='outlined'
+                color={theme.palette.mode === 'light' ? 'secondary' : 'primary'}
+                sx={{
+                  color: 'white',
+                  marginRight: '10px',
+                  mt: '5px',
+                  mb: '5px',
+                }}
               >
-                <ShoppingCartIcon />
-              </IconButton>
+                {/* Carrito */}
+                <ShoppingCartIcon sx={{ color: 'white', width: '22px' }} />
+              </Button>
               {quantity !== 0 && (
                 <Box
                   sx={{
@@ -200,8 +224,13 @@ const NavBar = ({ handleThemeChange }) => {
                 </Box>
               )}
             </Link>
-
-            <Switch onChange={handleThemeChange} />
+            <Box sx={{ width: '45px' }}>
+              <Switch
+                onChange={handleThemeChange}
+                sx={{ mt: '0.3rem', transform: 'scale(0.9)' }}
+                color='secondary'
+              />
+            </Box>
           </Box>
         </Toolbar>
       </AppBar>

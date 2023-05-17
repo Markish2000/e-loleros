@@ -121,7 +121,7 @@ const DashboardUserPage = () => {
               >
                 <CardMedia
                   component='img'
-                  src='https://i.pinimg.com/550x/79/ab/93/79ab931fa013149b710b7b3366cdb22e.jpg'
+                  src={user.image}
                   sx={{
                     width: '150px',
                     height: '150px',
@@ -131,15 +131,17 @@ const DashboardUserPage = () => {
                   }}
                 />
 
-                <IconButton sx={{ height: '40px', width: '40px' }}>
-                  <EditIcon
-                    sx={{
-                      color: theme.palette.secondary.main,
-                      height: '18px',
-                      width: '18px',
-                    }}
-                  />
-                </IconButton>
+                <Link to='/profile/edit-image'>
+                  <IconButton sx={{ height: '40px', width: '40px' }}>
+                    <EditIcon
+                      sx={{
+                        color: theme.palette.secondary.main,
+                        height: '18px',
+                        width: '18px',
+                      }}
+                    />
+                  </IconButton>
+                </Link>
               </Box>
               <Box
                 sx={{

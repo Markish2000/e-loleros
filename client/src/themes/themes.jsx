@@ -31,9 +31,9 @@ export const lightTheme = createTheme({
       contrastText: '#fff',
     },
     nav: {
-      main: '#C8D3EA',
-      light: '#92A9D5',
-      dark: '#476EB9',
+      main: '#141E37',
+      light: 'rgba(20, 30, 55, 0.4)',
+      dark: 'rgb(2, 4, 44)',
       contrastText: '#fff',
     },
     background: {
@@ -122,7 +122,7 @@ export const darkTheme = createTheme({
     },
     nav: {
       main: '#00070D',
-      light: 'rgb(56, 67, 82)',
+      light: 'rgba(0, 7, 13, 0.2)',
       dark: 'rgb(4, 14, 27)',
       // contrastText: '#fff',
     },
