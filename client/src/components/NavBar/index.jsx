@@ -21,8 +21,6 @@ import NavBarDrawer from '../NavBarDrawer';
 import ShoppingCartDrawer from '../ShoppingCartDrawer';
 import { useTaxtContext } from '../../context/ProductContext';
 import MenuUsers from '../MenuUsers';
-import imageLogoLight from '../../assets/Logo/logoeloleroLight.png';
-import imageLogoDark from '../../assets/Logo/logoeloleroDark.png';
 import imageLogo from '../../assets/logoBlanco.png';
 
 const NavBar = ({ handleThemeChange }) => {
