@@ -19,15 +19,8 @@ export default function MenuUsers() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const theme = useThemeContext();
   const navigate = useNavigate();
-  // const { user } = useUserContext();
   const open = Boolean(anchorEl);
   const user = JSON.parse(localStorage.getItem('user'));
-  const [userLocal, setUserLocal] = React.useState();
-
-  React.useEffect(() => {
-    const userData = localStorage.getItem('user');
-    setUserLocal(userData);
-  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('user');
@@ -51,12 +44,13 @@ export default function MenuUsers() {
           <Button
             onClick={handleClick}
             size='small'
-            // sx={{ ml: 2 }}
+            variant='outlined'
+            sx={{ mr: 2, fontWeight: '600' }}
             aria-controls={open ? 'account-menu' : undefined}
             aria-haspopup='true'
             aria-expanded={open ? 'true' : undefined}
+            color={theme.palette.mode === 'light' ? 'secondary' : 'primary'}
           >
-            {/* Bienvenid@ {user?.firstName} */}
             Bienvenid@ {user?.firstName}
           </Button>
         </Tooltip>
@@ -98,11 +92,11 @@ export default function MenuUsers() {
       >
         <LinkStyled to='/profile' theme={theme}>
           <MenuItem onClick={handleClose} sx={{ mb: '10px' }}>
-            <Avatar />
+            <Avatar src={user.image} alt='Avatar' />
             Perfil
           </MenuItem>
         </LinkStyled>
-        <Divider />
+        <DividerStyled theme={theme} />
         <MenuItem onClick={handleLogout} sx={{ mt: '10px' }}>
           <ListItemIcon>
             <Logout fontSize='small' />
@@ -117,4 +111,8 @@ export default function MenuUsers() {
 const LinkStyled = styled(Link)`
   text-decoration: none;
   color: ${({ theme }) => theme.palette.primary.main};
+`;
+
+const DividerStyled = styled(Divider)`
+  border-color: ${({ theme }) => theme.palette.hrcolor.main};
 `;
