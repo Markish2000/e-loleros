@@ -1,3 +1,6 @@
+import { useTaxtContext } from "../../context/ProductContext";
+import { useThemeContext } from "../../context/ThemeContext";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Box,
   Container,
@@ -6,17 +9,16 @@ import {
   Divider,
   IconButton,
   Button,
-} from '@mui/material';
-import ShoppingCartTable from '../../components/ShoppingCartTable';
-import ShoppingCartQuantity from '../../components/ShoppingCartQuantity';
-import ShoppingCartProduct from '../../components/ShoppingCartProduct';
-import styled from 'styled-components';
-import { useThemeContext } from '../../context/ThemeContext';
-import CloseIcon from '@mui/icons-material/Close';
-import { useEffect } from 'react';
-import { useTaxtContext } from '../../context/ProductContext';
-import { Link, useNavigate } from 'react-router-dom';
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+  CardMedia,
+} from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import ShoppingCartTable from "../../components/ShoppingCartTable";
+import ShoppingCartQuantity from "../../components/ShoppingCartQuantity";
+import ShoppingCartProduct from "../../components/ShoppingCartProduct";
+import imageLight from "../../assets/Gestos/poro_blue.png";
+import imageDark from "../../assets/Gestos/poro_yellow.png";
+import styled from "styled-components";
 
 const ShoppingCartPage = () => {
   const theme = useThemeContext();
@@ -31,25 +33,31 @@ const ShoppingCartPage = () => {
   return (
     <Box
       sx={{
-        minHeight: '100vh',
-        pt: '70px',
-        mb: '3rem',
+        minHeight: "100vh",
+        pt: "70px",
+        mb: "3rem",
       }}
     >
       <Container>
         {products.length !== 0 && (
-          <Button size='small' onClick={handleBack} sx={{ mb: '1rem' }}>
-            <KeyboardArrowLeftIcon sx={{ p: '2px' }} />
+          <Button
+            size="small"
+            variant="outlined"
+            onClick={handleBack}
+            sx={{ mt: "2rem" }}
+          >
+            <KeyboardArrowLeftIcon sx={{ p: "2px" }} />
             Seguir comprando
           </Button>
         )}
 
         <Typography
-          variant='h3'
+          variant="h3"
           sx={{
-            ml: '1rem',
-            mb: '1rem',
-            fontSize: { xs: '2.5rem', sm: '3rem' },
+            mt: "2rem",
+            ml: "1rem",
+            mb: "1rem",
+            fontSize: { xs: "2.5rem", sm: "3rem" },
           }}
         >
           Carrito
@@ -58,15 +66,15 @@ const ShoppingCartPage = () => {
       </Container>
       <Container
         sx={{
-          display: 'flex',
-          flexDirection: { xs: 'column', md: 'row', lg: 'row' },
+          display: "flex",
+          flexDirection: { xs: "column", md: "row", lg: "row" },
           // alignItems: 'center',
-          justifyContent: 'space-between',
+          justifyContent: "space-between",
         }}
       >
         <Container
           sx={{
-            width: '100%',
+            width: "100%",
           }}
         >
           {products.length !== 0 ? (
@@ -75,9 +83,9 @@ const ShoppingCartPage = () => {
                 <Grid
                   container
                   sx={{
-                    width: '100%',
-                    height: 'auto',
-                    mt: '20px',
+                    width: "100%",
+                    height: "auto",
+                    mt: "20px",
                     // display: 'flex',
                     // justifyContent: 'space-between',
                   }}
@@ -104,8 +112,8 @@ const ShoppingCartPage = () => {
                     md={2}
                     lg={3}
                     sx={{
-                      display: 'flex',
-                      justifyContent: 'flex-end',
+                      display: "flex",
+                      justifyContent: "flex-end",
                     }}
                   >
                     <StyledIcon
@@ -119,27 +127,44 @@ const ShoppingCartPage = () => {
                 <DividerStyled
                   theme={theme}
                   sx={{
-                    mt: '20px',
+                    mt: "20px",
                   }}
                 />
               </Box>
             ))
           ) : (
-            <Box sx={{ mt: '20px' }}>
-              <Typography
-                variant='subtitle1'
+            <Box
+              sx={{
+                mt: "20px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <CardMedia
+                component="img"
+                src={theme.palette.mode === "light" ? imageLight : imageDark}
                 sx={{
-                  fontSize: '1.5rem',
+                  mt: "1rem",
+                  width: "200px",
+                }}
+              />
+              <Typography
+                variant="subtitle1"
+                sx={{
+                  mt: "1rem",
+                  fontSize: "1.25rem",
+                  mb: "2rem",
                 }}
               >
-                Todavía no se agregaron productos 😓
+                Todavía no se agregaron productos.
               </Typography>
-              <Link to='/shop'>
+              <Link to="/shop">
                 <Button
-                  variant='contained'
-                  size='large'
+                  variant="contained"
+                  size="large"
                   sx={{
-                    mt: '1rem',
+                    mt: "1rem",
                   }}
                 >
                   Ir a tienda
@@ -153,10 +178,10 @@ const ShoppingCartPage = () => {
         {products.length !== 0 && (
           <Box
             sx={{
-              mt: { xs: '3rem', md: '20px' },
-              width: '100%',
-              display: 'flex',
-              justifyContent: { xs: 'center', sm: 'flex-end' },
+              mt: { xs: "3rem", md: "20px" },
+              width: "100%",
+              display: "flex",
+              justifyContent: { xs: "center", sm: "flex-end" },
             }}
           >
             <ShoppingCartTable products={products} />
